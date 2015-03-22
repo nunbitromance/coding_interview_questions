@@ -282,3 +282,27 @@ public boolean isMirror(Tree a, Tree b) {
 		return isMirror(a.left, b.right) && isMirror(a.right,b.left);
 	}
 }
+
+18. Find k nearest points from origin from n points.
+public List<Point> findKNearest(Point[] points, int k) {
+	PriorityQueue<Point> pq = new PriorityQueue<Point>(new Comparator<Point>() {
+		public int compare(Point a, Point b) {
+			int disA = Math.sqrt(Math.pow(a.x, 2) + Math.pow(a.y, 2));
+			int disB = Math.sqrt(Math.pow(b.x, 2) + Math.pow(b.y, 2));
+			return disB - disA;
+		}
+	});
+	
+	for (int i = 0; i < points.length; i++) {
+		if (pq.size() <= k) {
+			pq.offer(points[i]);
+		} else {
+			if (pq.peek().distance() > points[i].distance()) {
+				pq.poll();
+				pq.offer(points[i]);
+			}
+		}
+	}
+	
+	return new ArrayList<Point>(pq.toArray());
+}
