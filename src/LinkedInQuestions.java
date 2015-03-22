@@ -267,3 +267,18 @@ public boolean isInfluencerExists(int[][] graph) {
 	}
 	return false;
 }
+
+17. is binary tree a mirrored image of another binary tree?
+public boolean isMirror(Tree a, Tree b) {
+	if (a == null && b == null) {
+		return true;
+	} else if (a == null || b == null) {
+		return false;
+	}
+
+	if (a.val != b.val) {
+		return false;
+	} else {
+		return isMirror(a.left, b.right) && isMirror(a.right,b.left);
+	}
+}
