@@ -1,3 +1,5 @@
+"\s[-+]?\d\.?\d+\s*
+"(^-)?\\d+(\\.)?\\d*"
 public boolean isNumber(String s) {
     s = s.trim();
 
