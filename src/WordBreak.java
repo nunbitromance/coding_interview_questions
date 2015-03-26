@@ -28,4 +28,20 @@ public class Solution{
 	}
 	return0;
 	}
+	
+	String SegmentString(String input, Set<String> dict) {
+	  if (dict.contains(input)) return input;
+	  int len = input.length();
+	  for (int i = 1; i < len; i++) {
+	    String prefix = input.substring(0, i);
+	    if (dict.contains(prefix)) {
+	      String suffix = input.substring(i, len);
+	      String segSuffix = SegmentString(suffix, dict);
+	      if (segSuffix != null) {
+	        return prefix + " " + segSuffix;
+	      }
+	    }
+	  }
+	  return null;
+	}
 }
