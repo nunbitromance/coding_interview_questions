@@ -83,3 +83,34 @@ private static void Swap(int[] a, int i, int j)
 	a[i] = a[j];
 	a[j] = t;
 }
+
+public class Solution {
+    public List<List<Integer>> permute(int[] num) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        permute(num, 0, result);
+        return result;
+    }
+    
+    private void permute(int[] num, int i, List<List<Integer>> result) {
+        if (i == num.length) {
+            List<Integer> r = new ArrayList<Integer>();
+            for (int k = 0; k < num.length; k++) {
+                r.add(num[k]);
+            }
+            result.add(r);
+            return;
+        }
+        
+        for (int j = i; j < num.length; j++) {
+            swap(num, i, j);
+            permute(num, i + 1, result);
+            swap(num, j, i);
+        }
+    }
+    
+    private void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
