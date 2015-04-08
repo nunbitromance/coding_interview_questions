@@ -13,29 +13,37 @@
 	  [1,4],
 	]
 */
-public static List<List<int>> Combinations(int[] m, int n, int k)
-{
-	List<List<int>> result = new List<List<int>>();
-
-	if (k == 1)
-	{
-		for (int i = 0; i < m.Length; i++)
-		{
-			result.Add(new List<int>(){ m[i] });
-		}
-		return result;
-	}
+public List<List<Integer>> getAllCombinations(int[] arr, int n, int k) {
 	
-	rest= Combinations(m, k-1);
-	
-	foreach (List<int> r in rest)
-	{
-		for (int i = 0; i < m.Length; i++)
-		{
-			r.Add(m[i]);
-			result.Add(r);
-		}
-	}
-	
-	return result;
+	List<List<Integer>> result = new ArrayList<List<Integer>>();
+	List<Integer> cur = new ArrayList<Integer>();
+	getAllCombinations(arr, result, cur, n, k, 0, n - 1);
 }
+
+private void getAllCombinations(int[] arr, List<List<Integer>> result, List<Integer> cur, int n, int k, int start, int end) {
+	
+	if (k == 0) {
+		result.add(cur);
+		return;
+	}
+
+	for (int i = start; i <= end; i++) {
+		cur.add(arr[i]);
+		getAllCombinations(arr, result, cur, n, k - 1, i + 1, end);
+	}
+}
+
+
+C(4, 2)
+1, 2, 3, 4
+
+1, 2
+1, 3
+1, 4
+
+2, 3
+2, 4
+
+3, 4
+
+4
