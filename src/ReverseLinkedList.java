@@ -88,5 +88,43 @@ public static void Reverse(Node head, int m, int n)
 		cur = cur.Next;
 	}
 	
-	
+	/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+ListNode current = head;
+    ListNode reverseHead = null;
+    ListNode dummy = null;
+    ListNode tail = new ListNode(0);
+    for (int i = 1; i <= n; i++) {
+        if (i == m - 1) {
+            reverseHead = current;
+        } else if (i >= m) {
+            if (i == m)
+                tail = current;
+            ListNode node = current;
+            current = current.next;
+            node.next = dummy;
+            dummy = node;
+            continue;
+        }
+        current = current.next;
+    }
+    tail.next = current;
+    if (reverseHead == null)
+        return dummy;
+    else
+        reverseHead.next = dummy;
+    return head;
+    }
+}
 }
