@@ -29,3 +29,29 @@ public static void RestoreIP(string s, int index, string c)
 		}
 	}
 }
+
+public List<String> restoreIpAddresses(String s) {
+        List<String> result = new ArrayList<String>();
+        restoreIpAddresses(s, 0, "", result);
+        return result;
+    }
+    
+    private void restoreIpAddresses(String s, int segIndex, String curS, List<String> result) {
+        if (segIndex == 4 && s.equals("")) {
+            result.add(curS);
+            return;
+        } else if (segIndex <= 3) {
+            for (int i = 1; i <= 3; i++) {
+                if (s.length() >= i) {
+                    int cur = Integer.parseInt(s.substring(0, i));
+                    if (cur <= 255) {
+                       if (segIndex > 0) {
+                           restoreIpAddresses(s.substring(i, s.length()), segIndex + 1, new StringBuilder(curS).append('.').append(cur).toString(), result);
+                       } else {
+                           restoreIpAddresses(s.substring(i, s.length()), segIndex + 1, new StringBuilder(curS).append(cur).toString(), result);
+                       }
+                    }
+                }
+            }
+        }
+    }
