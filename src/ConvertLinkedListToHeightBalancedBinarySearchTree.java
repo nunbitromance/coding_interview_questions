@@ -1,19 +1,21 @@
 /* Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
 */
-public static Node ConvertLinkedListToBST(ref Node head, int start, int end)
+public static Node convertLinkedListToBST(Node head, int start, int end)
 {
 	if (head == null || start > end)
 	{
 		return null;
 	}
 	
+	Node first = head;
 	int mid = (start + end) / 2;
-	Node leftSubtree = ConvertLinkedListToBST(ref head, start, mid - 1);
-	Node root = new Node(head.Value);
-	root.Left = leftSubtree;
-	head = head.Next;
-	Node rightSubtree = ConvertLinkedList(ref head, mid + 1, end);
-	root.right = rightSubtree;
+	for (int i = 0; i < mid; i++) {
+		first = first.next;
+	}
+	
+	Node root = new Node(first.val);
+	root.left = convertLinkedListToBst(head, start, mid - 1);
+	root.right = convertLinkedListToBst(head, mid+1, end);
 	
 	return root;
 }
@@ -22,7 +24,7 @@ public static Node ConvertLinkedListToBST(ref Node head, int start, int end)
 Convert Sorted Array to Binary Search TreeOct 2 '12
 Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
 */
-public static Node ConvertArrayToBST(int[] m, int start, int end)
+public static Node convertArrayToBST(int[] m, int start, int end)
 {
 	if (start > end)
 	{
