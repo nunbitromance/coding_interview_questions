@@ -7,9 +7,10 @@ public boolean[] sieve(int n)
    int m=Math.sqrt(n);
 
    for (int i=2; i<=m; i++)
-      if (prime[i])
-         for (int k=i*i; k<=n; k+=i)
-            prime[k]=false;
-
+      if (prime[i]) {
+         for (int j=2; i*j<=n; j++) {
+            prime[i*j]=false;
+         }
+      }
    return prime;
 } 
