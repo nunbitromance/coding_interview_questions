@@ -146,4 +146,19 @@ int main()
 Time Complexity: O(n^3)
 Auxiliary Space: O(n^2)
 
-Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above.
+Actual multiplication
+
+public static int[][] multiply(int[][] a, int[][] b) {
+       int rowsInA = a.length;
+       int columnsInA = a[0].length; // same as rows in B
+       int columnsInB = b[0].length;
+       int[][] c = new int[rowsInA][columnsInB];
+       for (int i = 0; i < rowsInA; i++) {
+           for (int j = 0; j < columnsInB; j++) {
+               for (int k = 0; k < columnsInA; k++) {
+                   c[i][j] = c[i][j] + a[i][k] * b[k][j];
+               }
+           }
+       }
+       return c;
+   }
