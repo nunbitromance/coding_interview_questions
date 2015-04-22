@@ -10,42 +10,44 @@
  * }
  */
 public class Solution {
-    public ListNode reverseKGroup(ListNode head, int k) {
-        ListNode first = head;
-        
-        while (first != null) {
-            ListNode cur = first;
-            boolean isEndReached = false;
-            for (int i = 0; i < k; i++) {
-                if (cur.next == null) {
-                    isEndReached = true;
-                    break;
-                } else {
-                    cur = cur.next;
-                }
-            }
-            
-            if (!isEndReached) {
-                ListNode tail = cur.next;
-                first.next = reverse(first, tail, k);
-                first = tail;
-            }
-        }
-        
-        return head;
-    }
+    public ListNode reverseKGroup(ListNode head, int k) {  
+        if(head == null)  
+        {  
+            return null;  
+        }  
+        ListNode dummy = new ListNode(0);  
+        dummy.next = head;  
+        int count = 0;  
+        ListNode pre = dummy;  
+        ListNode cur = head;  
+        while(cur != null)  
+        {  
+            count ++;  
+            ListNode next = cur.next;  
+            if(count == k)  
+            {  
+                pre = reverse(pre, next);  
+                count = 0;     
+            }  
+            cur = next;  
+        }  
+        return dummy.next;  
+    }  
     
-    public ListNode reverse(ListNode head, ListNode tail, int k) {
-        ListNode prev = null;
-        ListNode cur = head;
-        int i = 0;
-        while (cur != null && i < k) {
-            ListNode temp = cur.next;
-            cur.next = prev;
-            prev.next = temp;
-            i++;
-        }
-        head.next = tail;
-        return prev;
-    }
+    private ListNode reverse(ListNode pre, ListNode end)  
+    {  
+        if(pre==null || pre.next==null)  
+            return pre;  
+        ListNode head = pre.next;  
+        ListNode cur = pre.next.next;  
+        while(cur!=end)  
+        {  
+            ListNode next = cur.next;  
+            cur.next = pre.next;  
+            pre.next = cur;  
+            cur = next;  
+        }  
+        head.next = end;  
+        return head;  
+    }  
 }
