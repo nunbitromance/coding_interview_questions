@@ -66,7 +66,7 @@ public static int minCoins(int sum, int[] denoms)
         
         for (int j=0; j < denoms.length; j++)
         {
-            if (j <= i && min < minCoins[i - denoms[j]])
+            if (j <= i && min > minCoins[i - denoms[j]])
             {
                 min = minCoins[i - denoms[j]];
             }
