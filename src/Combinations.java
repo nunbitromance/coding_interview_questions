@@ -13,23 +13,26 @@
 	  [1,4],
 	]
 */
-public List<List<Integer>> getAllCombinations(int[] arr, int n, int k) {
+public List<List<Integer>> getAllCombinations(int[] arr, int k) {
 	
 	List<List<Integer>> result = new ArrayList<List<Integer>>();
 	List<Integer> cur = new ArrayList<Integer>();
-	getAllCombinations(arr, result, cur, n, k, 0, n - 1);
+	getAllCombinations(arr, k, result, cur, 0);
 }
 
-private void getAllCombinations(int[] arr, List<List<Integer>> result, List<Integer> cur, int n, int k, int start, int end) {
+private void getAllCombinations(int[] arr,  int k, int start, List<List<Integer>> result, List<Integer> cur) {
 	
 	if (k == 0) {
-		result.add(cur);
-		return;
+		if (cur.size() == k) {
+			result.add(cur);
+			return;
+		}
 	}
 
-	for (int i = start; i <= end; i++) {
+	for (int i = start; i <= arr.length && result.length - i + 1 >= k - start ; i++) {
 		cur.add(arr[i]);
 		getAllCombinations(arr, result, cur, n, k - 1, i + 1, end);
+		cur.remove(arr[i]);
 	}
 }
 
