@@ -22,16 +22,16 @@ public List<List<Integer>> getAllCombinations(int[] arr, int k) {
 
 private void getAllCombinations(int[] arr,  int k, int start, List<List<Integer>> result, List<Integer> cur) {
 	
-	if (k == 0) {
+	if (start == k) {
 		if (cur.size() == k) {
 			result.add(cur);
-			return;
 		}
+		return;
 	}
 
 	for (int i = start; i <= arr.length && result.length - i + 1 >= k - start ; i++) {
 		cur.add(arr[i]);
-		getAllCombinations(arr, result, cur, n, k - 1, i + 1, end);
+		getAllCombinations(arr, k, start+1, result, cur);
 		cur.remove(arr[i]);
 	}
 }
