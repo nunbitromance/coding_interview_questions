@@ -1,0 +1,41 @@
+/*
+How do services like TinyURL or Metamark work?
+Do they simply associate the tiny URL key with a [virtual?] web page which merely provide an "HTTP redirect" to the original URL? or is there more "magic" to it ?
+
+[original wording] I often use URL shortening services like TinyURL, Metamark, and others, but every time I do, I wonder how these services work. Do they create a new file that will redirect to another page or do they use subdomains?
+*/
+
+No, they don't use files. When you click on a link like that, an HTTP request is send to their server with the full URL, like http://bit.ly/duSk8wK (links to this question). They read the path part (here duSk8wK), which maps to their database. In the database, they find a description (sometimes), your name (sometimes) and the real URL. Then they issue a redirect, which is a HTTP 302 response and the target URL in the header.
+
+This direct redirect is important. If you were to use files or first load HTML and then redirect, the browser would add TinyUrl to the history, which is not what you want. Also, the site that is redirected to will see the referrer (the site that you originally come from) as being the site the TinyUrl link is on (i.e., twitter.com, your own site, wherever the link is). This is just as important, so that site owners can see where people are coming from. This too, would not work if a page gets loaded that redirects.
+
+PS: there are more types of redirect. HTTP 301 means: redirect permanent. If that would happen, the browser will not request the bit.ly or TinyUrl site anymore and those sites want to count the hits. That's why HTTP 302 is used, which is a temporary redirect. The browser will ask TinyUrl.com or bit.ly each time again, which makes it possible to count the hits for you (some tiny url services offer this).
+
+
+
+Others have answered how the redirects work but you should also know how they generate their tiny urls. You'll mistakenly hear that they create a hash of the URL in order to generate that unique code for the shortened URL. This is incorrect in most cases, they aren't using a hashing algorithm (where you could potentially have collisions).
+
+Most of the popular URL shortening services simply take the ID in the database of the URL and then convert it to either Base 36 [a-z0-9] (case insensitive) or Base 62 (case sensitive).
+
+A simplified example of a TinyURL Database Table:
+
+ID       URL                           VisitCount
+ 1       www.google.com                        26
+ 2       www.stackoverflow.com               2048
+ 3       www.reddit.com                        64
+...
+ 20103   www.digg.com                         201
+ 20104   www.4chan.com                         20
+Web Frameworks that allow flexible routing make handling the incoming URL's really easy (Ruby, ASP.NET MVC, etc).
+
+So, on your webserver you might have a route action that looks like (pseudo code):
+
+Route: www.mytinyurl.com/{UrlID}
+Route Action: RouteURL(UrlID);
+Which routes any incoming request to your server that has any text after your domain www.mytinyurl.com to your associated method, RouteURL. It supplies the text that is passed in after the forward slash in your URL to that method.
+
+So, lets say you requested: www.mytinyurl.com/fif
+
+"fif" would then be passed to your method, RouteURL(String UrlID). RouteURL would then convert "fif" to its base10 equivalent, 20103, and a database request will be made to redirect to whatever URL is stored under the ID 20103 (in this case, www.digg.com). You would also increase the visit count for Digg by one before redirecting to the correct URL.
+
+This is a really simplified example but you should be able to get the general idea.
