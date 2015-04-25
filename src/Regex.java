@@ -1,62 +1,51 @@
 /*
-Implement regular expression matching with support for ¡®.¡¯ and ¡®*¡¯.
+Implement regular expression matching with support for â€˜.â€™ and â€˜*â€™.
 
-¡®.¡¯ Matches any single character.
-¡®*¡¯ Matches zero or more of the preceding element.
+â€˜.â€™ Matches any single character.
+â€˜*â€™ Matches zero or more of the preceding element.
 The matching should cover the entire input string (not partial).
 
 The function prototype should be:
 bool isMatch(const char *s, const char *p)
 
 Some examples:
-isMatch(¡°aa¡±,¡±a¡±) ¡æ false
-isMatch(¡°aa¡±,¡±aa¡±) ¡æ true
-isMatch(¡°aaa¡±,¡±aa¡±) ¡æ false
-isMatch(¡°aa¡±, ¡°a*¡±) ¡æ true
-isMatch(¡°aa¡±, ¡°.*¡±) ¡æ true
-isMatch(¡°ab¡±, ¡°.*¡±) ¡æ true
-isMatch(¡°aab¡±, ¡°c*a*b¡±) ¡æ true
+isMatch(â€œaaâ€,â€aâ€) â„ƒ false
+isMatch(â€œaaâ€,â€aaâ€) â„ƒ true
+isMatch(â€œaaaâ€,â€aaâ€) â„ƒ false
+isMatch(â€œaaâ€, â€œa*â€) â„ƒ true
+isMatch(â€œaaâ€, â€œ.*â€) â„ƒ true
+isMatch(â€œabâ€, â€œ.*â€) â„ƒ true
+isMatch(â€œaabâ€, â€œc*a*bâ€) â„ƒ true
 */
 
-public static bool IsMatch(string s, string p, int i, int j)
-{
-	// base case
-	if (j == p.Length)
-	{
-		return i == s.Length;
-	}
-	
-	if (p[j+1] != '*')
-	{
-		return (p[j] == s[i] ||
-			p[j] == '.' && i == s.Length) & isMatch(s, p, i+1, j+1);
-	}
-	while (p[j] == s[i] || p[j] == '.' && i < s.Length)
-	{
-		if (IsMatch(s, p, i, j+2))
-		{
-			return true;
-		}
-		i++;
-	}
-	return IsMatch(s, p, i, j+2);
-}
-
-/* C++ code
-bool isMatch(const char *s, const char *p) {
-  assert(s && p);
-  if (*p == '\0') return *s == '\0';
- 
-  // next char is not '*': must match current character
-  if (*(p+1) != '*') {
-    assert(*p != '*');
-    return ((*p == *s) || (*p == '.' && *s != '\0')) && isMatch(s+1, p+1);
-  }
-  // next char is '*'
-  while ((*p == *s) || (*p == '.' && *s != '\0')) {
-    if (isMatch(s, p+2)) return true;
-    s++;
-  }
-  return isMatch(s, p+2);
-}
-*/
+    public boolean isMatch(String s, String p) {
+        
+        if (p.length() == 0) {
+            return s.length() == 0;
+        }
+        
+        if (p.length() == 1) {
+            if (s.length() == 0) {
+                return false;
+            }
+            return (p.charAt(0) == '.' && s.length() == 1) || p.equals(s);
+        } else if (p.charAt(1) != '*') {
+            if (s.length() == 0) {
+                return false;
+            }
+            return (p.charAt(0) == '.' || s.charAt(0) == p.charAt(0)) && isMatch(s.substring(1), p.substring(1));
+        } else {
+            if (isMatch(s, p.substring(2))) {
+			    return true;
+		    }
+            
+            int i = 0;
+            while (i < s.length() && (s.charAt(i) == p.charAt(0) || (p.charAt(0) == '.'))) {
+                if (isMatch(s.substring(i+1), p.substring(2))) {
+                    return true;
+                }
+                i++;
+            }
+        }
+        return false;
+    }
