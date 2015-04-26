@@ -11,6 +11,13 @@ Given binary tree {1,#,2,3},
 return [3,2,1].
 
 Note: Recursive solution is trivial, could you do it iteratively?
+
+The key to to iterative postorder traversal is the following:
+
+The order of "Postorder" is: left child -> right child -> parent node.
+Find the relation between the previously visited node and the current node
+Use a stack to track nodes
+As we go down the tree, check the previously visited node. If it is the parent of the current node, we should add current node to stack. When there is no children for current node, pop it from stack. Then the previous node become to be under the current node for next loop.
 */
 
 /**
