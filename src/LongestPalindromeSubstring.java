@@ -45,6 +45,19 @@ public static string LongestPalindromeSubstring(string s)
 	return longestPalindrome == null ? s[0] : longestPalidrome;
 }
 
+/*
+Let s be the input string, i and j are two indices of the string. Define a 2-dimension array "table" and let table[i][j] denote whether a substring from i to j is palindrome.
+
+Start condition:
+
+table[i][i] == 1;
+table[i][i+1] == 1  => s.charAt(i) == s.charAt(i+1) 
+Changing condition:
+
+table[i+1][j-1] == 1 && s.charAt(i) == s.charAt(j)
+=>
+table[i][j] == 1*/
+
 string longestPalindromeDP(string s) {
   int n = s.length();
   int longestBegin = 0;
