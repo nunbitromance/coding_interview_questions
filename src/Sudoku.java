@@ -1,81 +1,77 @@
-/* find all solutions to 9X9 sudoku */
-public static void solveSudoku()
-{
-	int[][] board = new int[9][9];
-	solveSudoku(board);
+public class Solution {
+    public void solveSudoku(char[][] board) {
+        helper(board);
+    }
+    
+    public boolean helper(char[][] board) {
+        Coordinate nextSpot = findNextCoordinate(board);
+        if (nextSpot != null) {
+            for (char k = '1'; k <= '9'; k++) {
+                if (isValid(board, nextSpot.row, nextSpot.col, k)) {
+                    board[nextSpot.row][nextSpot.col] = k;
+                    boolean solved = helper(board);
+                    if (solved == true) {
+                        return true;
+                    } else {
+                        board[nextSpot.row][nextSpot.col] = '.';
+                    }
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean isValid(char[][] board, int i, int j, char c){
+     
+        // check column
+        for (int row=0; row<9; row++){
+            if (board[row][j]==c){
+                return false;
+            }
+           
+             
+        }
+        
+       // check row
+        for (int col=0; col<9; col++){
+            if (board[i][col]==c){
+                return false;
+            }
+            
+        }
+      
+        // check block
+        for(int row=i/3*3; row<i/3*3+3; row++){
+            for (int col=j/3*3; col<j/3*3+3; col++){
+                if (board[row][col]==c){
+                    return false;
+                }
+                
+            }
+        }
+       
+        return true;
+        
+    }
+    
+    private Coordinate findNextCoordinate(char[][] board) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (board[i][j] == '.') {
+                    return new Coordinate(i, j);
+                }
+            }
+        }
+        return null;
+    }
 }
 
-public static void solveSudoku(int[][] board)
-{
-	int row, col = 0;
-	
-	if (findNextPlace(board, out row, out col))
-	{
-		for (int i = 1; i <= 9; i++)
-		{
-			if (!isConflicting(board, row, col, i))
-			{
-				// place i in that row, col
-				board[row][col] = i;
-				
-				// solve starting from next row, col.
-				solveSudoku(board);
-				
-				// reset the row, col to unselected
-				board[row][col] = 0;
-			}
-		}
-	}
-	else
-	{
-		print(board);
-	}
-}
-
-public static bool findNextPlace(int[][] board, out int row, out int col)
-{
-	for (int i=0; i < 9; i++)
-	{
-		for (int j=0; j<9; j++)
-		{
-			if (board[i][j] == 0)
-			{
-				row = i;
-				col = j;
-				return true;
-			}
-		}
-	}
-	return false;
-}
-
-public static bool isConflicting(int[][] board, int row, int col, int num)
-{
-	// check same row
-	for (int i = 0; i < board[0].length; i++)
-	{
-		if (i != col && board[row][i] == num)
-		{
-			return false;
-		}
-		
-		if (i != row && board[i][col] == num)
-		{
-			return false;
-		}
-	}
-	
-	int rowBoxStart = row - row%3;
-	int colBoxStart = col - col%3;
-	for (int j = rowBoxStart; j < rowBoxStart + 3; j++)
-	{
-		for (int k = colBoxStart; k < colBoxStart + 3; k++)
-		{
-			if ((j != row && k != col) && board[j][k] == num)
-			{
-				return false;
-			}
-		}
-	}
-	return true;
+class Coordinate {
+    public int row;
+    public int col;
+    public Coordinate(int r, int c) {
+        this.row = r;
+        this.col = c;
+    }
 }
