@@ -1,0 +1,176 @@
+1) Finding duplicate entry in an integer array. 
+Next there were variations of this where I had to find duplicate entry only if it was within some index range, and 
+next if the values were not actually duplicate but within some range of values.
+
+public int findDuplicate(int[] n) {
+	Set<Integer> s = new HashSet<Integer>();
+	for (int i = 0; i < n.length; i++) {
+		if (s.contains(n[i])) {
+			return n[i];
+		} else {
+			s.put(n[i]);
+		}
+	}
+	return -1; // or some code.
+}
+
+// 2, 4, 3, 2, 1, 6, 7, 9, 0
+public int findDuplicate(int[] n, int k) {
+	Set<Integer> s = new HashSet<Integer>();
+	for (int i = 0; i < n.length; i++) {
+		if (s.contains(n[i])) {
+			return n[i];
+		} else {
+			s.put(n[i]);
+		}
+		if (i - k >= 0) {
+			s.remove(n[i - k]);
+		}
+	}
+	return -1; // or some code.
+}
+
+public int findNumWithinRange(int[] n, int k) {
+	Set<Integer> s = new HashSet<Integer>();
+	for (int i = 0; i < n.length; i++) {
+		for (int j = n[i] - k; j <= n[i] + k && j != n[i]; j++) {
+			if (s.contains(j)) {
+				return j;
+			}
+		} 
+		s.put(n[i]);
+	}
+}
+
+2) Given an array as input find the output array that has median of each sub array whose index starts from 0 to i
+(i = 1,2...array.length-1).
+I took a lot of time to understand what median is. Then again to understand what the actual question was.
+
+public int[] getMedians(int[] n) {
+	int[] m = new int[n.length];
+	
+	PriorityQueue<Integer> smaller = new PriorityQueue<Integer>(new Comparator<Integer>() {
+		@override
+		public int compare(Integer a, Integer b) {
+			return b - a;
+		}
+	}); 
+	PriorityQueue<Integer> greater = new PriorityQueue<Integer>();
+
+	for (int i = 0; i < n.length; i++) {
+		int median = 0;
+		if (smaller.size() > 0 && n[i] > smaller.peek()) {
+			greater.offer(n[i]);
+		} else { // n[i] <= smaller.peek()
+			smaller.offer(n[i]);
+		}
+		// balance the heap sizes
+		if (smaller.size() > greater.size()) {
+			greater.offer(smaller.poll());
+			median = (smaller.peek() + greater.peek()) / 2;
+		} else if (smaller.size() < greater.size()) {
+			smaller.offer(greater.poll());
+			median = (smaller.peek() + greater.peek()) / 2;
+		} else {
+			median = smaller.peek();
+		}
+		m[i] = median;
+	}
+
+	return m;
+}
+
+Q: 2nd interview about producing working code that identifies   the min. no. of edits needed to balance a string of parentheses 
+
+Let S be the string containing the parentheses. 
+
+Below is the pesudocode to match parenthesis and also count number of edits required.
+
+open_count = 0; /* Number of open parentheses */
+num_edits = 0; /* Number of edits required */
+while (c : S) 
+{
+   switch (c)
+   case '(' : 
+      open_count ++; 
+      T = T + '(';
+   case ')' :
+      open_count--;
+      T = T + ')';   
+   
+   if (open_count < 0) /* mismatch */
+      T = '(' + T; /* match by adding open parentheses at beginning */
+      num_edits++;
+}
+
+while (open_count-- > 0)
+{
+   T = T + ')' ; /* match by adding close parentheses at the end */
+   num_edits++;
+}
+
+Q: Convert a tree to a linked list.
+
+Q1. write a string compress function: give you "RRGB" and return "R2G1B1"
+2. give you a graph and two vertices and return if there exists a path between them
+3. determine if there exists a cycle in the given graph  
+
+Q. rotate matrix https://leetcode.com/problems/rotate-image/
+
+
+Q.  Given a stream of integers, all of which come in pairs   except for one, find the integer without a duplicate. 
+use XOR
+
+Q.  Sort an array where each item is at most k indices from its   position in the sorted array. What's the run time? 
+use heap
+
+Q. What is semaphone?
+
+Q. deep copy a graph
+
+Q. find min in sorted rotated array
+
+Q Binary search in an array that is increasing then decreasing  
+http://www.geeksforgeeks.org/find-the-maximum-element-in-an-array-which-is-first-increasing-and-then-decreasing/
+
+public int findMax(int[] n, int lo, int hi) {
+	if (lo > hi) {
+		return -1;
+	}
+
+	int mid = lo + (hi - lo) / 2;
+
+	// check if peak
+	if (n[mid] > n[mid+1] && n[mid -1] < n[mid]) {
+		return mid;
+	} else if (n[mid] < n[mid + 1] && n[mid-1] < n[mid]) {
+		return findMax(n, mid + 1, hi);
+	} else {
+		return findMax(n, lo, mid - 1);
+	}
+}
+
+
+Q. Given a dictionary of words and another word, return all the words in the dictionary that are anagrams of the given word  
+
+public List<String> findAnagrams(List<String> dic, String word) {
+	List<String> anagrams = new ArrayList<String>();
+	for (String d : dic) {
+		char[] wordC = word.toCharArray();
+		Arrays.sort(wordC);
+
+		char[] wordD = d.toCharArray();
+		Arrays.sort(wordD);
+
+		if (wordC.length == wordD.length && Arrays.equals(wordC, wordD)) {
+			anagrams.add(d);
+		}
+	}
+	return anagrams;
+}
+
+
+Q. You are given a pyramid; the numbers for example is 2 on the first level, 3 -1 on the second level, 4 7 8 on the third, etc. 
+How do you calculate the maximum sub sequence of any path traversing the pyramid?  
+A. Start at the second to last level. For each parent node, add the largest of its children to itself. 
+Do this from bottom to top. The sum at the root is the answer. This should complete in O(n) time
