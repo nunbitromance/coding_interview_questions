@@ -43,6 +43,26 @@ public static List<Node> BuildAllPossibleBinaryTrees(int start, int end)
 			}
 		}
 	} 
+
+
 	
 	return root;
+}
+	}
+ 
+	public int totalTree(int n) {
+		if (n == 1 || n == 0)
+			return 1;
+		else {
+			int left = 0;
+			int right = 0;
+			int sum = 0;
+			for (int k = 1; k <= n; k++) {
+				left = totalTree(k - 1);
+				right = totalTree(n - k);
+				sum = sum + (left * right);
+			}
+			return sum;
+		}
+	}
 }
