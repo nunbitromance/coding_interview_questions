@@ -5,28 +5,28 @@ The diameter of a tree (sometimes called the width) is the number of nodes on th
 The diagram below shows two trees each with diameter nine, the leaves that form the ends of a longest path are shaded 
 (note that there is more than one path in each tree of length nine, but no path longer than nine nodes).
 */
-private static int GetHeight(Node root)
+private static int getHeight(Node root)
 {
 	if (root == null)
 	{
 		return 0;
 	}
 	
-	return 1 + Math.Max(GetHeight(root.Left), GetHeight(root.Right));
+	return 1 + Math.max(getHeight(root.left), getHeight(root.right));
 }
 
-public static int Diameter(Node root)
+public static int diameter(Node root)
 {
 	if (root == null)
 	{
 		return 0;
 	}
 	
-	int lHeight = GetHeight(root.Left);
-	int rHeight = GetHeight(root.Right);
+	int lHeight = getHeight(root.left);
+	int rHeight = getHeight(root.right);
 	
-	int lDiameter = Diameter(root.Left);
-	int rDiameter = Diameter(root.Right);
+	int lDiameter = diameter(root.left);
+	int rDiameter = diameter(root.right);
 	
-	return Math.Max(1 + Math.Max(lHeight, rHeight), Math.Max(lDiameter, rDiameter));
+	return Math.max(1 + lHeight + rHeight), Math.max(lDiameter, rDiameter));
 }
