@@ -17,53 +17,58 @@ X X X X
 X X X X
 X O X X
 */
-public static void SurroundedRegion(char[][] m)
-{
-	for (int i = 0; i < m.Length; i++)
-	{
-		for (int j = 0; j < m[0].Length; j++)
-		{
-			if (m[i][j] == 'O')
-			{
-				FloodFill(m, i, j);
-			}
-		}
-	}
+public void solve(char[][] board) {
+    if(board == null || board.length==0) 
+        return;
+ 
+    int m = board.length;
+    int n = board[0].length;
+ 
+    //merge O's on left & right boarder
+    for(int i=0;i<m;i++){
+        if(board[i][0] == 'O'){
+            merge(board, i, 0);
+        }
+ 
+        if(board[i][n-1] == 'O'){
+            merge(board, i,n-1);
+        }
+    }
+ 
+    //merge O's on top & bottom boarder
+    for(int j=0; j<n; j++){
+         if(board[0][j] == 'O'){
+            merge(board, 0,j);
+        }
+ 
+        if(board[m-1][j] == 'O'){
+            merge(board, m-1,j);
+        }
+    }
+ 
+    //process the board
+    for(int i=0;i<m;i++){
+        for(int j=0; j<n; j++){
+            if(board[i][j] == 'O'){
+                board[i][j] = 'X';
+            }else if(board[i][j] == '#'){
+                board[i][j] = 'O';
+            }
+        }
+    }
 }
-
-private static bool FloodFill(char[][] m, int i, int j)
-{
-	if (i < 0 || i > m.length || j < 0 || j > m[0].length)
-	{	
-		// if i hit a boundary return false
-		return false;
-	}
-	else if (m[i][j] == 'X')
-	{
-		// if i hit an X stop and backtrack.
-		return true;
-	}
-	
-	if (m[i][j] == 'O')
-	{
-		// if i hit an O, mark it as X
-		m[i][j] = 'X';
-	}
-	// Mark north, east, west, south. If I hit boundary, backtrack and restore.
-	if (FloodFill(m, i-1, j) == false)
-	{
-		m[i][j] = 'O';
-	}
-	if (FloodFill(m, i, j+1) == false)
-	{
-		m[i][j] = 'O';
-	}
-	if (FloodFill(m, i+1, j) == false)
-	{
-		m[i][j] = 'O';
-	}
-	if (FloodFill(m, i, j-1) == false)
-	{
-		m[i][j] = 'O';
-	}
+ 
+public void merge(char[][] board, int i, int j){
+    if(i<0 || i>=board.length || j<0 || j>=board[0].length) 
+        return;
+ 
+    if(board[i][j] != 'O')
+        return;
+ 
+    board[i][j] = '#';
+ 
+    merge(board, i-1, j);
+    merge(board, i+1, j);
+    merge(board, i, j-1);
+    merge(board, i, j+1);
 }
