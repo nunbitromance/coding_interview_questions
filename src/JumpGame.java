@@ -12,16 +12,31 @@ A = [2,3,1,1,4], return true.
 A = [3,2,1,0,4], return false.
 */
 
-public static bool JumpGame(int[] m)
-{
-	for (int i = 0; i < m.Length; i++)
-	{
-		i = i + m[i];
-	}
-	
-	return i >= m.Length;
-}
+We can track the maximum length a position can reach. The key to solve this problem is to find: 1) when the position can not reach next step (return false) , and 2) when the maximum can reach the end (return true).
 
+public boolean canJump(int[] A) {
+    if(A.length <= 1)
+        return true;
+ 
+    int max = A[0];
+ 
+    for(int i=0; i<A.length; i++){
+        //if not enough to go to next
+        if(max <= i && A[i] == 0) 
+            return false;
+ 
+        //update max    
+        if(i + A[i] > max){
+            max = i + A[i];
+        }
+ 
+        //max is enough to reach the end
+        if(max >= A.length-1) 
+            return true;
+    }
+ 
+    return false;    
+}
 /*
 Jump Game IIMar 17 '12
 Given an array of non-negative integers, you are initially positioned at the first index of the array.
