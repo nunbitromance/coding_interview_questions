@@ -22,7 +22,7 @@ public boolean canJump(int[] A) {
  
     for(int i=0; i<A.length; i++){
         //if not enough to go to next
-        if(max <= i && A[i] == 0) 
+        if((max <= i && A[i] == 0) || max < i) 
             return false;
  
         //update max    
