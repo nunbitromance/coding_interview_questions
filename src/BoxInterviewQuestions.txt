@@ -1,0 +1,131 @@
+box
+
+Unival tree; Elevator System Design; Design file system in SQL;  
+
+Design an elevator system with 50 floors and 4 elevators.  
+
+Given array find all the sets of two numbers that add up to a target number
+Elevator Question
+
+Box tower, use a virtual sand box for simulation  
+
+===============================================================================================
+
+Given an integer of a certain bit length, does it have an even or odd number of parity bits?
+
+/* Function to get parity of number n. It returns 1
+   if n has odd parity, and returns 0 if n has even
+   parity */
+bool getParity(int n)
+{
+    bool parity = 0;
+    while (n)
+    {
+        parity = !parity;
+        n      = n & (n - 1);
+    }        
+    return parity;
+}
+
+bool getParity(int n)
+{
+	if (n == 0) {
+		return false;
+	}
+
+	return !getParity(n & (n - 1));
+}
+ 
+/* Driver program to test getParity() */
+int main()
+{
+    unsigned int n = 7;
+    printf("Parity of no %d = %s",  n, 
+             (getParity(n)? "odd": "even"));
+     
+    getchar();
+    return 0;
+}
+
+=================================================================================================
+
+2. Find potential multithreading issue with two separate threads running path.
+3. String parsing
+
+algorithm for getting the number of anagrams.
+
+Design monopoly game over iphone  
+
+Given an array of numbers with positive and negative, find pairs that sum to zero
+
+Above question, but now finding 3 numbers which sums to zero.  
+
+What is the difference between HashTable and BinaryTree 
+
+Inner Join vs Outer Join in MySQL
+
+====================================================================================================
+First there is an elevator class. It has a direction (up, down, stand, maintenance), a current floor and a list of floor requests sorted in the direction. It receives request from this elevator.
+
+Then there is a bank. It contains the elevators and receives the requests from the floors. These are scheduled to all active elevators (not in maintenance).
+
+The scheduling will be like:
+
+if available pick a standing elevator for this floor.
+else pick an elevator moving to this floor.
+else pick a standing elevator on an other floor.
+else pick the elevator with the lowest load.
+Each elevator has a set of states.
+
+Maintenance: the elevator does not react to external signals (only to its own signals).
+Stand: the elevator is fixed on a floor. If it receives a call. And the elevator is on that floor, the doors open. If it is on another floor, it moves in that direction.
+Up: the elevator moves up. Each time it reaches a floor, it checks if it needs to stop. If so it stops and opens the doors. It waits for a certain amount of time and closes the door (unless someting is moving through them. Then it removes the floor from the request list and checks if there is another request. If so the elevator starts moving again. If not it enters the state stand.
+Down: like up but in reverse direction.
+There are additional signals:
+
+alarm. The elevator stops. And if it is on a floor, the doors open, the request list is cleared, the requests moved back to the bank.
+door open. Opens the doors if an elevator is on a floor and not moving.
+door closes. Closed the door if they are open. 
+EDIT: Some elevators don't start at bottom/first_floor esp. in case of sky scrappers. min_floor & max_floor are two additional attributes for Elevator.
+
+====================================================================================================
+
+Classic tech interview question that I've seen and have been asked myself a number of times.
+
+My standard approach to this usually involves creating "elevator" objects with a "elevator manager" to ask each of these objects useful questions, like "what floor are you next heading to and in what direction?" and "how far are you from a possible stop on floor X?" (i.e. can't brake the cab suddenly if less than X floors away; passengers can get scrambled). And of course the elevator manager manages stop requests from each floor.
+
+There's a bit more detail to draw out on the white board, including some pseudo code.
+
+No idea if the guy interviewing me actually liked what he was seeing.
+
+====================================================================================================
+
+Identify where potential race conditions can happen in this hardware & database configuration:
+
+1) validate that folder Z already exists in cache or in the db
+2) invalidate cache data for Z
+3) INSERT file 'c' into folder Z
+4) gather folder Z + children
+5) update cache with new information about folder Z
+
+hardware set-up would be as follows:
+
+                         --- cache machine 1
+                      // --------------------------- \\
+outside world -- --- cache machine 2 --- database
+                      \\ --------------------------- //
+                         --- cache machine 3
+
+While any machine might be asked about files within folder Z, the actual data of folder Z will be cached on exactly 1 machine out of any of the machines that have cache data.
+
+This was an intensely aggravating problem for the interviewers to set up on the white board and then talk me through. Hopefully I'll recap my answers effectively here:
+
+Race condition # 1
+(assuming any potential random amount of time between steps)
+
+if one update (call it file C) gets pushed back to the cache slower than a second, separate update (which we'll call file D), the cache may have an invalid state.
+
+solution: add a rule to step 5 to only update the cache with new information if the timestamp on the update is newer than the timestamp saved on the last cache update.
+
+Race condition 2
+when updating with separate files (call them files C & D) via two separate machines, updates might get sent to the server that only reflect the newly arrived C or D without the other file (where the update to the cache might still be in the pipeline waiting to be sent up). My - possibly non-optimal - solution to this was to have the cache confirm with the database it's current state and contents of folder Z before applying an update to the cache.
