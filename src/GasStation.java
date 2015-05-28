@@ -6,23 +6,28 @@ Return the starting gas station's index if you can travel around the circuit onc
 
 Note:
 The solution is guaranteed to be unique.*/
-
-public class Solution {
-    public int canCompleteCircuit(int[] gas, int[] cost) {
-        int j = 0;
-        for (int i = 0; i < gas.length; i+=j) {
-            int gasLeft = 0;
-            for (j = 0; j <= gas.length; j++) {
-                int k = (i + j) % gas.length;
-                gasLeft += gas[k] - cost[k];
-                if (gasLeft <= 0) {
-                    break;
-                }
-            }
-            if (j >= gas.length) {
-                return i;
-            }
-        }
-        return -1;
-    }
+public int canCompleteCircuit(int[] gas, int[] cost) {
+	int sumRemaining = 0; // track current remaining
+	int total = 0; // track total remaining
+	int start = 0; 
+ 
+	for (int i = 0; i < gas.length; i++) {
+		int remaining = gas[i] - cost[i];
+ 
+		//if sum remaining of (i-1) >= 0, continue 
+		if (sumRemaining >= 0) { 
+			sumRemaining += remaining;
+		//otherwise, reset start index to be current
+		} else {
+			sumRemaining = remaining;
+			start = i;
+		}
+		total += remaining;
+	}
+ 
+	if (total >= 0){
+		return start;
+	}else{
+		return -1;
+	}
 }
