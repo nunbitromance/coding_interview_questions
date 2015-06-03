@@ -15,46 +15,37 @@ Given board =
 word = "ABCCED", -> returns true,
 word = "SEE", -> returns true,
 word = "ABCB", -> returns false.
-» Solve this problem
+Â» Solve this problem
 */
-public static bool FindWord(List<string> words, string target, int row, int col)
-{
-	for (int i = 0; i < words.Length; i++)
-	{
-		for (int j = 0; j < words[0].Length; j++)
-		{
-			bool[][] checked = new bool[words.Length][words[0].Length];
-			if (FindWordAtRowCol(words, checked, target, "", i, j))
-			{
-				return true;
-			}
-		}
-	}
-	return false;
-}
-
-private static bool FindWordAtRowCol(List<string> words, bool[][] checked, string target, string w, int row, int col)
-{
-	if (row < 0 || col < 0 || row >= words.Length || col >= words[0].Length)
-	{
-		return false;
-	}
-	
-	if (checked[row][col] == true)
-	{
-		// prevent return to already checked path.
-		return false;
-	}
-	checked[row][col] = true;
-	
-	w = w + words[row][col];
-	if (w.Equals(target))
-	{
-		return true;
-	}
-	
-	return FindWordAtRowCol(words, checked, target, w, row - 1, col) || 
-	FindWordAtRowCol(words, checked, target, w, row, col + 1) || 
-	FindWordAtRowCol(words, checked, target, w, row - 1, col) || 
-	FindWordAtRowCol(words, checked, chctarget, w, row, col -1);
+public class Solution {
+    boolean[][] visited;
+    public boolean exist(char[][] board, String word) {
+        if (word.length() == 0)
+            return true;
+        int m = board.length;
+        int n = board[0].length;
+        visited = new boolean[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (search(board, word, 0, i, j))
+                    return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean search(char[][] board, String word, int n, int i, int j) {
+        if (n == word.length())
+            return true;
+        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length)
+            return false;
+        if (visited[i][j])
+            return false;
+        if (word.charAt(n) != board[i][j])
+            return false;
+        visited[i][j] = true;
+        boolean result = search(board, word, n + 1, i - 1, j) || search(board, word, n + 1, i + 1, j) || search(board, word, n + 1, i, j - 1) || search(board, word, n + 1, i, j + 1);
+        visited[i][j] = false;
+        return result;
+    }
 }
