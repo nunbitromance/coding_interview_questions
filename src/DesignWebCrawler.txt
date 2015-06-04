@@ -1,0 +1,20 @@
+Design the algorithm and the system for a WebCrawler. 
+The webcralwler will be provided millions of URLs. The webpage will be downloaded and then parsed for more URLs. If more URLs are found then they should also be downloaded and parsed. 
+
+He was interested in: 
+1. Scale to handle millions of URLs 
+2. What are the bottle necks in the system? How will you resolve them
+
+Consider the web as a graph of related URLs, all you have to do is traverse this graph 
+its can be done using simple BFS, DFS 
+for parsing the web pages it can be done using any parsers but most of them used FSM to generate all the different components of the web page.
+
+- mBk 7 months ago | Flag Reply
+0
+of 0 votes
+One last thing is generate key words and store them in some data structure..
+
+you can use different datastructures based on your requirement.
+you can use tries, hash table or any balanced tree..
+
+- mBk 7 months ago | Flag
