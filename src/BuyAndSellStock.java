@@ -10,7 +10,7 @@ public int maxProfix(int[] prices) {
   int curDiff = 0;
   for (int i = 0; i < prices.length; i++) {
     if (prices[i] < prices[minIndex]) {
-      minIndex = prices[i];
+      minIndex = i;
     }
     curDiff = prices[i] - prices[minIndex];
     if (curDiff > maxDiff) {
