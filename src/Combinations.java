@@ -14,16 +14,16 @@
 	]
 */
 public static void printAllCombinationsOfSizeK(int[] arr, int start, int level, int k, List<Integer> result) {
-		if (level >= k) {
-			if (result.size() == k) {
-				System.out.println("arr=" + result);
-			}
-			return;
+	if (level >= k) {
+		if (result.size() == k) {
+			System.out.println("arr=" + result);
 		}
-		
-		for (int i = start; i < arr.length; i++) {
-			result.add(arr[i]);
-			printAllCombinationsOfSizeK(arr, i+1, level+1, k, result);
-			result.remove(result.size() - 1);
-		}
+		return;
 	}
+	
+	for (int i = start; i < arr.length; i++) {
+		result.add(arr[i]);
+		printAllCombinationsOfSizeK(arr, i+1, level+1, k, result);
+		result.remove(result.size() - 1);
+	}
+}
