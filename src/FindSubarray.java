@@ -58,9 +58,18 @@ public Pair<Integer, Integer> findSubarrayWithSum(int[] arr, int sum) {
    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
    for (int i = 0; i < arr.length; i++) {
       prefixSum += arr[i];
-      if (arr[i] == sum || map.containsKey(prefixSum - sum)) {
+      if (arr[i] == sum) {
+         start = i;
+         end = i;
+         break;
+      } else if (prefixSum == sum) {
+         start = 0;
+         end = i;
+         break;
+      } else if (map.containsKey(prefixSum - sum)) {
          start =  map.get(prefixSum - sum) + 1;
          end = i;
+         break;
       }
       map.put(prefixSum, i);
    }
