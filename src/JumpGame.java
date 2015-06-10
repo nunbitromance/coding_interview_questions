@@ -50,19 +50,20 @@ Given array A = [2,3,1,1,4]
 
 The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)
 */
-public static int JumpGame2(int[] m, int i, int numOfJumps)
-{
-	if (i >= m.Length)
-	{
-		return numOfJumps;
-	}
-	
-	int maxJump = m[i];
-	int minJump = int.MaxValue;
-	for (int j = 1; j <= maxJump; j++)
-	{
-		minJump = Math.Min(JumpGame2(m, i + j, numOfJumps + 1));
-	}
-	
-	return minJump;
-}
+    public int minJump(int[] jumps) {
+        int[] opt = new int[jumps.length];
+        
+        opt[0] = 0;
+        
+        for (int i = 1; i < jumps.length; i++) {
+            int minJump = Integer.MAX_VALUE;
+            for (int j = 0; j < i; j++) {
+                if (jumps[j] + j >= i) {
+                    minJump = Math.min(minJump, opt[j] + 1);
+                }
+            }
+            opt[i] = minJump;
+        }
+        
+        return opt[jumps.length - 1];
+    }
