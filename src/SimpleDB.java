@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Stack;
 
+
+/* https://www.thumbtack.com/challenges/simple-database */
 public class SimpleDb {
 
 	// transactions with rollback commands for ROLLBACK
