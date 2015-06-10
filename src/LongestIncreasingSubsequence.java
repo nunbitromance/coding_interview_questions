@@ -1,7 +1,8 @@
 
 
-
+http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/
 // OPT(i) = 1 + max{OPT(j)} for j < i and A[i] >= A[j]
+// For example, length of LIS for { 10, 22, 9, 33, 21, 50, 41, 60, 80 } is 6 and LIS is {10, 22, 33, 50, 60, 80}.
 public static int longestIncreasingSubsequence(int[] array)
 {
 	if (array == null || array.length == 0)
