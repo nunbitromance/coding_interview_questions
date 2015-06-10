@@ -1,10 +1,41 @@
 box
 
-Unival tree; Elevator System Design; Design file system in SQL;  
+Unival tree
+=============================================================================================
+
+class Result {
+	public boolean isUnival = false;
+	public int sum = 0;
+	public Result(isUniv, int s) {
+		this.isUnival = isUniv;
+		this.sum = s;
+	}
+}
+
+public Result countUnival(Node root) {
+	if (root == null) {
+		return new Result(true, 0);
+	}
+
+	Result lr = countUnival(root.left);
+	Result rr = countUnival(root.right);
+	Result res = new Result(false, lr + rr);
+	if ((root.left == null || (lr.isUnival && root.value == root.left.value)) &&
+		(root.right == null || (rr.isUnival && root.value == root.right.value))) {
+			res.isUnival = true;
+			res.sum++;
+		}
+	return res;
+}
+
+Elevator System Design; 
+
+Design file system in SQL;  
 
 Design an elevator system with 50 floors and 4 elevators.  
 
 Given array find all the sets of two numbers that add up to a target number
+
 Elevator Question
 
 Box tower, use a virtual sand box for simulation  
@@ -17,34 +48,8 @@ Given an integer of a certain bit length, does it have an even or odd number of 
    if n has odd parity, and returns 0 if n has even
    parity */
 bool getParity(int n)
-{
-    bool parity = 0;
-    while (n)
-    {
-        parity = !parity;
-        n      = n & (n - 1);
-    }        
-    return parity;
-}
-
-bool getParity(int n)
-{
-	if (n == 0) {
-		return false;
-	}
-
-	return !getParity(n & (n - 1));
-}
- 
-/* Driver program to test getParity() */
-int main()
-{
-    unsigned int n = 7;
-    printf("Parity of no %d = %s",  n, 
-             (getParity(n)? "odd": "even"));
-     
-    getchar();
-    return 0;
+{ 
+    return n == 0 ? false : !getParity(n & (n-1));
 }
 
 =================================================================================================
@@ -104,8 +109,8 @@ Identify where potential race conditions can happen in this hardware & database 
 
 1) validate that folder Z already exists in cache or in the db
 2) invalidate cache data for Z
-3) INSERT file 'c' into folder Z
-4) gather folder Z + children
+3) INSERT file 'c' into folder Z (this 
+4) gather folder Z + children (this might not have c if insert file does not happen fast)
 5) update cache with new information about folder Z
 
 hardware set-up would be as follows:
@@ -129,3 +134,263 @@ solution: add a rule to step 5 to only update the cache with new information if 
 
 Race condition 2
 when updating with separate files (call them files C & D) via two separate machines, updates might get sent to the server that only reflect the newly arrived C or D without the other file (where the update to the cache might still be in the pipeline waiting to be sent up). My - possibly non-optimal - solution to this was to have the cache confirm with the database it's current state and contents of folder Z before applying an update to the cache.
+
+==========================================================================================================================
+
+In first approach, when a shared data is updated, the server forwards invalidation to all caches. In second approach, an update is propagated. Most caching systems apply these two approaches or dynamically choose between them.
+
+==================================================================================================================================
+
+http://www.mitbbs.com/article_t/JobHunting/32833857.html
+
+ 	mitbbs.com	◇ Online [20389]	
+ 
+ 			Submit	 		
+  Home - Categories Forum - Living abroad - JobHunting version - with the theme Read the article	
+Home
+ 	Home
+ 	Classified Ads
+	Category Forum
+ 	Immigrants Box
+	News
+ 	Digest
+ 	Unnamed blog
+ 	Club
+ 	Unnamed Avatars
+ 	Unnamed Yellow Pages
+ 	Unnamed Dating
+ 	Unnamed talent
+Unnamed Dating
+
+[ more ]
+
+[ more ]
+www.01training.com
+lulutrip
+www.sofia.edu/mitbbs/
+www.laioffer.com
+www.ninechapter.com/?source=jobhuntingleft
+/yellowpage/ent_info.php?id=65133
+
+ 
+
+同主题阅读：Box 2 hour coding exercise
+[Layout: JobHunting ] [first paper Author: jychu ], 2014年11月20日17:05:16
+[Page: 1]
+	jychu
+Unnamed enter Avatars
+	My blog
+
+[ Reply ] [ reply to Author ] [ Benpian text ] [ The forum ] [ modify ] [ Delete ] [ Forward ] [ posted ] [ Collection ] [ Report ]		[ 1 ]
+Sender: jychu (jychu), the letter area: JobHunting 
+Title: Box 2 hour coding exercise 
+letter Station: BBS Unnamed Space Station (Thu Nov 20 17:05:16 2014, the eastern United States) Onsite to bring their own computer, there are 2 hour coding exercise. Someone has it? THX. - ※ Source: · WWW Unnamed ISS Website: mitbbs.com Mobile: Search Unnamed space applications store · [FROM: 50.]
+
+
+
+
+http://www.dealam.com
+ 	
+Daquan find lost net credit card deal: Popular credit card to send 70,000 points can be exchanged 14 free nights! No annual fee for the first year!
+Bring the best mom - World Collectibles rock sea cucumber sea cucumber
+Express North America to save money Daquan Dealmoon.com credit card, open the card rewards + consumer feedback, the family free to travel every year
+	blessoffer
+Unnamed enter Avatars
+	My blog
+[ Reply ] [ reply to Author ] [ Benpian text ] [ The forum ] [ modify ] [ Delete ] [ Forward ] [ posted ] [ Collection ] [ Report ]		[ 2 ]
+Sender: blessoffer (blessoffer), the letter area: JobHunting 
+Title: Re: Box 2 hour coding exercise 
+letter Station: BBS unnamed space stations (Fri Nov 21 01:14:43 2014, the eastern United States) I am doing is a oo design Write a storage class, to achieve and get set delete count (this is count the number of the same key appears), but also a transaction, if after the start of a Transaction , you can stop the set, until the transmission commit command, these changes It was only stored, while there also have roll back transaction mechanism, which is all set and delete operations require prior reservations. I probably spent two months hashmap, a place transanction, a discharge count, oh also requires that all of these operations are in O (logN) the time complexity. No two hours, half an hour ago to tell you requirements, so you do not know where to ask questions, after half an hour to tell you, in one hour between the interviewer is not, you write your own. - ※ Source: · WWW Unnamed ISS Website: mitbbs.com Mobile: Search Unnamed space applications store · [FROM: 67.]
+
+
+
+
+
+
+
+
+
+
+
+ 
+	lolhaha
+Unnamed enter Avatars
+	My blog
+[ Reply ] [ reply to Author ] [ Benpian text ] [ The forum ] [ modify ] [ Delete ] [ Forward ] [ posted ] [ Collection ] [ Report ]		[ 3 ]
+Sender: lolhaha (long donkey, has been looking for horses), the letter area: JobHunting 
+Title: Re: Box 2 hour coding exercise 
+letter Station: BBS unnamed space stations (Fri Nov 21 11:06:15 2014, the eastern United States) hashMap ? put transaction put the resulting data it faces what group, reported about Offer of it, thanks. [In blessoffer (blessoffer) masterpiece mentioned:] : I do is write a oo design a storage class, get set to achieve delete and count (this is : count the same number of a key appears), but also a transaction, if after the start of a Transaction :, can not stop set, until the transmission commit command, those changes was only stored, at the same time : but also roll back transaction in mechanism, which is all set and delete operations require prior reservations. : I probably spent two months hashmap, a place transanction, a discharge count, : Oh also requires that all of these operations is O (logN) the time complexity. : Not two hours, half an hour ago to tell you requirements, so you do not know where to ask questions, after half an hour to tell you, in : between one hour interviewer is not, you write your own. - ※ Source: · WWW Unnamed ISS Website: mitbbs.com Mobile: Search Unnamed space applications store · [FROM: 142.]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	jumperer
+Unnamed enter Avatars
+	My blog
+[ Reply ] [ reply to Author ] [ Benpian text ] [ The forum ] [ modify ] [ Delete ] [ Forward ] [ posted ] [ Collection ] [ Report ]		[ 4 ]
+Sender: jumperer (jump), the letter area: JobHunting 
+Title: Re: Box 2 hour coding exercise 
+letter Station: BBS Unnamed Space Station (Sat Jan 24 18:01:23 2015, the eastern United States) is what this logN ideas, seek pointing, thank you [mentioned blessoffer (blessoffer) of the masterpiece:] : I do is write a oo design a storage class, to achieve and get set delete count (this is : count the number of the same key appears) , but also a transaction, if after the start of a Transaction :, can not stop the set, until the transmission commit command, those changes was only stored, at the same time : transaction where there is also roll back mechanism, that is, all you want to keep before set and delete operations. : I probably spent two months hashmap, a place transanction, a discharge count, : Oh also requires that all of these operations is O (logN) the time complexity. : Not two hours, half an hour ago to tell you requirements, so you do not know where to ask questions, after half an hour to tell you, in : between one hour interviewer is not, you write your own. - ※ Source: · WWW Unnamed ISS Website: mitbbs.com Mobile: Search Unnamed space applications store · [FROM: 173.]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	xpdrak
+Unnamed enter Avatars
+	My blog
+[ Reply ] [ reply to Author ] [ Benpian text ] [ The forum ] [ modify ] [ Delete ] [ Forward ] [ posted ] [ Collection ] [ Report ]		[ 5 ]
+Sender: xpdrak (xpdrak), the letter area: JobHunting 
+Title: Re: Box 2 hour coding exercise 
+letter Station: BBS Unnamed Space Station (Sat Jan 24 20:38:15 2015, the eastern United States) asked me exactly the same topics and . It seems they used it a few questions. [In blessoffer (blessoffer) masterpiece mentioned:] : I do is write a oo design a storage class, to achieve and get set delete count (this is : count the number of the same key appears), but also There are transaction, if after the start of a Transaction :, can not stop set, until the transmission commit command, those changes was only stored, at the same time : transaction where there is also roll back mechanism, which is the need to retain and delete all previously set operation. : I probably spent two months hashmap, a place transanction, a discharge count, : Oh also requires that all of these operations is O (logN) the time complexity. : Not two hours, half an hour ago to tell you requirements, so you do not know where to ask questions, after half an hour to tell you, in : between one hour interviewer is not, you write your own. - ※ Source: · WWW Unnamed ISS Website: mitbbs.com Mobile: Search Unnamed space applications store · [FROM: 107.]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	walkingmetro
+Unnamed enter Avatars
+	My blog
+[ Reply ] [ reply to Author ] [ Benpian text ] [ The forum ] [ modify ] [ Delete ] [ Forward ] [ posted ] [ Collection ] [ Report ]		[ 6 ]
+Sender: walkingmetro (walkingmetro), the letter area: JobHunting 
+Title: Re: Box 2 hour coding exercise 
+letter Station: BBS Unnamed Space Station (Sun Jan 25 00:48:11 2015, the eastern United States) Java inside TreeMap is a Red . Black Tree implementation Rollback can use Command (Design pattern). - ※ modification: · walkingmetro on Jan 25 01:06:18 2015 modifying article · [FROM: 50.] ※ Source: · WWW Unnamed Space Station website: mitbbs.com Mobile: Search Unnamed space applications store · [FROM: 50.]
+
+
+
+
+
+
+
+
+
+
+ 
+	Touareg
+
+Unnamed enter Avatars
+	My blog
+[ Reply ] [ reply to Author ] [ Benpian text ] [ The forum ] [ modify ] [ Delete ] [ Forward ] [ posted ] [ Collection ] [ Report ]		[ 7 ]
+Sender: Touareg (Touareg), the letter area: JobHunting 
+Title: Re: Box 2 hour coding exercise 
+letter Station: BBS Unnamed Space Station (Sun Jan 25 11:26:26 2015, the eastern United States) that how you deal with concurrency? This is actually a DB in the transaction manager, is very complicated, if not do this two hour written there too down. . . [In blessoffer (blessoffer) masterpiece mentioned:] : I do is write a oo design a storage class, to achieve and get set delete count (this is : count the number of the same key appears), but also There are transaction, if after the start of a Transaction :, can not stop set, until the transmission commit command, those changes was only stored, at the same time : transaction where there is also roll back mechanism, which is the need to retain and delete all previously set operation. : I probably spent two months HashMap, from the bottom ★ iPhone App: ChineseWeb 8.2.2 - ※ Source: · WWW Unnamed ISS Website: mitbbs.com Mobile: Search Unnamed space applications store · [FROM: 173 .]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	jumperer
+Unnamed enter Avatars
+	My blog
+[ Reply ] [ reply to Author ] [ Benpian text ] [ The forum ] [ modify ] [ Delete ] [ Forward ] [ posted ] [ Collection ] [ Report ]		[ 8 ]
+Sender: jumperer (jump), the letter area: JobHunting 
+Title: Re: Box 2 hour coding exercise 
+letter Station: BBS Unnamed Space Station (Sun Jan 25 11:30:26 2015, the eastern United States) meaning of the questions I think I got it wrong ... like the O (1) on the line. Seek the guidance [in walkingmetro (walkingmetro) masterpiece mentioned:] : Java inside the TreeMap : Red Black Tree is a realization. : Rollback can use Command (design pattern) to achieve. - ※ Source: · WWW Unnamed Space Station Website: mitbbs.com Mobile: Search Unnamed space applications store · [FROM: 23.]
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	jobhunter123
+Unnamed enter Avatars
+	My blog
+[ Reply ] [ reply to Author ] [ Benpian text ] [ The forum ] [ modify ] [ Delete ] [ Forward ] [ posted ] [ Collection ] [ Report ]		[ 9 ]
+Sender: jobhunter123 (jobhunting), the letter area: JobHunting 
+Title: Re: Box 2 hour coding exercise 
+letter Station: BBS Unnamed Space Station (Sun Jan 25 12:37:54 2015, the eastern United States) Box Where, sf or south Bay? - ※ Source: · WWW Unnamed ISS Website: mitbbs.com Mobile: Search Unnamed space applications store · [FROM: 69.]
+
+
+
+
+[Page: 1]
+[ quick return ] [ enter JobHunting forum ] [ Back to top ]
+Reply to this article
+Account number:	
+Password:	
+Title:	
+Content:
+
+Security Code: 
+  [Refresh] (please enter this code, see please refresh)
+
+
+ 
+Sponsored links
+
+ 
+http://www.rencai8.com/job_info?action=view&job_position_id=475044
+www.dealam.com
+www.dealmoon.com/mit160banner
+Unnamed Dating
+Your link will be placed here
+
+Links
+
+ 
+Site Map - Contact Us - Terms and Conditions - Privacy Policy 
+
+版权所有，未名空间（mitbbs.com），since 1996
