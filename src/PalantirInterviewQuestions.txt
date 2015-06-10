@@ -1,3 +1,71 @@
+Patrick
+
+
+
+Drive
+My Drive
+NEW 
+Folders and views
+My DriveCollapsed
+Shared with me
+Google Photos
+Recent
+Starred
+Trash
+.
+2013-06-17 승진이 졸업식
+2013-09-12 로스엔젤레스
+2013-10-20 Leavenworth
+2014-05-02 칸쿤
+2014-10-03 보스톤 뉴욕
+CSCI 576
+Downloads
+Lake 22
+My Documents
+Ocean Shores
+Seattle Duck Tour
+.
+
+Text
+box.txt
+
+Google Docs
+box.txt
+
+Google Docs
+CSCI 588 - Assignment 1
+
+Google Docs
+CSCI 588 - Assignment 2
+
+Google Docs
+CSCI 588 - Project Proposal
+
+PowerPoint
+Lect02_supplementary_Guidelines, Principles, and Theories.ppt
+
+Google Slides
+Lect02_supplementary_Guidelines, Principles, and Theories.ppt
+
+Text
+palantir.txt
+
+Google Docs
+Patrick Lee - Resume
+Text
+palantir.txt
+Details
+Activity
+YESTERDAY
+
+Youuploaded an item
+Tue 10:40 PM
+Text
+palantir.txt
+No recorded activity before June 9, 2015
+10 GB used (69%)
+Buy more storage
+palantir.txtOpen
 1) Finding duplicate entry in an integer array. 
 Next there were variations of this where I had to find duplicate entry only if it was within some index range, and 
 next if the values were not actually duplicate but within some range of values.
@@ -114,6 +182,8 @@ Q: Convert a tree to a linked list.
 Q1. write a string compress function: give you "RRGB" and return "R2G1B1"
 2. give you a graph and two vertices and return if there exists a path between them
 3. determine if there exists a cycle in the given graph  
+http://stackoverflow.com/questions/19113189/detecting-cycles-in-a-graph-using-dfs-2-different-approaches-and-whats-the-dif
+
 
 Q. rotate matrix https://leetcode.com/problems/rotate-image/
 
@@ -174,3 +244,6 @@ Q. You are given a pyramid; the numbers for example is 2 on the first level, 3 -
 How do you calculate the maximum sub sequence of any path traversing the pyramid?  
 A. Start at the second to last level. For each parent node, add the largest of its children to itself. 
 Do this from bottom to top. The sum at the root is the answer. This should complete in O(n) time
+
+
+http://vosggll.blogspot.com/2014/12/palantir.html
