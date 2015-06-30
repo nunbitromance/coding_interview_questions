@@ -1,29 +1,3 @@
-// 1. is binary tree a binary search tree. 
-// Method 1: same as if you do an in-order traversal, is it always increasing?
-public static bool isBST(Node root, ref Node prev)
-{
-	if (root == null)
-	{
-		return true;
-	}
-	
-	if (!isBST(root.getLeft(), ref prev))
-	{
-		return false;
-	}
-	
-	if (prev.getValue() < root.getValue())
-	{
-		return false;
-	}
-	prev = root;	
-	
-	if (!isBST(root.getRight(), ref prev))
-	{
-		return false;
-	}
-}
-
 // Method 2: check that left subtree is always smaller than root. right subtree is always bigger than root.
 public static bool isBST(Node root)
 {
@@ -136,30 +110,6 @@ private static Node deserialize(int[] preorder, int[] inorder, int preBegin, int
 	root.Right = deserialize(preorder, inorder, preBegin + length + 1, preEnd, rootIndex, inEnd); 
 
 	return root;
-}
-
-TreeNode* BinaryTreeFromOrderings(int* inorder, int* preorder, int length)
-{
-  if(length == 0)
-    {
-      return NULL;
-    }
-  //We have root then;
-  TreeNode* node = new TreeNode;
-  node->elem = *inorder;
-  int rootIndex = 0;
-  for(;rootIndex < length; rootIndex++)
-    {
-      if(inorder[rootIndex] == *inorder)
-        {
-           break;
-        }
-    }
-  //Left
-  node->left = BinaryTreeFromOrderings(inorder+1, preorder, rootIndex);
-  //Right
-  node->right = BinaryTreeFromOrderings(inorder + rootIndex + 1, preorder + rootIndex + 1, length - (rootIndex + 1));
-  return node;
 }
 
 // 3. is balanced tree? 
@@ -372,35 +322,6 @@ public static void oddNumbers(int[] a)
 	}
 	
 	return result;
-}
-
-public static int FindOddOccurNum(int[] a)
-{
-    if (a == null || a.Length == 0)
-    {
-        throw new ArgumentException("a");
-    }
-
-    Array.Sort(a);
-    int count = 0;
-    int i = 0;
-    while (i < a.Length)
-    {
-        count++;
-        if (i == a.Length - 1 || a[i] != a[i + 1])
-        {
-            if (count % 2 == 1)
-            {
-                return a[i];
-            }
-            count = 0;
-        }
-        i++;
-    }
-
-    //return a.GroupBy(e => e).FirstOrDefault(g => g.Count() % 2 == 1).Key;
-
-    return -1; 
 }
 
 // 8. find a pair of two numbers that sums up to X?
