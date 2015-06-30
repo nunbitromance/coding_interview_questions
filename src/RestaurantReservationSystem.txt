@@ -1,0 +1,30 @@
+
+class ReservationSystem {
+  Map<DateTime, Map<int, Reservation>> reservations; // hour => <table => reservations> 
+  addReservation(Reservation r);
+  cancelReservation(int reservationId);
+  Reservation getReservation(int reservationId);
+}
+
+class Customer {
+  int customerId;
+  String firstName;
+  String lastName;
+  Address ...;
+}
+
+class Reservation {
+  int reservationId;
+  Table table;
+  Customer customer;
+  DateTime start;
+  DateTime end;
+  int numOfCustomers;
+}
+
+class Table {
+  int tableId;
+  int maxCapacity;
+  String locationCode;
+}
+
