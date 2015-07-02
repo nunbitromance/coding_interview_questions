@@ -1,20 +1,17 @@
-public static class BoundedArrayBuffer<E> { // comparable to Java Concurrency in Practice 12.1
+public static class BoundedBuffer<E> { // comparable to Java Concurrency in Practice 12.1
     private final Semaphore empty;
     private final Semaphore full = new Semaphore(0);
-    private final E[] items;
-    private int head = 0;
-    private int tail = 0;
+    private final Queue<E> items;
 
-    public BoundedArrayBuffer(int capacity) {
+    public BoundedBuffer(int capacity) {
         empty = new Semaphore(capacity);
-        items = (E[])new Object[capacity];
+        items = new LinkedList<E>();
     }
 
     public boolean offer(E e) throws InterruptedException {
         empty.acquire();
         synchronized (this) {
-            items[tail] = e;
-            tail = (++tail == items.length) ? 0 : tail;
+            items.offer(e);
         }
         full.release();
         return true;
@@ -24,8 +21,7 @@ public static class BoundedArrayBuffer<E> { // comparable to Java Concurrency in
         full.acquire();
         E e;
         synchronized (this) {
-            e = items[head];
-            head = (++head == items.length) ? 0 : head;
+            e = items.poll();
         }
         empty.release();
         return e;
