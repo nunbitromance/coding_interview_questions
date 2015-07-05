@@ -162,3 +162,28 @@ public class BreakMultipleWordsWithNoSpaceIntoSpace {
         System.out.print(result1);
     }
 }
+
+public static boolean isSegmented(String s, HashSet<String> dict) {  
+   int n = s.length();  
+   if (n < 1) return false;  
+   
+   // T[i][j] == true iff s[i..j] is segmentable  
+   boolean[][] seg = new boolean[n][n];  
+   for (int l=0; l<n; ++l) { // segment length, seg[i,i] has length of 0. 
+     for (int i=0; i<n-l; ++i) { // start letter 
+       int j = i + l;  
+       if (dict.contains(s.substring(i, j+1))) {  
+         seg[i][j] = true;  
+         continue;
+       }  
+       for (int k=i; k<j; ++k) { // intermediate letter 
+         if (seg[i][k] && seg[k+1][j]) {  
+           seg[i][j] = true;  
+           break;  
+         }  
+       }  
+     }  
+   }  
+   
+   return seg[0][n-1];  
+ }  
