@@ -13,51 +13,7 @@ Window position                Max
 Input: A long array A[], and a window width w
 Output: An array B[], B[i] is the maximum value of from A[i] to A[i+w-1]
 Requirement: Find a good optimal way to get B[i]
-*/
-public class MaxHeapComparator<int> : IComparator<int>
-{
-	public int CompareTo(int a, int b)
-	{
-		return a - b;
-	}
-}
-
-public static int[] MaxWindow(int[] a, int w)
-{
-	PriorityQueue<int> pq = new PriorityQueue<int>(w, new MaxHeapComparator<int>());
-	int[] b = new int[a.Length];
-	int index = 0;
-	
-	for (int i = 0; i < w; i++)
-	{
-		pq.Insert(a[i]);
-	}
-	
-	for (int i = 1; i < a.Length; i++)
-	{
-		if (pq.Size < w)
-		{
-			pq.Insert(a[i]);
-		}
-		else 
-		{
-			PriorityQueue<int> pq2 = new PriorityQueue<int>(w, new MaxHeapComparator<int>());
-			while (pq.Size > 0)
-			{
-				if (pq.Peek() != a[i-1])
-				{
-					pq2.Insert(pq.Remove());
-				}
-			}
-			pq2.Insert(a[i+w-1]);
-			pq = pq2;
-		}
-		
-		b[index++] = pq.Peek();
-	}
-	
-	return b;
-}
+*''
 
 /*
 http://articles.leetcode.com/2011/01/sliding-window-maximum.html
