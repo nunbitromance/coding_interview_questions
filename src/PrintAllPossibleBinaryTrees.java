@@ -17,11 +17,12 @@ public static List<Node> BuildAllPossibleBinaryTrees(int start, int end)
 	
 	if (start > end)
 	{
-		return null;
+		result.add(null);
+		return result;
 	}
 	else if (start == end)
 	{
-		result.Add(new Node(start));
+		result.add(new Node(start));
 		return result;
 	}
 	
