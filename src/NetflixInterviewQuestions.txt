@@ -1,0 +1,90 @@
+Netflix interview questions
+
+1. Letter combinations of a phone number
+
+public String getWords(String phoneNumber, int index, List<String> result, char[] phoneChars) {
+	if (index == phoneNumber.length()) {
+		result.add(new String(phoneChars));
+	}
+	for (char c in getChars(phoneNumber.charAt(index))) {
+		phoneChars[index] = c;
+		getWords(phoneNumer, index + 1, result, phoneChars);
+		phoneChars[index] = 0;
+	}
+}
+
+2. Median of stream of integers, solved using two heaps min and max. 
+
+Step 1: Add next item to one of the heaps
+
+   if next item is smaller than maxHeap root add it to maxHeap,
+   else add it to minHeap
+
+Step 2: Balance the heaps (after this step heaps will be either balanced or
+   one of them will contain 1 more item)
+
+   if number of elements in one of the heaps is greater than the other by
+   more than 1, remove the root element from the one containing more elements and
+   add to the other one
+
+
+Then at any given time you can calculate median like this:
+   If the heaps contain equal elements;
+     median = (root of maxHeap + root of minHeap)/2
+   Else
+     median = root of the heap with more elements
+
+
+private PriorityQueue<Integer> maxHeap = new PrirorityQueue<Integer>(new Comparator<Integer>(Integer a, Integer b) {
+	public int compare(Integer a, Integer b) {
+		return b - a;
+	}
+});
+private PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>(new Comparator<Integer>(Integer))
+
+public void addNumber(int num) {
+
+	if (maxHeap.size() > 0 && num > maxHeap.peek()) {
+		minHeap.offer(num);
+	} else {
+		maxHeap.offer(num);
+	}
+
+	if (Math.abs(minHeap.size() - maxHeap.size()) > 1) {
+		if (minHeap.size() > maxHeap.size()) {
+			maxHeap.offer(minHeap.poll());
+		} else {
+			minHeap.offer(maxHeap.poll());
+		}
+	}
+}
+
+public int getNumber() {
+	if (minHeap.size() == maxHeap.size()) {
+		return (minHeap.peek() + maxHeap.peek()) / 2;
+	} else if (minHeap.size() > maxHeap.size()) {
+		return minHeap.peek();
+	} else {}
+		return maxHeap.peek();
+	}
+}
+
+3. Print tree level wise  
+
+4. There are 10000 servers and need to send a file of size 1 MB to each server, starting from laptop and there is only 1 MB bandwidth between each server. Shortest time in this is possible . Solved using tree and can be done in logarithmic time.  
+
+5. How to implement getHashCode function. Rectangle equals. strategy pattern?
+
+6. Write a function that takes a string as an arg, and returns the same string with all duplicates removed.  
+
+7. Design a movie recommendation algorithm when based on a social graph. Input given are social graph, what movies are seen by different people, their rating of each movie and overall rating of each movie. Then there were questions on how will weights be selected among friends' movies  
+
+8. In a binary search tree, find the most common ancestor. 
+
+9. Write a code such to implement semaphores to implement the concept of synchronization in multi-threaded environment.  
+
+10. Given two sets A & B, get unique elements from each set in an optimal way. Merge Sort Multithreading - How to run threads A,B and C in a sequence
+
+11. Calculate the no of valid BST that can be formed from [1,...N] numbers?
+
+12. Coding a procedure for AVL tree rotation.
