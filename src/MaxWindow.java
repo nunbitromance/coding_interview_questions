@@ -27,20 +27,31 @@ A natural way most people would think is to try to maintain the queue size the s
 
 */
 
-void maxSlidingWindow(int A[], int n, int w, int B[]) {
-  deque<int> Q;
-  for (int i = 0; i < w; i++) {
-    while (!Q.empty() && A[i] >= A[Q.back()])
-      Q.pop_back();
-    Q.push_back(i);
-  }
-  for (int i = w; i < n; i++) {
-    B[i-w] = A[Q.front()];
-    while (!Q.empty() && A[i] >= A[Q.back()])
-      Q.pop_back();
-    while (!Q.empty() && Q.front() <= i-w)
-      Q.pop_front();
-    Q.push_back(i);
-  }
-  B[n-w] = A[Q.front()];
-}
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        if (nums == null || nums.length == 0) {
+            return new int[0];
+        }
+        
+        int[] result = new int[nums.length - k + 1];
+        Deque<Integer> deque = new LinkedList<Integer>();
+        for (int i = 0; i < k; i++) {
+            while (!deque.isEmpty() && deque.peekLast() < nums[i]) {
+                deque.pollLast();
+            }
+            deque.offerLast(nums[i]);
+        }
+        result[0] = deque.peekFirst();
+        for (int i = k; i < nums.length; i++) {
+            while (!deque.isEmpty() && deque.peekLast() < nums[i]) {
+                deque.pollLast();
+            }
+            deque.offerLast(nums[i]);
+            
+            if (deque.peekFirst() == nums[i - k]) {
+                deque.pollFirst();
+            }
+            
+            result[i-k+1] = deque.peekFirst();
+        }
+        return result;
+    }
