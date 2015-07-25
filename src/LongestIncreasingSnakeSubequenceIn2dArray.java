@@ -23,20 +23,11 @@ public int findLongestIncreasing(int[][] m) {
         if (j - 1 > 0 && m[i][j - 1] - m[i][j] == 1) {
           opt[i][j] = Math.max(opt[i][j], opt[i][j - 1] + 1);
         }
-        // down
-        if (i + 1 < m.length && m[i][j - 1] - m[i][j] == 1) {
-          opt[i][j] = Math.max(opt[i][j], opt[i+1][j] + 1);
-        }
-        // right
-        if (j + 1 < m[0].length && m[i][j + 1] - m[i][j] == 1) {
-          opt[i][j] = Math.max(opt[i][j], opt[i][j+1] + 1);
-        }
         max = Math.max(max, opt[i][j]);
       }
     }
     return max;
 }
-
 
 // DFS or backtracking O(n^2 * n^2) = O(n^4)
 public int findLongestIncreasing(int[][] m) {
