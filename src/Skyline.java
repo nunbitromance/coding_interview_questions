@@ -272,3 +272,58 @@ Time complexity of above recursive implementation is same as Merge Sort.
 T(n) = T(n/2) + Θ(n)
 
 Solution of above recurrence is Θ(nLogn)
+
+// solution using heap
+
+The idea is to sort all critical points first. Then keep track of an active set of buildings with a max priority queue. When it comes to the left edge of a building, add its height to the maxPQ. When it comes to the right edge, remove the height. The add/remove operation for pq takes logN time, peek operation is constant time. The overall time complexity should be O(n * log(n)).
+
+class Pair implements Comparable<Pair> {
+    int index;
+    int height;
+    Pair(int i, int h) {
+        this.index = i;
+        this.height = h;
+    }
+
+    public int compareTo(Pair p) {
+        // if index is different, smaller index comes first
+        if (this.index != p.index) return this.index - p.index;
+        // if the right end and left start overlap, left start point comes first
+        if (p.height * this.height < 0) return this.height - p.height;
+        // overlap on the left edge, the bigger value comes first
+        if (this.height < 0 && p.height < 0) return Math.abs(p.height) - Math.abs(this.height);
+        // overlap on the right value, the smaller values comes first
+        return Math.abs(this.height) - Math.abs(p.height);
+    }
+
+}
+
+public class Solution {
+    public List<int[]> getSkyline(int[][] buildings) {
+        List<int[]> result = new LinkedList();
+        if (buildings == null || buildings.length == 0) return result;
+        int len = buildings.length;
+        Pair[] pairs = new Pair[2 * len];
+        for (int i = 0; i < len; i++) {
+            pairs[2 * i] = new Pair(buildings[i][0], -buildings[i][2]);
+            pairs[2 * i + 1] = new Pair(buildings[i][1], buildings[i][2]);
+        }
+        Arrays.sort(pairs);
+        int height = 0;
+        // Priority queue in java allows duplicates
+        PriorityQueue<Integer> maxPQ = new PriorityQueue<Integer>(len, Collections.reverseOrder());
+        for (Pair p: pairs) {
+            if (p.height < 0) maxPQ.add(-p.height);
+            else maxPQ.remove(p.height);
+            int newH = (maxPQ.peek() == null) ? 0 : maxPQ.peek();
+            if (newH != height) {
+                height = newH;
+                int[] re = new int[2];
+                re[0] = p.index;
+                re[1] = height;
+                result.add(re);
+            }
+        }
+        return result;
+    }
+}
