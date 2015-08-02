@@ -1,3 +1,23 @@
+ public void rotate(int[][] matrix) {  
+   for (int level = 0, len = matrix.length; level < len; ++level, --len) {  
+     int end = len - 1;  
+     for (int pos = level; pos < end; ++pos) {  
+       int tail = matrix.length - pos - 1;  
+   
+       int tmp = matrix[level][pos];  
+       // left -> top  
+       matrix[level][pos] = matrix[tail][level];  
+       // bottom -> left  
+       matrix[tail][level] = matrix[end][tail];  
+       // right -> bottom  
+       matrix[end][tail] = matrix[pos][end];  
+       // top -> right  
+       matrix[pos][end] = tmp;  
+     }  
+   }  
+ }  
+
+
 public void rotate(int[][] matrix) {
 	int n = matrix.length;
 	for (int i = 0; i < n / 2; i++) {
