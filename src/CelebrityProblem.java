@@ -64,22 +64,20 @@ Person findLonelyCelebrity(List<Person> people) {
     } else if (people.size() == 0) {
         return null;
     }
-
-    Person candidate = people.get(0);
-    for (int i = 1; i < people.size(); i++) {
-        boolean knows = people.get(i).knows(candidate);
-        if (!knows) {
-            candidate = people.get(i);
-        }
+    
+    int i = 0; int j = 1;
+    while (j < people.size()) {
+    	if (knows(people.get(i), people.get(j)) {
+    		candidate = people.get(j);
+    	}
+    	j++;
     }
     
-    // check whether candidate is real
-    for (int i = 0; i < people.size(); i++) {
-        if (!candidate.equals(people.get(i)) && (!people.get(i).knows(candidate) || candidate.knows(people.get(i)))) {
-            candidate = null;
-            break;
-        }
+    for (int k = 0; k < people.size(); k++) {
+    	if (i != k && knows(people.get(i), people.get(k))) {
+    		return null;
+    	}
     }
-
-    return candidate;
+    
+    return people.get(i);
 }
