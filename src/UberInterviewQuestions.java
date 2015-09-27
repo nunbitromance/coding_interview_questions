@@ -2,6 +2,8 @@ Flatten a JSON like structure.
 
 Write a spreadsheet engine in the language of my choice. 
 
+Design a price surge system, both at a high level and the architecture 
+
 Phone screen: Fill in this function header, which is   responsible for finding all vehicle stops closest to a user's GPS location. 
 
 On-Site: A design question (How would you design a ride-share application?) A technical communication question. A fairly simple coding question involving some OOP. A design discussion with the hiring manager. 
