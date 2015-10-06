@@ -1,0 +1,26 @@
+1. Something about elevators 
+2. Find minimum number of steps to perform series of tasks on a grid
+3. There's a tree, a squirrel, and several nuts. Positions represented by a matrix, like x, y. 
+And the goal is to find the minimal distance for the squirrel find the nuts and put them into the tree one by one. 
+4. How to code a program that gives you the day of the week given a date
+5. Imagine you have an x-y grid of floats. Define a method to drop a parameter block of a certain height and length (also floats) beginning at any x coordinate. Subsequent blocks dropped will fall on top of any previous blocks, 'stacking' their height. Define another method to return the height at any requested x location. 
+There was a third method, but I didn't have time to do it.  
+6. implement an inorder tree iterator in java 
+7. Write an escape function for some input strings 
+8. Question was based on darts. You're given 2 players' throws as input and should output the result of the match. 
+Hard to explain since the prompt was very long. 
+9. Reverse bits in an integer  
+10. What day of the week was the Unix Epoch? (geared towards algorithm implementation)  
+11. LRU cache problem that supports get and set operations. 
+12. input: coefficients line (a’s), lines of values from transactions (x’s) y = a0 + a1*x1 + a2*x2 + ... + aN*xN y &lt;= 0 not fraud, y &gt; 0 suspect fraud output fraud/not fraud for each line of N lines  
+13. input: two numbers, N and M, which define an NxM grid start at top left corner of grid (1,1): - step forward - turn right - if space in front of you is out of board or you already walked on it, turn right keep going until you can’t walk anymore output is number of steps you take before stopping.  
+14. I don't know the technical term, but it was just a calculator that's operators do not appear in normal order. The interviewer did not explain the requirements well, so once it was clear, I was able to do it. The interview went like this: calculate("2 3 +") # => 5 .... a few others calculate("12 2 /") #=> 6 calculate("48 4 6 * /") # => 2 
+Instructions: "Write the calculate function"  
+15. Implement a function to evaluate reverse Polish notation (both postfix and infix), evaluate the edit distance between two strings, implement a web scraper, 
+applying a graph theory algorithm for path-finding. 
+16. Implement a queue from scratch in your a language of your choice.
+17. Describe a OO design for a deck of cards  
+18. Write a script that will pull the IP addresses out of a random text file. 
+19. Find shortest uniquely identifying prefixes on a set of words. Eg "pineapple" "pinetree" "pill" has "pinea" "pinet" and "pil"  
+20. Find the dominator of an array with 1,000,000 element and complete within O(n) complexity 
+21. find the element P in an array which all the elements before P less than or equal to P and the elements after P larger than to equal to P.
