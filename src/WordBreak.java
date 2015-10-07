@@ -1,154 +1,9 @@
-public class Solution{
-	
-	String SegmentString(String input, Set<String> dict) {
-	  if (dict.contains(input)) return input;
-	  int len = input.length();
-	  for (int i = 1; i < len; i++) {
-	    String prefix = input.substring(0, i);
-	    if (dict.contains(prefix)) {
-	      String suffix = input.substring(i, len);
-	      String segSuffix = SegmentString(suffix, dict);
-	      if (segSuffix != null) {
-	        return prefix + " " + segSuffix;
-	      }
-	    }
-	  }
-	  return null;
-	}
-	
-	Map<String, String> memoized;
+public class WordBreak {
 
-	String SegmentString(String input, Set<String> dict) {
-	  if (dict.contains(input)) return input;
-	  if (memoized.containsKey(input) {
-	    return memoized.get(input);
-	  }
-	  int len = input.length();
-	  for (int i = 1; i < len; i++) {
-	    String prefix = input.substring(0, i);
-	    if (dict.contains(prefix)) {
-	      String suffix = input.substring(i, len);
-	      String segSuffix = SegmentString(suffix, dict);
-	      if (segSuffix != null) {
-	        memoized.put(input, prefix + " " + segSuffix);
-	        return prefix + " " + segSuffix;
-	}
-	}
-	memoized.put(input, null);
-	return null;
-	}
-}
-
-package com.interview.dynamic;
-
-import java.util.HashSet;
-import java.util.Set;
-
-/**
- * Date 08/01/2014
- * @author tusroy
- * 
- * Given a string and a dictionary, split this string into multiple words such that
- * each word belongs in dictionary.
- * 
- * e.g peanutbutter -> pea nut butter
- * e.g Iliketoplay -> I like to play
- * 
- * Solution 
- * DP solution to this problem
- * if( input[i...j] belongs in dictionary) T[i][j] = i
- * else{
- *     T[i][j] = k if T[i][k-1] != -1 && T[k][j] != -1
- *     
- * Test cases
- * 1) Empty string
- * 2) String where entire string is in dictionary
- * 3) String which cannot be split into words which are in dictionary
- * 3) String which can be split into words which are in dictionary    
- *
- */
-public class BreakMultipleWordsWithNoSpaceIntoSpace {
-
-    
     /**
-     * Recursive and slow version of breaking word problem.
-     * If no words can be formed it returns null
+     * @param args
      */
-    public String breakWord(char[] str,int low,Set<String> dictionary){
-        StringBuffer buff = new StringBuffer();
-        for(int i= low; i < str.length; i++){
-            buff.append(str[i]);
-            if(dictionary.contains(buff.toString())){
-                String result = breakWord(str, i+1, dictionary);
-                if(result != null){
-                    return buff.toString() + " " + result;
-                }
-            }
-        }
-        if(dictionary.contains(buff.toString())){
-            return buff.toString();
-        }
-        return null;
-    }
-    
-    /**
-     * Dynamic programming version for breaking word problem.
-     * It returns null string if string cannot be broken into multipe words
-     * such that each word is in dictionary.
-     * Gives preference to longer words over splits
-     * e.g peanutbutter with dict{pea nut butter peanut} it would result in
-     * peanut butter instead of pea nut butter.
-     */
-    public String breakWordDP(String word, Set<String> dict){
-        int T[][] = new int[word.length()][word.length()];
-        
-        for(int i=0; i < T.length; i++){
-            for(int j=0; j < T[i].length ; j++){
-                T[i][j] = -1; //-1 indicates string between i to j cannot be split
-            }
-        }
-        
-        //fill up the matrix in bottom up manner
-        for(int l = 1; l <= word.length(); l++){
-            for(int i=0; i < word.length() -l + 1 ; i++){
-                int j = i + l-1;
-                String str = word.substring(i,j+1);
-                //if string between i to j is in dictionary T[i][j] is true
-                if(dict.contains(str)){
-                    T[i][j] = i;
-                    continue;
-                }
-                //find a k between i+1 to j such that T[i][k-1] && T[k][j] are both true 
-                for(int k=i+1; k <= j; k++){
-                    if(T[i][k-1] != -1 && T[k][j] != -1){
-                        T[i][j] = k;
-                        break;
-                    }
-                }
-            }
-        }
-        if(T[0][word.length()-1] == -1){
-            return null;
-        }
-        
-        //create space separate word from string is possible
-        StringBuffer buffer = new StringBuffer();
-        int i = 0; int j = word.length() -1;
-        while(i < j){
-            int k = T[i][j];
-            if(i == k){
-                buffer.append(word.substring(i, j+1));
-                break;
-            }
-            buffer.append(word.substring(i,k) + " ");
-            i = k;
-        }
-        
-        return buffer.toString();
-    }
-
-    
-    public static void main(String args[]){
+    public static void main(String[] args) {
         Set<String> dictionary = new HashSet<String>();
         dictionary.add("I");
         dictionary.add("like");
@@ -156,34 +11,80 @@ public class BreakMultipleWordsWithNoSpaceIntoSpace {
         dictionary.add("play");
         dictionary.add("to");
         String str = "Ihadliketoplay";
-        BreakMultipleWordsWithNoSpaceIntoSpace bmw = new BreakMultipleWordsWithNoSpaceIntoSpace();
-        String result1 = bmw.breakWordDP(str, dictionary);
         
-        System.out.print(result1);
+        System.out.println(new WordBreak().wordBreakDP(str, dictionary));
+        System.out.println(new WordBreak().wordBreakRecursive(str, dictionary, new HashMap<String, String>()));
+    }
+
+    public String wordBreakRecursive(String input, Set<String> dict, Map<String, String> memo) {
+        // validation
+        if (input.equals("")) {
+            return "";
+        }
+        
+        if (memo.containsKey(input)) {
+            System.out.println("memo is hit for input: " + input);
+            return memo.get(input);
+        }
+        
+        for (int i = 1; i <= input.length(); i++) {
+            String prefix = input.substring(0, i);
+            
+            if (dict.contains(prefix)) {
+                String suffix = wordBreakRecursive(input.substring(i), dict, memo);
+                
+                if (suffix != null) {
+                    memo.put(input, prefix + " " + suffix);
+                    return prefix + " " + suffix;
+                }
+            }
+        }
+        
+        return null;
+    }
+    
+    public String wordBreakDP(String word, Set<String> dict) {
+        int[][] opt = new int[word.length()][word.length()];
+        
+        for (int i = 0; i < word.length(); i++) {
+            for (int j = 0; j < word.length(); j++) {
+                opt[i][j] = -1;
+            }
+        }
+        
+        for (int l = 1; l <= word.length(); l++) {
+            for (int i = 0; i < word.length() - l + 1; i++) {
+                int j = i + l - 1;
+                String suffix = word.substring(i, j + 1);
+                if (dict.contains(suffix)) {
+                    opt[i][j] = i;
+                    continue;
+                }
+                for (int k = i + 1; k <= j; k++) {
+                    if (opt[i][k-1] != -1 && opt[k][j] != -1) {
+                        opt[i][j] = k;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        if (opt[0][word.length() - 1] == -1) {
+            return null;
+        }
+        
+        StringBuffer sb = new StringBuffer();
+        int i = 0; int j = word.length() - 1;
+        while (i < j) {
+            int k = opt[i][j];
+            if (i == k) {
+                sb.append(word.substring(i, j + 1));
+                break;
+            }
+            sb.append(word.substring(i, k));
+            sb.append(" ");
+            i = k;
+        }
+        return sb.toString();
     }
 }
-
-public static boolean isSegmented(String s, HashSet<String> dict) {  
-   int n = s.length();  
-   if (n < 1) return false;  
-   
-   // T[i][j] == true iff s[i..j] is segmentable  
-   boolean[][] seg = new boolean[n][n];  
-   for (int l=0; l<n; ++l) { // segment length, seg[i,i] has length of 0. 
-     for (int i=0; i<n-l; ++i) { // start letter 
-       int j = i + l;  
-       if (dict.contains(s.substring(i, j+1))) {  
-         seg[i][j] = true;  
-         continue;
-       }  
-       for (int k=i; k<j; ++k) { // intermediate letter 
-         if (seg[i][k] && seg[k+1][j]) {  
-           seg[i][j] = true;  
-           break;  
-         }  
-       }  
-     }  
-   }  
-   
-   return seg[0][n-1];  
- }  
