@@ -18,12 +18,13 @@ isMatch(“ab”, “.*”) ℃ true
 isMatch(“aab”, “c*a*b”) ℃ true
 */
 
+public class RegularExpression {
+
     public boolean isMatch(String s, String p) {
-        
-        if (p.length() == 0) {
-            return s.length() == 0;
+        if (p.isEmpty()) {
+            return s.isEmpty();
         }
-        
+
         if (p.length() == 1) {
             if (s.length() == 0) {
                 return false;
@@ -36,8 +37,8 @@ isMatch(“aab”, “c*a*b”) ℃ true
             return (p.charAt(0) == '.' || s.charAt(0) == p.charAt(0)) && isMatch(s.substring(1), p.substring(1));
         } else {
             if (isMatch(s, p.substring(2))) {
-			    return true;
-		    }
+                return true;
+            }
             
             int i = 0;
             while (i < s.length() && (s.charAt(i) == p.charAt(0) || (p.charAt(0) == '.'))) {
@@ -49,3 +50,19 @@ isMatch(“aab”, “c*a*b”) ℃ true
         }
         return false;
     }
+    
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        System.out.println(new RegularExpression().isMatch("aa","a")); //false
+        System.out.println(new RegularExpression().isMatch("aa","aa")); // true
+        System.out.println(new RegularExpression().isMatch("aaa","aa")); // false
+        System.out.println(new RegularExpression().isMatch("aa", "a*")); //true
+        System.out.println(new RegularExpression().isMatch("aa", ".*")); //true
+        System.out.println(new RegularExpression().isMatch("ab", ".*")); // true
+        System.out.println(new RegularExpression().isMatch("aab", "c*a*b")); //true
+    }
+
+}
