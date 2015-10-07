@@ -17,35 +17,50 @@ word = "SEE", -> returns true,
 word = "ABCB", -> returns false.
 » Solve this problem
 */
-public class Solution {
-    boolean[][] visited;
-    public boolean exist(char[][] board, String word) {
-        if (word.length() == 0)
-            return true;
-        int m = board.length;
-        int n = board[0].length;
-        visited = new boolean[m][n];
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (search(board, word, 0, i, j))
+
+public class WordSearch {
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        char[][] m = new char[3][3];
+        m[0] = new char[]{'A', 'B', 'C'};
+        m[1] = new char[]{'D', 'E', 'F'};
+        m[2] = new char[]{'G', 'H', 'I'};
+        
+        System.out.println(new WordSearch().wordSearch(m, "EFI"));
+    }
+
+    public boolean wordSearch(char[][] m, String word) {
+        boolean[][] visited = new boolean[m.length][m[0].length];
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[0].length; j++) {
+                if (wordSearch(m, word, visited, 0, i, j)) {
                     return true;
+                }
             }
         }
         return false;
     }
     
-    private boolean search(char[][] board, String word, int n, int i, int j) {
-        if (n == word.length())
+    private boolean wordSearch(char[][] m, String word, boolean[][] visited, int index, int i, int j) {
+        if (index == word.length()) {
             return true;
-        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length)
+        } else if (i >= m.length || i < 0 || j >= m[0].length || j < 0) {
             return false;
-        if (visited[i][j])
-            return false;
-        if (word.charAt(n) != board[i][j])
-            return false;
+        }
+        
         visited[i][j] = true;
-        boolean result = search(board, word, n + 1, i - 1, j) || search(board, word, n + 1, i + 1, j) || search(board, word, n + 1, i, j - 1) || search(board, word, n + 1, i, j + 1);
+        if (word.charAt(index) == m[i][j]) {
+            return wordSearch(m, word, visited, index + 1, i-1, j) ||
+                    wordSearch(m, word, visited, index + 1, i, j+1) ||
+                    wordSearch(m, word, visited, index + 1, i+1, j) ||
+                    wordSearch(m, word, visited, index + 1, i, j-1);
+        }
         visited[i][j] = false;
-        return result;
+        return false;
     }
+    
 }
