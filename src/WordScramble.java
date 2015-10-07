@@ -50,6 +50,8 @@ public class WordSearch {
             return true;
         } else if (i >= m.length || i < 0 || j >= m[0].length || j < 0) {
             return false;
+        } else if (visited[i][j]) {
+            return false;
         }
         
         visited[i][j] = true;
