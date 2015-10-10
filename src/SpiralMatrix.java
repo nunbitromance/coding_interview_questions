@@ -1,53 +1,49 @@
 /*
 Given a matrix (2D array) of m x n elements (m rows, n columns), write a function that prints the elements in the array in a spiral manner.
 */
-// PrintSprialMatrix(m, 0, 0, m.Length, m[0].Length);
-public static void PrintSpiralMatrix(int[][] m, int r, int c, int height, int width)
-{
-	if (r + height <= 0 || col + width <= 0)
-	{
-		return;
-	}
-	
-	//Print top
-	for (int i=c, i<width;i++)
-	{
-		Print(m[r][i]);
-	}
-	//Print right
-	for (int i=r, i<height;i++)
-	{
-		Print(m[i][c+width]);
-	}
-	//Print bottom
-	for (int i=c+width-1; i>=c; i--)
-	{
-		Print(m[r+height-1][i]);
-	}
-	//Print left
-	for (int i=r+height-1; i>=r; i--)
-	{
-		Print(m[i][col]);
-	}
-		
-	PrintSpiralMatrix(m, r+1, c+1, height-2, width-2);
-}
 
-/*
-Spiral Matrix IIMar 28 '12
-Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
+public class SpiralMatrix {
 
-For example,
-Given n = 3,
-
-You should return the following matrix:
-[
- [ 1, 2, 3 ],
- [ 8, 9, 4 ],
- [ 7, 6, 5 ]
-]
-*/
-public static int[][] GetSpiralMatrix(int n)
-{
+    public void printSpiral(int[][] matrix, int rowStart, int rowEnd, int colStart, int colEnd) {
+        if (rowStart > rowEnd || colStart > colEnd) {
+            return;
+        } else if (rowStart == rowEnd && colStart == colEnd) {
+            System.out.println(matrix[rowStart][colStart]);
+            return;
+        }
+        
+        //print up
+        for (int i = colStart; i < colEnd; i++) {
+            System.out.println(matrix[rowStart][i]);
+        }
+        //print right side
+        for (int j = rowStart; j < rowEnd; j++) {
+            System.out.println(matrix[j][colEnd]);
+        }
+        // print bottom
+        for (int k = colEnd; k > colStart; k--) {
+            System.out.println(matrix[rowEnd][k]);
+        }
+        // print left side
+        for (int l = rowEnd; l > rowStart; l--) {
+            System.out.println(matrix[l][colStart]);
+        }
+        printSpiral(matrix, rowStart+1, rowEnd-1, colStart+1, colEnd-1);
+    }
+    
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        int[][] matrix = new int[5][5];
+        matrix[0] = new int[]{1,2,3,4,5};
+        matrix[1] = new int[]{6,7,8,9,10};
+        matrix[2] = new int[]{11,12,13,14,15};
+        matrix[3] = new int[]{16,17,18,19,20};
+        matrix[4] = new int[]{21,22,23,24,25};
+        
+        new SpiralMatrix().printSpiral(matrix, 0, 4, 0, 4);
+    }
 
 }
