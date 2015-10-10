@@ -11,79 +11,46 @@ The base cases are:
 P[ i, i ] ? true
 P[ i, i+1 ] ? ( Si = Si+1 )
 */
-public static string LongestPalindromeSubstring(string s)
-{
-	if (s == null)
-	{
-		throw new ArgumentNullException("s");
-	}
-	
-	int[][] m = new int[s.Length][s.Length];
-	for (int i = 0; i < s.Length; i++)
-	{
-		m[i][i] = 1;
-	}
-	string longestPalindrome = null;
-	for (int length = 2; length <= s.Length; length++)
-	{
-		for (int i = 0; i < s.Length; i++)
-		{
-			int j = i + length - 1;
-			
-			if (s[i] == s[j])
-			{
-				m[i][j] = m[i+1][j-1] + 2;
-				longestPalindrome = s.Substring(i, length);
-			}
-			else
-			{
-				m[i][j] = Math.Max(m[i+1][j], m[i][j-1]);
-			}
-		}
-	} 
-	
-	return longestPalindrome == null ? s[0] : longestPalidrome;
-}
 
-/*
-Let s be the input string, i and j are two indices of the string. Define a 2-dimension array "table" and let table[i][j] denote whether a substring from i to j is palindrome.
+public class LongestPalindromicSubstring {
 
-Start condition:
-
-table[i][i] == 1;
-table[i][i+1] == 1  => s.charAt(i) == s.charAt(i+1) 
-Changing condition:
-
-table[i+1][j-1] == 1 && s.charAt(i) == s.charAt(j)
-=>
-table[i][j] == 1*/
-
-string longestPalindromeDP(string s) {
-  int n = s.length();
-  int longestBegin = 0;
-  int maxLen = 1;
-  bool table[1000][1000] = {false};
-  for (int i = 0; i < n; i++) {
-    table[i][i] = true;
-  }
-  for (int i = 0; i < n-1; i++) {
-    if (s[i] == s[i+1]) {
-      table[i][i+1] = true;
-      longestBegin = i;
-      maxLen = 2;
+    public String longestPalindromicSubstring(String s) {
+        // validation
+        
+        boolean[][] opt = new boolean[s.length()][s.length()];
+        
+        for (int i = 0; i < s.length(); i++) {
+            opt[i][i] = true;
+        }
+        for (int i = 0; i < s.length() - 1; i++) {
+            opt[i][i+1] = (s.charAt(i) == s.charAt(i+1))? true : false;
+        }
+        String longestPalindromicSubstring = "";
+        int maxLength = 0;
+        for (int l = 3; l <= s.length(); l++) {
+            for (int i = 0; i < s.length() - l + 1; i++) {
+                int j = i + l - 1;
+                if (s.charAt(i) == s.charAt(j) && opt[i+1][j-1]) {
+                    opt[i][j] =  true;
+                    if (l > maxLength) {
+                        maxLength = l;
+                        longestPalindromicSubstring = s.substring(i, j + 1);
+                    }
+                } else {
+                    opt[i][j] = false;
+                }
+            }
+        }
+        return longestPalindromicSubstring;
     }
-  }
-  for (int len = 3; len <= n; len++) {
-    for (int i = 0; i < n-len+1; i++) {
-      int j = i+len-1;
-      if (s[i] == s[j] && table[i+1][j-1]) {
-        table[i][j] = true;
-        longestBegin = i;
-        maxLen = len;
-      }
+    
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        String s = "HelloWorld";
+        System.out.println(new LongestPalindromicSubstring().longestPalindromicSubstring(s));
     }
-  }
-  return s.substr(longestBegin, maxLen);
+
 }
-Additional exercise:
-Could you improve the above space complexity further and how?
