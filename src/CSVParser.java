@@ -1,57 +1,47 @@
-/**
-* returns a row of values as a list
-* returns null if you are past the end of the input stream
-*/
-public static List<String> parseLine(Reader r) throws Exception {
-    int ch = r.read();
-    while (ch == '\r') {
-        //ignore linefeed chars wherever, particularly just before end of file
-        ch = r.read();
-    }
-    if (ch<0) {
-        return null;
-    }
-    Vector<String> store = new Vector<String>();
-    StringBuffer curVal = new StringBuffer();
-    boolean inquotes = false;
-    boolean started = false;
-    while (ch>=0) {
-        if (inquotes) {
-            started=true;
-            if (ch == '\"') {
-                inquotes = false;
-            }
-            else {
-                curVal.append((char)ch);
-            }
-        }
-        else {
-            if (ch == '\"') {
-                inquotes = true;
-                if (started) {
-                    // if this is the second quote in a value, add a quote
-                    // this is for the double quote in the middle of a value
-                    curVal.append('\"');
-                }
-            }
-            else if (ch == ',') {
-                store.add(curVal.toString());
-                curVal = new StringBuffer();
-                started = false;
-            }
-            else if (ch == '\r') {
-                //ignore LF characters
-            }
-            else if (ch == '\n') {
-                //end of a line, break out
+package practice;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class CSVParser {
+
+    public List<String> parse(String line) {
+        List<String> result = new ArrayList<String>();
+        int index = 0;
+        boolean inQuote = false;
+        StringBuilder sb = new StringBuilder();
+        while (index < line.length()) {
+            char c = line.charAt(index);
+            
+            if (c == '\"') {
+                inQuote = !inQuote;
+                sb.append(c);
+            } else if (c == ',' && !inQuote) {
+                result.add(sb.toString());
+                sb = new StringBuilder();
+            } else if (index == line.length() - 1) {
+                sb.append(c);
+                result.add(sb.toString());
                 break;
+            } else {
+                sb.append(c);
             }
-            else {
-                curVal.append((char)ch);
-            }
+            index++;
         }
-        ch = r.read();
+        return result;
     }
-    store.add(curVal.toString());
-    return store;
+    
+    
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        //String test = "a,b,\"cd,de\",e\n";
+        String test2 = "a,b,\"d \n, , \",\n,\"c\",d,e,k\n";
+        List<String> result = new CSVParser().parse(test2);
+        System.out.println(result.size());
+        System.out.println(result);
+    }
+
 }
+
