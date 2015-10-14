@@ -1,182 +1,147 @@
-// LRU cache implementation
-public class Node<K,V>
-{
-    public K Key {get;set;}
-    public V Value {get;set;}
-    public Node<K,V> Next {get;set;}
-    public Node<K,V> Prev {get;set;}
-}
+package practice;
+import java.util.HashMap;
+import java.util.Map;
 
-public class LRUCache<K, V> 
-{
-    private Node<K,V> head = null;
-    private Node<K,V> tail = null;
-    private int size = null;
-    private Dictionary<K,Node<K,V>> table = null;
+
+public class LRUCache<K,V> {
+
+    @Override
+    public String toString() {
+        return "LRUCache [capacity=" + capacity + //", map=" + map + 
+                ", head="+ head + ", tail=" + tail + "]";
+    }
+
+    private int capacity = 0;
+    private Map<K, CacheNode<K,V>> map = new HashMap<>();
+    public CacheNode<K,V> head = null;
+    public CacheNode<K,V> tail = null;
     
-    public LRUCache<K,V>(int initSize)
-    {
-        initSize = size;
-        table = new Dictionary<K, Node<K,V>>();
+    public LRUCache(int cap) {
+        this.capacity = cap;
     }
     
-    public void Set(K key, V value)
-    {
-        Node<K,V> node = null;
-        if (table.ContainsKey(key))
-        {
-            node = table[key];
-            node.Value = value;
-        }
-        else
-        {   
-            if (size == table.Count)
+    public void set(K key, V value) {
+        CacheNode<K,V> node = null;
+        if (map.containsKey(key)) {
+            node = map.get(key);
+            node.value = value;
+            
+            remove(node);
+        } else {
+            
+            if (map.size() == capacity)
             {
                 //evict last item.
-                Node<K,V> last = tail;
-                last.Prev.Next = null;
-                tail = last.Prev;
-                table.Remove(last.Key);
+                remove(tail);
+                map.remove(tail.key);
             }
-            node = new Node<K,V>(key, value);
-            table.Add(node);
-        } 
-        //move node to front.
-        MoveToFront(node);
+            node = new CacheNode<K,V>();
+            node.key = key;
+            node.value = value;
+            map.put(key,node);
+        }
+
+        moveToFront(node);
     }
     
-    public V Get(K key)
-    {
-        V value = null;
-        if (table.ContainsKey(key))
-        {
-            Node<K,V> node = table[key];
-            value = node.Value;
-            MoveToFront(node);
+    private void remove(CacheNode<K,V> node) {
+        if (node.prev != null) {
+            node.prev.next = node.next;
         }
-        else
-        {
-            value = null;
+        if (node.next != null) {
+            node.next.prev = node.prev;
         }
-        return value;
+        if (head == node) {
+            head = node.next;
+        }
+        if (tail == node) {
+            tail = node.prev;
+        }
     }
     
-    private void MoveToFront(Node node)
-    {
+    public V get(K key) {
+        CacheNode<K,V> node = null;
+        if (map.containsKey(key)) {
+            node = map.get(key);
+            remove(node);
+            moveToFront(node);
+        }
+        
+        return node != null ? node.value : null;
+    }
+    
+    private void moveToFront(CacheNode<K,V> node) {
         //remove node from list.
-        if (node.Prev != null)
-        {
-            node.Prev.Next = node.Next;
+        node.next = head;
+        node.prev = null;
+        if (head != null) {
+            head.prev = node;
         }
-        if (node.Next != null)
-        {
-            node.Next.Prev = node.Prev;
-        }
-        if (tail == node)
-        {
-            tail = node.Prev;
-        }       
-        node.Next = head;
         head = node;
-        if (tail == null)
-        {
+        if (tail == null) {
             tail = node;
         }
     }
+    
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        LRUCache<String, Integer> cache = new LRUCache<>(5);
+        cache.set("a", 1);
+        
+        cache.printLinkedList();
+        
+        cache.set("b", 2);
+        
+        cache.printLinkedList();
+        
+        cache.set("c", 3);
+        
+        cache.printLinkedList();
+        
+        cache.set("d", 4);
+        cache.set("e", 5);
+        
+        cache.printLinkedList();
+        
+        System.out.println(cache.get("a"));
+        
+        cache.printLinkedList();
+        
+        cache.set("a", 6);
+        
+        cache.printLinkedList();
+
+        cache.set("f", 7);
+        
+        cache.printLinkedList();
+    }
+    
+    public void printLinkedList() {
+        System.out.println("head: " + head.value);
+        System.out.println("tail: " + tail.value);
+        System.out.println("size: " + map.size());
+        
+        CacheNode<K,V> cur = head;
+        while (cur != null) {
+            System.out.print(cur.value + "->");
+            cur = cur.next;
+        }
+        System.out.println();
+    }
 }
 
-import java.util.HashMap;
- 
-public class LRUCache {
-	private HashMap<Integer, DoubleLinkedListNode> map 
-		= new HashMap<Integer, DoubleLinkedListNode>();
-	private DoubleLinkedListNode head;
-	private DoubleLinkedListNode end;
-	private int capacity;
-	private int len;
- 
-	public LRUCache(int capacity) {
-		this.capacity = capacity;
-		len = 0;
-	}
- 
-	public int get(int key) {
-		if (map.containsKey(key)) {
-			DoubleLinkedListNode latest = map.get(key);
-			removeNode(latest);
-			setHead(latest);
-			return latest.val;
-		} else {
-			return -1;
-		}
-	}
- 
-	public void removeNode(DoubleLinkedListNode node) {
-		DoubleLinkedListNode cur = node;
-		DoubleLinkedListNode pre = cur.pre;
-		DoubleLinkedListNode post = cur.next;
- 
-		if (pre != null) {
-			pre.next = post;
-		} else {
-			head = post;
-		}
- 
-		if (post != null) {
-			post.pre = pre;
-		} else {
-			end = pre;
-		}
-	}
- 
-	public void setHead(DoubleLinkedListNode node) {
-		node.next = head;
-		node.pre = null;
-		if (head != null) {
-			head.pre = node;
-		}
- 
-		head = node;
-		if (end == null) {
-			end = node;
-		}
-	}
- 
-	public void set(int key, int value) {
-		if (map.containsKey(key)) {
-			DoubleLinkedListNode oldNode = map.get(key);
-			oldNode.val = value;
-			removeNode(oldNode);
-			setHead(oldNode);
-		} else {
-			DoubleLinkedListNode newNode = 
-				new DoubleLinkedListNode(key, value);
-			if (len < capacity) {
-				setHead(newNode);
-				map.put(key, newNode);
-				len++;
-			} else {
-				map.remove(end.key);
-				end = end.pre;
-				if (end != null) {
-					end.next = null;
-				}
- 
-				setHead(newNode);
-				map.put(key, newNode);
-			}
-		}
-	}
-}
- 
-class DoubleLinkedListNode {
-	public int val;
-	public int key;
-	public DoubleLinkedListNode pre;
-	public DoubleLinkedListNode next;
- 
-	public DoubleLinkedListNode(int key, int value) {
-		val = value;
-		this.key = key;
-	}
+class CacheNode<K,V> {
+    public CacheNode<K,V> next;
+    public CacheNode<K,V> prev;
+    public K key;
+    public V value;
+    @Override
+    public String toString() {
+        return "CacheNode [key=" + key
+                + ", value=" + value + "]";
+    }
+    
 }
