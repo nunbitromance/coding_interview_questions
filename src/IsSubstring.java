@@ -1,99 +1,65 @@
-/* Check if string s1 contains s2 */
-public static int isSubstring(string s1, string s2)
-{
-	for (int i=0; i<= s1.length-s2.length; i++)
-	{
-		int j = 0;
-		for (; j<s2.length; j++)
-		{
-			if (s1[i + j] != s2[j])
-			{
-				break;
-			}
-		}
-		
-		if (j == s2.length)
-		{
-			return i;
-		}
-	}
-	return -1;
-}
+package practice;
 
-/* Rabin Karp */
-public static bool IsSubstring(string s1, string s2)
-{
-	int hash1 = GetHash(s1, 0, s2.Length);
-	int hash2 = GetHash(s2, 0, s2.Length);
-	
-	if (hash1 == hash2)
-	{
-		return 0;
-	}
+public class SubstringSearch {
 
-	for (int i = 0; i <= s1.length - s2.length; i++)
-	{
-		if (hash1 == hash2)
-		{
-			int j = 0;
-			for (j = 0; j < s2.length; j++)
-			{
-				if (s1[i + j] != s2[j])
-				{
-					break;
-				}
-			}
-			if (j == s2.length)
-			{
-				return true;
-			}
-		}
-		else
-		{
-			hash1 = (hash - s1[0] * 31 + s1[i + s2.length] * pow(31, s2.length - 1)) / 31;
-		}
-	}
-}
-
-public static int GetHash(string s, int offset, int length)
-{
-	int hash = 0;
-	for (int i = offset; i < offset + Length; i++)
-	{
-		hash += s[i] * power(31, i);
-	}
-	return hash;
-}
-
-/*
-public int rabinKarp(String t, String p) {
-        int m = p.length();
-        int hashP = hash(p.toCharArray(), 0, m);
-        int hashT = hash(t.toCharArray(), 0, m);
-        if (hashP == hashT) { return 0; }
-
-        int a_to_m_minus_1 = 1; // 31 ^ (m - 1)
-        for (int i = 0; i < m - 1; i++) {
-            a_to_m_minus_1 = (a_to_m_minus_1 << 5) - a_to_m_minus_1;
+    public int substring(String s, String t) {
+        // validation
+        if (s.equals(t)) {
+            return 0;
         }
-
-        for (int i = 1; i < t.length() - m + 1; i++) {
-            hashT = hashT - a_to_m_minus_1 * t.toCharArray()[i - 1];
-            hashT = (hashT << 5) - hashT;
-            hashT = hashT + t.toCharArray()[i + m - 1];
-            if (hashP == hashT) { return i; }
+        
+        for (int i = 0; i < s.length() - t.length() + 1; i++) {
+            int j = 0;
+            for (;j<t.length(); j++) {
+                if (s.charAt(i+j) != t.charAt(j)) {
+                    break;
+                }
+            }
+            if (j == t.length()) {
+                return i;
+            }
         }
-
         return -1;
     }
-
-    public static int hash(char[] chars, int offset, int length) {
-        int hash = 0;
-        for (int i = 0; i < length; i++) {
-            hash = (hash << 5) - hash + chars[offset + i];
+    
+    public long substringRabinKarp(String s, String t) {
+        // validation
+        long hashS = hashCode(s, 0, t.length());
+        long hashT = hashCode(t, 0, t.length());
+        
+        if (hashS == hashT) {
+            return 0;
         }
-
-        return hash;
+        long x = 1;
+        for (int i = 0; i < t.length(); i++) {
+            x = (x << 5) - x;
+        }
+        for (int i = 1; i < s.length() - t.length() + 1; i++) {
+            hashS = (hashS << 5) - hashS - (x * s.charAt(i - 1)) + s.charAt(i + t.length() - 1);
+            if (hashS == hashT) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    private long hashCode(String s, int begin, int length) {
+        int result = 0;
+        for (int i = begin; i < begin + length; i++) {
+            result = (result << 5) - result + s.charAt(i);
+        }
+        return result;
+    }
+    
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        String s = "ABCDEFGHIJKLMN";
+        String t = "DEF";
+        System.out.println("regular search result: " + new SubstringSearch().substring(s, t));
+        System.out.println("rabin karp result: " + new SubstringSearch().substringRabinKarp(s, t));
     }
 
-*/
+}
