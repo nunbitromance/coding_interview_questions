@@ -6,80 +6,30 @@ b: 2 -> 4 -> 6
 out: 1->2->3->4->5->6
 */
 // Iterative version.
-public static Node Merge(Node a, Node b)
-{
-	Node aCur = a;
-	Node bCur = b;
-	Node c = null;
-	Node cCur = null;
-	
-	while (aCur != null && bCur != null)
-	{
-		Node result = null;
-		if (aCur.Value < bCur.Value)
-		{
-			result = aCur;
-			aCur = aCur.Next;
-		}
-		else
-		{
-			result = bCur;
-			bCur = bCur.Next;
-		}
-		
-		if (c == null)
-		{
-			c = result;
-			cCur = c;
-		}
-		else
-		{
-			cCur.Next = result;
-		}
-		cCur = cCur.Next;
-	}
-	
-	while (aCur!= null)
-	{
-		cCur.Next = aCur;
-		aCur = aCur.Next;
-		cCur = cCur.next;
-	}
-	while (bCur != null)
-	{
-		cCur.Next = bCur;
-		bCur = bCur.Next;
-		cCur = cCur.Next;
-	}
-	return c;
-}
-
-// Recursive version.
-public static Node Merge(Node a, Node b)
-{
-	if (a == null && b == null)
-	{
-		return null;
-	}
-	else if (a != null && b == null)
-	{
-		return a;
-	}
-	else if (a == null && b != null)
-	{
-		return b;
-	}
-	
-	Node c = null;
-	if (a.Value < b.Value)
-	{
-		c = a;
-		c.Next = Merge(a.Next, b);
-	}
-	else
-	{
-		c = b;
-		c.Next = Merge(a, b.Next);
-	}
-	return c;
+public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    ListNode head = new ListNode(0);
+    ListNode p=head;
+ 
+    ListNode p1=l1;
+    ListNode p2=l2;
+    while(p1!=null && p2!=null){
+        if(p1.val < p2.val){
+            p.next = p1;
+            p1 = p1.next;
+        }else{
+            p.next = p2;
+            p2 = p2.next;
+        }
+        p=p.next;
+    }
+ 
+    if(p1!=null){
+        p.next = p1;
+    }
+ 
+    if(p2!=null){
+        p.next = p2;
+    }
+ 
+    return head.next;
 }
