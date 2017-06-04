@@ -1,39 +1,27 @@
-/* Implement stack that keeps track of min.
-*/
-public class StackWithMin<T> : Stack<T>
-{
-	private Stack<T> minStack;
-	
-	public StackWithMin<T>()
-	{
-		minStack = new Stack<T>();
-	}
-	
-	public void push(T val)
-	{
-		if (minStack.count() > 0 && minStack.peek() > val)
-		{
-			minStack.push(val);
-		}
-		base.push(val);
-	}
-	
-	public T pop()
-	{
-		T data = base.pop();
-		if (data == minStack.peek())
-		{
-			minStack.pop();
-		}
-		return data;
-	}
-	
-	public T min()
-	{
-		if (minStack.count() > 0)
-		{
-			return minStack.peek();
-		}
-		return null;
-	}
+class MinStack {
+    int min = Integer.MAX_VALUE;
+    Stack<Integer> stack = new Stack<Integer>();
+    public void push(int x) {
+        // only push the old minimum value when the current 
+        // minimum value changes after pushing the new value x
+        if(x <= min){          
+            stack.push(min);
+            min=x;
+        }
+        stack.push(x);
+    }
+
+    public void pop() {
+        // if pop operation could result in the changing of the current minimum value, 
+        // pop twice and change the current minimum value to the last minimum value.
+        if(stack.pop() == min) min=stack.pop();
+    }
+
+    public int top() {
+        return stack.peek();
+    }
+
+    public int getMin() {
+        return min;
+    }
 }
