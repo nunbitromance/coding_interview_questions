@@ -1,53 +1,46 @@
+package com.interview.linklist;
+
 /**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
+ * http://www.geeksforgeeks.org/pairwise-swap-elements-of-a-given-linked-list/
+ * Test case
+ * odd or even number of k
+ * odd or even number of nodes in the list
  */
-public class Solution {
-    public ListNode reverseKGroup(ListNode head, int k) {  
-        if(head == null)  
-        {  
-            return null;  
-        }  
-        ListNode dummy = new ListNode(0);  
-        dummy.next = head;  
-        int count = 0;  
-        ListNode pre = dummy;  
-        ListNode cur = head;  
-        while(cur != null)  
-        {  
-            count ++;  
-            ListNode next = cur.next;  
-            if(count == k)  
-            {  
-                pre = reverse(pre, next);  
-                count = 0;     
-            }  
-            cur = next;  
-        }  
-        return dummy.next;  
-    }  
+public class ReverseKNodes {
+
+    public Node reverse(Node head,int k){
+        if(head == null){
+            return null;
+        }
+        Node front = null;
+        Node middle = head;
+        Node end = null;
+        int i=0;
+        while(middle != null && i < k){
+            end = middle.next;
+            middle.next = front;
+            front = middle;
+            middle = end;
+            i++;
+        }
+        head.next = reverse(middle,k);
+        return front;
+    }
     
-    private ListNode reverse(ListNode pre, ListNode end)  
-    {  
-        if(pre==null || pre.next==null)  
-            return pre;  
-        ListNode head = pre.next;  
-        ListNode cur = pre.next.next;  
-        while(cur!=end)  
-        {  
-            ListNode next = cur.next;  
-            cur.next = pre.next;  
-            pre.next = cur;  
-            cur = next;  
-        }  
-        head.next = end;  
-        return head;  
-    }  
+    
+    public static void main(String args[]){
+        LinkList ll = new LinkList();
+        Node head = null;
+        head = ll.addNode(1, head);
+        head = ll.addNode(2, head);
+        head = ll.addNode(3, head);
+        head = ll.addNode(4, head);
+        head = ll.addNode(5, head);
+        head = ll.addNode(6, head);
+        head = ll.addNode(7, head);
+        head = ll.addNode(8, head);
+        ReverseKNodes rn = new ReverseKNodes();
+        head = rn.reverse(head, 3);
+        ll.printList(head);
+    }
 }
