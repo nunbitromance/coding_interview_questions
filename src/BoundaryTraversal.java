@@ -1,52 +1,65 @@
 /*
 Boundary Traversal of binary tree
 September 12, 2012
-Given a binary tree, print boundary nodes of the binary tree Anti-Clockwise starting from the root. For example, boundary traversal of the following tree is “20 8 4 10 14 25 22?
+Given a binary tree, print boundary nodes of the binary tree Anti-Clockwise starting from the root. For example, boundary traversal of the following tree is â€œ20 8 4 10 14 25 22?
+
+Solution: 
+1. Print the left boundary 
+1.1. Similar to preorder, ONLY deal with left child!
+
+2. Print all leaf nodes
+2.1. Similar to inorder (or preorder), ONLY print leaf nodes!
+
+3. Print the right boundary
+3.1. Similar to a postorder, ONLY deal with right child!
+
 */
-public static void PrintBinaryTreeBoundary(Node root)
+public void boundaryTraversal(Node root)
 {
-	PrintLeftPreorder(root.Left);
-	PrintLeafInorder(root);
-	PrintRightPostorder(root.Right);	
+	leftPreOrder(root.left);
+	inOrderLeafOnly(root);
+	rightPostOrder(root.right);	
 }
 
-public static void PrintLeftPreorder(Node root)
+public void leftPreOrder(Node root)
 {
 	if (root == null || (root.Left == null && root.Right == null))
 	{
 		return;
 	}
 	
-	Print(root.Value);
+	System.out.print(root.value);
 	
-	PrintLeafPreorder(root.Left);
-	PrintLeafPreorder(root.Left);
+	if (root.left != null) {
+		leftPreOrder(root.left);
+	}
 }
 
-public static void PrintLeafInorder(Node root)
+public void inOrderLeafOnly(Node root)
 {
 	if (root == null)
 	{
 		return;
 	}
 	
-	PrintLeafInorder(root.Left);
-	if (root.Left == null && root.Right == null)
+	inOrderLeafOnly(root.left);
+	if (root.left == null && root.right == null)
 	{
-		Print(root.Value);
+		System.out.print(root.value);
 	}
-	PrintLeafInorder(root.Right);
+	inOrderLeafOnly(root.right);
 }
 
-public static void PrintRightPostorder(Node root)
+public void rightPostOrder(Node root)
 {
-	if (root == null || (root.Left == null && root.Right == null))
+	if (root == null || (root.left == null && root.right == null))
 	{
 		return;
 	}
 	
-	PrintLeafPreorder(root.Left);
-	PrintLeafPreorder(root.Left);
+	if (root.right != null) {
+		rightPostOrder(root.right);
+	}
 	
-	Print(root.Value);
+	System.out.print(root.value);
 }
