@@ -17,13 +17,17 @@ For example, [0,2,3,1] is also a valid gray code sequence according to the above
 
 For now, the judge is able to judge based on one instance of gray code sequence. Sorry about that.
 */
-public static List<int> GrayCode(int n)
+public List<Integer> GrayCode(int n)
 {
-	List<int> results = new List<int>();
-	int r = 1 >> n;
-	for (int i = 0; i < r; i++)
-	{
-		results.Add(i ^ (i >> 1));
+	if (n == 0) {
+		return new ArrayList<Integer>();	
 	}
-	return results;
+	
+	List<Integer> rest = GrayCode(n - 1);
+	List<Integer> result = new ArrayList<>();
+	for (int i = 0; i < rest.size(); i++) {
+			result.add(rest.get(i));
+			result.add(rest.get(i) | (1 << n));
+	}
+	return result;
 }
