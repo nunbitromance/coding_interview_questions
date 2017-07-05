@@ -1,96 +1,64 @@
-/* This function returns median of ar1[] and ar2[].
-   Assumptions in this function:
-   Both ar1[] and ar2[] are sorted arrays
-   Both have n elements */
-int getMedian(int ar1[], int ar2[], int n)
-{
-    int m1; /* For median of ar1 */
-    int m2; /* For median of ar2 */
- 
-    /* return -1  for invalid input */
-    if (n <= 0)
-        return -1;
- 
-    if (n == 1)
-        return (ar1[0] + ar2[0])/2;
- 
-    if (n == 2)
-        return (max(ar1[0], ar2[0]) + min(ar1[1], ar2[1])) / 2;
- 
-    m1 = median(ar1, n); /* get the median of the first array */
-    m2 = median(ar2, n); /* get the median of the second array */
- 
-    /* If medians are equal then return either m1 or m2 */
-    if (m1 == m2)
-        return m1;
- 
-     /* if m1 < m2 then median must exist in ar1[m1....] and ar2[....m2] */
-    if (m1 < m2)
-    {
-        if (n % 2 == 0)
-            return getMedian(ar1 + n/2 - 1, ar2, n - n/2 +1);
-        else
-            return getMedian(ar1 + n/2, ar2, n - n/2);
-    }
- 
-    /* if m1 > m2 then median must exist in ar1[....m1] and ar2[m2...] */
-    else
-    {
-        if (n % 2 == 0)
-            return getMedian(ar2 + n/2 - 1, ar1, n - n/2 + 1);
-        else
-            return getMedian(ar2 + n/2, ar1, n - n/2);
-    }
-}
+package com.interview.binarysearch;
 
+/**
+ * http://www.geeksforgeeks.org/median-of-two-sorted-arrays/
+ */
+public class MedianOfTwoSortedArray {
 
-* This function returns median of ar1[] and ar2[].
-   Assumptions in this function:
-   Both ar1[] and ar2[] are sorted arrays
-   Both have n elements */
-int getMedian(int ar1[], int ar2[], int n)
-{
-    int i = 0;  /* Current index of i/p array ar1[] */
-    int j = 0; /* Current index of i/p array ar2[] */
-    int count;
-    int m1 = -1, m2 = -1;
- 
-    /* Since there are 2n elements, median will be average
-     of elements at index n-1 and n in the array obtained after
-     merging ar1 and ar2 */
-    for (count = 0; count <= n; count++)
-    {
-        /*Below is to handle case where all elements of ar1[] are
-          smaller than smallest(or first) element of ar2[]*/
-        if (i == n)
-        {
-            m1 = m2;
-            m2 = ar2[0];
-            break;
-        }
- 
-        /*Below is to handle case where all elements of ar2[] are
-          smaller than smallest(or first) element of ar1[]*/
-        else if (j == n)
-        {
-            m1 = m2;
-            m2 = ar1[0];
-            break;
-        }
- 
-        if (ar1[i] < ar2[j])
-        {
-            m1 = m2;  /* Store the prev median */
-            m2 = ar1[i];
-            i++;
-        }
-        else
-        {
-            m1 = m2;  /* Store the prev median */
-            m2 = ar2[j];
-            j++;
+    public double median(int arr1[],int arr2[]){
+        int low1 = 0;
+        int high1 = arr1.length-1;
+        
+        int low2 = 0;
+        int high2 = arr2.length-1;
+
+        while(true){
+            
+            if(high1 == low1){
+                return (arr1[low1] + arr2[low2])/2;
+            }
+            
+            if(high1 - low1 == 1){
+                return (double)(Math.max(arr1[low1], arr2[low2]) + Math.min(arr1[high1], arr2[high2]))/2;
+            }
+            
+            double med1 = getMedian(arr1,low1,high1);
+            double med2 = getMedian(arr2,low1,high2);
+            if(med1 <= med2){
+                if((high1-low1 + 1) % 2 == 0){
+                    low1 = (high1+low1)/2;
+                    high2 = (high2+low2)/2 + 1;
+                }else{
+                    low1 = (low1+high1)/2;
+                    high2 = (low2+high2)/2;
+                }
+            }
+            else{
+                if((high1-low1 + 1) % 2 == 0){
+                    low2 = (high2+low2)/2;
+                    high1 = (high1+low1)/2 + 1;
+                }else{
+                    low2 = (low2+high2)/2;
+                    high1 = (low1+high1)/2;
+                }
+            }
         }
     }
- 
-    return (m1 + m2)/2;
+    
+    private double getMedian(int arr[],int low,int high){
+        int len = high - low+1;
+        if(len % 2 == 0){
+            return (arr[low + len/2] + arr[low+ len/2-1])/2;
+        }else{
+            return arr[low+len/2];
+        }
+    }
+    
+    public static void main(String args[]){
+        int arr1[] = {1,2,3,4,6};
+        int arr2[] = {-1,5,6,7,8};
+        MedianOfTwoSortedArray mts = new MedianOfTwoSortedArray();
+        System.out.println(mts.median(arr1, arr2));
+    }
+    
 }
