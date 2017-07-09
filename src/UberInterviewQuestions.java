@@ -21,3 +21,16 @@ Implement LRU cache with get and set operations in constant time O(1).
 Given a regular expression pattern and a string, check to see if pattern matches the string. 
 
 Design a distributed system for sorting of large files.
+  
+Implement an Iterator of a binary tree inorder traversal
+Find the number of (islands) connected components in a 2-d array of 1s and 0s.
+Implement an iterator that works with a collection of elements and collections and returns elements in order, e.g. (1, (2, 3), 4) will result in 1, 2, 3, 4
+Given a list of string, return the most common strings
+Implement a method that calculates the exclusive time spent on a given function name, given the call stack with entry/exit timestamps. 
+Flatten a nested list and then code up an iterative interface.
+Minimum spanning tree type problems
+Find the sum of subarray in a 2d matrix which is closest to k.
+Serializing and deserializing binary trees
+Implement a ring buffer.
+Insert a value into a sorted circular list given one node(any) in the circular list.
+Implementing getNBytes(int N, char* buffer) from get4Bytes(char* buffer).
