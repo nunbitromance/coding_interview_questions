@@ -8,45 +8,68 @@
   Visit order: 3 -> 9 -> 20 -> 15 -> 7
 */
 // Non-recursion
-public static void DFS(Node root)
-{
-	Stack<Node> s = new Stack<Node>();
-	s.Push(root);
+package com.interview.graph;
+
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
+
+/**
+ * http://www.geeksforgeeks.org/breadth-first-traversal-for-a-graph/
+ * http://www.geeksforgeeks.org/depth-first-traversal-for-a-graph/
+ */
+public class GraphTraversal {
+
+    public void DFS(Graph<Integer> graph){
+        Set<Long> visited = new HashSet<Long>();
+        for(Vertex<Integer> vertex : graph.getAllVertex()){
+            if(!visited.contains(vertex.getId())){
+                DFSUtil(vertex,visited);
+            }
+        }
+        
+    }
+    
+    private void DFSUtil(Vertex<Integer> v,Set<Long> visited){
+        visited.add(v.getId());
+        System.out.print(v.getId() + " ");
+        for(Vertex<Integer> vertex : v.getAdjacentVertexes()){
+            if(!visited.contains(vertex.getId()))
+                DFSUtil(vertex,visited);
+        }
+    }
 	
-	while (s.IsEmpty() == false)
-	{
-		Node cur = s.Peek();
-		cur.Visited = true;
-		bool anyChildrenToVisit = false;
-		
-		foreach (Node child in cur.Children)
-		{
-			if (child.Visited == false)
-			{
-				s.Push(child);
-				anyChildrenToVisit = true;
-				break;
+    public void DFSNonRecursiveUtil(Vertex<Integer> v, Set<Long> visited) {
+	    Deque<Integer> stack = new ArrayDeque<>();
+	    stack.push(v);
+	    while (!stack.isEmpty()) {
+		Vertex<Integer> cur = stack.pop();
+		System.out.print(v.getId() + " ");
+		visited.add(v);
+		for (Vetex<Integer> child : v.getAdjacentVertexes()) {
+			if (!visited.contains(child.getId())) {
+				stack.push(child);
 			}
 		}
-		
-		if (!anyChildrenToVisit)
-		{
-			s.Pop();
-		}
-	}
-}
-
-// Recursion
-public static void DFS(Node root)
-{
-	if (root == null)
-	{
-		return;
-	}
+	    }
+    }
 	
-	root.Visited = true;
-	foreach (Node child in cur.Children)
-	{
-		DFS(child);
-	}
+
+    
+    public static void main(String args[]){
+        
+        Graph<Integer> graph = new Graph<Integer>(true);
+        graph.addEdge(1, 2);
+        graph.addEdge(1, 3);
+        graph.addEdge(2, 4);
+        graph.addEdge(3, 4);
+        graph.addEdge(4, 6);
+        graph.addEdge(6, 5);
+    //  graph.addEdge(5, 1);
+        graph.addEdge(5,3);
+        
+        GraphTraversal g = new GraphTraversal();
+        g.BFS(graph);
+    }
 }
