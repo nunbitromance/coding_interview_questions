@@ -45,18 +45,16 @@ public class GraphTraversal {
 	    stack.push(v);
 	    while (!stack.isEmpty()) {
 		Vertex<Integer> cur = stack.pop();
-		System.out.print(v.getId() + " ");
-		visited.add(v);
-		for (Vetex<Integer> child : v.getAdjacentVertexes()) {
-			if (!visited.contains(child.getId())) {
+		if (!visited.contains(cur.getId())) {
+			System.out.print(v.getId() + " ");
+			visited.add(v);
+			for (Vetex<Integer> child : v.getAdjacentVertexes()) {
 				stack.push(child);
 			}
 		}
 	    }
     }
 	
-
-    
     public static void main(String args[]){
         
         Graph<Integer> graph = new Graph<Integer>(true);
