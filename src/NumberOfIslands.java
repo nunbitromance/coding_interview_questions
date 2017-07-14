@@ -18,26 +18,54 @@ Example 2:
 Answer: 3
 
 */
+package com.interview.graph;
 
-public class Solution {
-    public int numIslands(char[][] grid) {
+/**
+ http://www.geeksforgeeks.org/find-number-of-islands/
+ */
+public class NumberOfIsland {
+
+    public int numberOfIsland(int[][] graph){
+        
+        boolean[][] visited = new boolean[graph.length][graph.length];
         int count = 0;
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == '1') {
-                    helper(grid, i, j);
+        for(int i=0; i < graph.length ; i ++){
+            for(int j =0 ; j < graph[i].length ; j++){
+                if(visited[i][j] == false && graph[i][j] == 1) {
                     count++;
+                    DFS(graph,visited,i,j);
                 }
             }
         }
         return count;
     }
-
-    private void helper(char[][] grid, int i, int j) {
-        grid[i][j] = '0';
-        if (i > 0 && grid[i-1][j]=='1') helper(grid,i-1,j);
-        if (j > 0 && grid[i][j-1]=='1') helper(grid,i,j-1);
-        if (i < grid.length-1 && grid[i+1][j]=='1') helper(grid,i+1,j);
-        if (j < grid[0].length-1 && grid[i][j+1]=='1') helper(grid,i,j+1);
+    
+    private void DFS(int[][] graph, boolean[][] visited,int i,int j){
+        if(i <0 || j < 0 || i == graph.length || j == graph[i].length)
+        {
+            return;
+            
+        }
+        visited[i][j] = true;
+        if(graph[i][j] == 0){
+            return;
+        }
+        DFS(graph,visited,i,j+1);
+        DFS(graph,visited,i+1,j);
+        DFS(graph,visited,i+1,j+1);
+        DFS(graph,visited,i-1, j+1);
+    }
+    
+    public static void main(String args[]){
+        
+        int matrix[][] = {{1,1,0,1,0},
+                          {1,0,0,1,1},
+                          {0,0,0,0,0},
+                          {1,0,1,0,1},
+                          {1,0,0,0,0}
+                        };
+        NumberOfIsland island = new NumberOfIsland();
+        int count = island.numberOfIsland(matrix);
+        System.out.println(count);
     }
 }
