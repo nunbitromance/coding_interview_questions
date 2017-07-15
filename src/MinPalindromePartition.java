@@ -1,12 +1,20 @@
 /*
 Dynamic Programming | Set 17 (Palindrome Partitioning)
 June 17, 2012
-Given a string, a partitioning of the string is a palindrome partitioning if every substring of the partition is a palindrome. For example, ìaba|b|bbabb|a|b|abaî is a palindrome partitioning of ìababbbabbababaî. Determine the fewest cuts needed for palindrome partitioning of a given string. For example, minimum 3 cuts are needed for ìababbbabbababaî. The three cuts are ìa|babbbab|b|ababaî. If a string is palindrome, then minimum 0 cuts are needed. If a string of length n containing all different characters, then minimum n-1 cuts are needed.
+Given a string, a partitioning of the string is a palindrome partitioning if every substring of the partition is a palindrome. 
+For example, ‚Äúaba|b|bbabb|a|b|aba‚Äù is a palindrome partitioning of ‚Äúababbbabbababa‚Äù. 
+Determine the fewest cuts needed for palindrome partitioning of a given string. 
+For example, minimum 3 cuts are needed for ‚Äúababbbabbababa‚Äù. The three cuts are ‚Äúa|babbbab|b|ababa‚Äù. 
+If a string is palindrome, then minimum 0 cuts are needed. If a string of length n containing all different characters, 
+then minimum n-1 cuts are needed.
 
 Solution
-This problem is a variation of Matrix Chain Multiplication problem. If the string is palindrome, then we simply return 0. Else, like the Matrix Chain Multiplication problem, we try making cuts at all possible places, recursively calculate the cost for each cut and return the minimum value.
+This problem is a variation of Matrix Chain Multiplication problem. If the string is palindrome, then we simply return 0. 
+Else, like the Matrix Chain Multiplication problem, we try making cuts at all possible places, 
+recursively calculate the cost for each cut and return the minimum value.
 
-Let the given string be str and minPalPartion() be the function that returns the fewest cuts needed for palindrome partitioning. following is the optimal substructure property.
+Let the given string be str and minPalPartion() be the function that returns the fewest cuts needed for palindrome partitioning. 
+following is the optimal substructure property.
 
 // i is the starting index and j is the ending index. i must be passed as 0 and j as n-1
 minPalPartion(str, i, j) = 0 if i == j. // When string is of length 1.
