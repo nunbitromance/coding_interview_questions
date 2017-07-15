@@ -11,64 +11,112 @@ Note:
 If there is no such window in S that covers all characters in T, return the emtpy string "".
 
 If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S.
-*/
-/*  
-  * Two pointers: one for window_left and one for window_right  
-  * As moving to the right, we know which char is in T,  
-  * store the index into an array so that left point can directly  
-  * jump to next spot.  
+1- First check if length of string is less than
+   the length of given pattern, if yes
+       then "no such window can exist ".
+2- Store the occurrence of characters of given 
+   pattern in a hash_pat[].
+3- Start matching the characters of pattern with 
+   the characters of string i.e. increment count 
+   if a character matches
+4- Check if (count == length of pattern ) this 
+   means a window is found
+5- If such window found, try to minimize it by 
+   removing extra characters from beginning of
+   current window.
+6- Update min_length.
+7- Print the minimum length window.pot.  
   */  
- public String minWindow(String S, String T) {  
-   int ss = S.length(), tt = T.length();  
-   // build up hashmap for T and also keep track of occurrence  
-   HashMap<Character, Integer> needFind = new HashMap<Character, Integer>();  
-   HashMap<Character, Integer> hasFound = new HashMap<Character, Integer>();  
-   for (int i=0; i<tt; ++i) {  
-     hasFound.put(T.charAt(i), 0);  
-     if (needFind.containsKey(T.charAt(i))) {  
-       needFind.put(T.charAt(i), needFind.get(T.charAt(i))+1);  
-     } else {  
-       needFind.put(T.charAt(i), 1);  
-     }  
-   }  
-
-   // keep found T-letters in an array to avoid revisit non-T-letters when forwarding left
-   ArrayList<Integer> nexts = new ArrayList<Integer>();  
-   // window = S[nexts.get(left), S[right]]
-   int right = 0, found = 0, left = 0;  
-
-   // sliding window as needed  
-   String window = "";  
-   int winSize = Integer.MAX_VALUE;  
-   while (right < S.length()) {  
-     char c = S.charAt(right);  
-     if (!needFind.containsKey(c)) { // not a match  
-       ++right;  
-       continue;  
-     }  
-   
-     nexts.add(right);  
-     ++right;  
-     hasFound.put(c, hasFound.get(c)+1);  
-     if (hasFound.get(c) <= needFind.get(c)) ++found;  
-   
-     if (found >= tt) { // got a window  
-       // forward left?  
-       char ll = S.charAt(nexts.get(left));  
-       while (hasFound.get(ll) > needFind.get(ll)) {  
-         hasFound.put(ll, hasFound.get(ll)-1);  
-         ++left;  
-         ll = S.charAt(nexts.get(left));  
-       }  
-       // smaller window?  
-       if (right - nexts.get(left) < winSize) {  
-         winSize = right - nexts.get(left);  
-         window = S.substring(nexts.get(left), right);  
-       }  
-     }  
-   }  
-   return window;  
- }  
-	
-	return s.Substring(minWindowStart, minWindowEnd - minWindowStart + 1);
+// Java program to find smallest window containing
+// all characters of a pattern.
+ 
+public class GFG 
+{
+    static final int no_of_chars = 256;
+     
+    // Function to find smallest window containing
+    // all characters of 'pat'
+    static String findSubString(String str, String pat)
+    {
+        int len1 = str.length();
+        int len2 = pat.length();
+      
+        // check if string's length is less than pattern's
+        // length. If yes then no such window can exist
+        if (len1 < len2)
+        {
+            System.out.println("No such window exists");
+            return "";
+        }
+      
+        int hash_pat[] = new int[no_of_chars];
+        int hash_str[] = new int[no_of_chars];
+      
+        // store occurrence ofs characters of pattern
+        for (int i = 0; i < len2; i++)
+            hash_pat[pat.charAt(i)]++;
+      
+        int start = 0, start_index = -1, min_len = Integer.MAX_VALUE;
+      
+        // start traversing the string
+        int count = 0;  // count of characters
+        for (int j = 0; j < len1 ; j++)
+        {
+            // count occurrence of characters of string
+            hash_str[str.charAt(j)]++;
+      
+            // If string's char matches with pattern's char
+            // then increment count
+            if (hash_pat[str.charAt(j)] != 0 &&
+                hash_str[str.charAt(j)] <= hash_pat[str.charAt(j)] )
+                count++;
+      
+            // if all the characters are matched
+            if (count == len2)
+            {
+                // Try to minimize the window i.e., check if
+                // any character is occurring more no. of times
+                // than its occurrence  in pattern, if yes
+                // then remove it from starting and also remove
+                // the useless characters.
+                while ( hash_str[str.charAt(start)] > hash_pat[str.charAt(start)]
+                       || hash_pat[str.charAt(start)] == 0)
+                {
+      
+                    if (hash_str[str.charAt(start)] > hash_pat[str.charAt(start)])
+                        hash_str[str.charAt(start)]--;
+                    start++;
+                }
+      
+                // update window size
+                int len_window = j - start + 1;
+                if (min_len > len_window)
+                {
+                    min_len = len_window;
+                    start_index = start;
+                }
+            }
+        }
+      
+        // If no window found
+        if (start_index == -1)
+        {
+           System.out.println("No such window exists");
+           return "";
+        }
+      
+        // Return substring starting from start_index
+        // and length min_len
+        return str.substring(start_index, start_index + min_len);
+    }
+     
+    // Driver Method
+    public static void main(String[] args)
+    {
+        String str = "this is a test string";
+        String pat = "tist";
+      
+       System.out.print("Smallest window is :  \n" +
+                        findSubString(str, pat));
+    }
 }
