@@ -1,4 +1,15 @@
-    public List<List<Integer>> levelOrder(TreeNode root) {
+/* Print binary tree level by level
+      1
+     / \
+    2   3
+   / \ / \
+  4  5 6  7
+  
+  L0: 1
+  L1: 2, 3
+  L2: 4, 5, 6,7
+*/
+public List<List<Integer>> levelOrder(TreeNode root) {
         Queue<TreeNode> curQueue = new LinkedList<TreeNode>();
         Queue<TreeNode> nextQueue = new LinkedList<TreeNode>();
         curQueue.offer(root);
