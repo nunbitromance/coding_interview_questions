@@ -9,20 +9,27 @@ More practice:
 If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.*/
 
 public class Solution {
-    public int maxSubArray(int[] A) {
-        if(A == null || A.length == 0)
-                return 0;
-
-            int temp = A[0];
-            int max = temp;
-            for(int i = 1; i < A.length; i++) {
-
-                if(temp < 0) 
-                    temp = A[i];
-                else 
-                    temp += A[i];
-                max = Math.max(max, temp);
+    public int maxSubArray(int[] arr) {
+        int maxSumSoFar = arr[0];
+        int sumSoFar = arr[0];
+        int left = 0;
+        int maxRight = 0;
+        int maxLeft = 0;
+        
+        for (int i = 1; i < arr.length; i++) {
+            sumSoFar += arr[i];
+            
+            if (sumSoFar < 0) {
+                sumSoFar = arr[i];
+                left = i + 1;
             }
-            return max; 
+            if (sumSoFar > maxSumSoFar) {
+                maxSumSoFar = sumSoFar;
+                maxLeft = left;
+                maxRight = i;
+            }
+        }
+        
+        return maxSumSoFar;
     }
 }
