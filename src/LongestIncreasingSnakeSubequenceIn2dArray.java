@@ -2,32 +2,6 @@
 // 2 approaches: DFS or Dynamic Programming
 
 // Dynamic Programming: runtime O(n^2) space O(n^2)
-public int findLongestIncreasing(int[][] m) {
-    if (m == null) {
-       throw new IllegalArgumentException("m");
-    } else if (m.length == 0 && m[0].length == 0) {
-       return 0;
-    }
-    int[][] opt = new int[m.length][m[0].length];
-    for (int i = 0; i < m.length; i++) {
-      Arrays.fill(m[i], 1);
-    }
-    int max = 1;
-    for (int i = 0; i < m.length; i++) {
-      for (int j = 0; j < m[0].length; j++) {
-        // up
-        if (i - 1 > 0 && m[i-1][j] - m[i][j] == 1) {
-          opt[i][j] = Math.max(opt[i][j], opt[i-1][j] + 1);
-        }
-        // left
-        if (j - 1 > 0 && m[i][j - 1] - m[i][j] == 1) {
-          opt[i][j] = Math.max(opt[i][j], opt[i][j - 1] + 1);
-        }
-        max = Math.max(max, opt[i][j]);
-      }
-    }
-    return max;
-}
 
 // DFS or backtracking O(n^2 * n^2) = O(n^4)
 public int findLongestIncreasing(int[][] m) {
