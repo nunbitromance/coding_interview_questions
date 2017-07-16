@@ -24,24 +24,6 @@ public class LowestCommonAncestor {
         return (left == null) ? right : left;
     }
     
-    private TreeNode findNode(TreeNode root, TreeNode x) {
-        if (root == null) {
-            return null;
-        } else if (root == x) {
-            return root;
-        }
-        
-        TreeNode left = findNode(root.left, x);
-        if (left != null) {
-            return left;
-        }
-        TreeNode right = findNode(root.right, x);
-        if (right != null) {
-            return right;
-        }
-        return null;
-    }
-    
     public TreeNode findLca(TreeNode root, TreeNode a, TreeNode b) {
         // validation
         Result r = new Result();
