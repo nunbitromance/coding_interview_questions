@@ -38,127 +38,35 @@ Minimum number of multiplication needed to multiply a chain of size n = Minimum 
 2) Overlapping Subproblems
 Following is a recursive implementation that simply follows the above optimal substructure property.
 
-/* A naive recursive implementation that simply follows the above optimal 
- substructure property */
-#include<stdio.h>
-#include<limits.h>
- 
-// Matrix Ai has dimension p[i-1] x p[i] for i = 1..n
-int MatrixChainOrder(int p[], int i, int j)
-{
-    if(i == j)
-        return 0;
-    int k;
-    int min = INT_MAX;
-    int count;
- 
-    // place parenthesis at different places between first and last matrix,
-    // recursively calculate count of multiplcations for each parenthesis 
-    // placement and return the minimum count
-    for (k = i; k <j; k++)
-    {
-        count = MatrixChainOrder(p, i, k) +
-                MatrixChainOrder(p, k+1, j) +
-                p[i-1]*p[k]*p[j];
- 
-        if (count < min)
-            min = count;
-    }
- 
-    // Return minimum count
-    return min;
-}
- 
-// Driver program to test above function
-int main()
-{
-    int arr[] = {1, 2, 3, 4, 3};
-    int n = sizeof(arr)/sizeof(arr[0]);
- 
-    printf("Minimum number of multiplications is %d ", 
-                          MatrixChainOrder(arr, 1, n-1));
- 
-    getchar();
-    return 0;
-}
-Time complexity of the above naive recursive approach is exponential. It should be noted that the above function computes the same subproblems again and again. See the following recursion tree for a matrix chain of size 4. The function MatrixChainOrder(p, 3, 4) is called two times. We can see that there are many subproblems being called more than once.
+package com.interview.dynamic;
 
+/**
+ * http://www.geeksforgeeks.org/dynamic-programming-set-8-matrix-chain-multiplication/
+ */
+public class MatrixMultiplicationCost {
 
-
-Since same suproblems are called again, this problem has Overlapping Subprolems property. So Matrix Chain Multiplication problem has both properties (see this and this) of a dynamic programming problem. Like other typical Dynamic Programming(DP) problems, recomputations of same subproblems can be avoided by constructing a temporary array m[][] in bottom up manner.
-
-Dynamic Programming Solution
-Following is C/C++ implementation for Matrix Chain Multiplication problem using Dynamic Programming.
-
-// See the Cormen book for details of the following algorithm
-#include<stdio.h>
-#include<limits.h>
- 
-// Matrix Ai has dimension p[i-1] x p[i] for i = 1..n
-int MatrixChainOrder(int p[], int n)
-{
- 
-    /* For simplicity of the program, one extra row and one extra column are
-       allocated in m[][].  0th row and 0th column of m[][] are not used */
-    int m[n][n];
- 
-    int i, j, k, L, q;
- 
-    /* m[i,j] = Minimum number of scalar multiplications needed to compute
-       the matrix A[i]A[i+1]...A[j] = A[i..j] where dimention of A[i] is
-       p[i-1] x p[i] */
- 
-    // cost is zero when multiplying one matrix.
-    for (i = 1; i < n; i++)
-        m[i][i] = 0;
- 
-    // L is chain length.  
-    for (L=2; L<n; L++)   
-    {
-        for (i=1; i<=n-L+1; i++)
-        {
-            j = i+L-1;
-            m[i][j] = INT_MAX;
-            for (k=i; k<=j-1; k++)
-            {
-                // q = cost/scalar multiplications
-                q = m[i][k] + m[k+1][j] + p[i-1]*p[k]*p[j];
-                if (q < m[i][j])
-                    m[i][j] = q;
+    public int findCost(int arr[]){
+        int temp[][] = new int[arr.length][arr.length];
+        int q = 0;
+        for(int l=2; l < arr.length; l++){
+            for(int i=0; i < arr.length - l; i++){
+                int j = i + l;
+                temp[i][j] = 1000000;
+                for(int k=i+1; k < j; k++){
+                    q = temp[i][k] + temp[k][j] + arr[i]*arr[k]*arr[j];
+                    if(q < temp[i][j]){
+                        temp[i][j] = q;
+                    }
+                }
             }
         }
+        return temp[0][arr.length-1];
     }
- 
-    return m[1][n-1];
+    
+    public static void main(String args[]){
+        MatrixMultiplicationCost mmc = new MatrixMultiplicationCost();
+        int arr[] = {4,2,3,5,3};
+        int cost = mmc.findCost(arr);
+        System.out.print(cost);
+    }
 }
- 
-int main()
-{
-    int arr[] = {1, 2, 3, 4};
-    int size = sizeof(arr)/sizeof(arr[0]);
- 
-    printf("Minimum number of multiplications is %d ",
-                       MatrixChainOrder(arr, size));
- 
-    getchar();
-    return 0;
-}
-Time Complexity: O(n^3)
-Auxiliary Space: O(n^2)
-
-Actual multiplication
-
-public static int[][] multiply(int[][] a, int[][] b) {
-       int rowsInA = a.length;
-       int columnsInA = a[0].length; // same as rows in B
-       int columnsInB = b[0].length;
-       int[][] c = new int[rowsInA][columnsInB];
-       for (int i = 0; i < rowsInA; i++) {
-           for (int j = 0; j < columnsInB; j++) {
-               for (int k = 0; k < columnsInA; k++) {
-                   c[i][j] = c[i][j] + a[i][k] * b[k][j];
-               }
-           }
-       }
-       return c;
-   }
