@@ -20,8 +20,8 @@ public class Solution {
             sumSoFar += arr[i];
             
             if (sumSoFar < 0) {
-                sumSoFar = arr[i];
-                left = i;
+                sumSoFar = i+1 < arr.length ? arr[i+1] : arr[i];
+                left = i+1 : i;
             }
             if (sumSoFar > maxSumSoFar) {
                 maxSumSoFar = sumSoFar;
