@@ -48,32 +48,5 @@ int subArraySum(int arr[], int n, int sum)
     // If we reach here, then no subarray
     printf("No subarray found");
     return 0;
-}
 
-public Pair<Integer, Integer> findSubarrayWithSum(int[] arr, int sum) {
-   // validation
-   int prefixSum = 0;
-   int start = -1;
-   int end = -1;
-   Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-   for (int i = 0; i < arr.length; i++) {
-      prefixSum += arr[i];
-      if (arr[i] == sum) {
-         start = i;
-         end = i;
-         break;
-      } else if (prefixSum == sum) {
-         start = 0;
-         end = i;
-         break;
-      } else if (map.containsKey(prefixSum - sum)) {
-         start =  map.get(prefixSum - sum) + 1;
-         end = i;
-         break;
-      }
-      map.put(prefixSum, i);
-   }
-   
-   return Pair.of(start, end);
-}
 }
