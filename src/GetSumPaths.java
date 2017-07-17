@@ -14,7 +14,7 @@ public static void sumPaths(Node root, int sum, int[] path, int level)
 	int curSum = 0;
 	path[level] = root.Value;
 	
-	for (int i = level; i >= 0; i++)
+	for (int i = level; i >= 0; i--)
 	{
 		curSum += path[i];
 		
