@@ -20,12 +20,12 @@ public static void sumPaths(Node root, int sum, int[] path, int level)
 		
 		if (sum < curSum)
 		{
-			break;
+			return;
 		}
-		else if (sum == curSume)
+		else if (sum == curSum)
 		{
 			print(path, i, level);
-			break;
+			return;
 		}
 	}
 	
