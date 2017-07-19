@@ -1,3 +1,23 @@
+/*
+Input: root of below tree
+              5
+             / \
+            1   5
+           / \   \
+          5   5   5
+Output: 4
+There are 4 subtrees with single values.
+
+
+Input: root of below tree
+              5
+             / \
+            4   5
+           / \   \
+          4   4   5                
+Output: 5
+There are five subtrees with single values.
+*/
 public class Result {
   public boolean isUnival = false;
   public int count = 0;
