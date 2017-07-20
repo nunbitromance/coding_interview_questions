@@ -4,11 +4,15 @@ Say you have an array for which the ith element is the price of a given stock on
 Design an algorithm to find the maximum profit. You may complete at most two transactions.
 
 Note:
-A transaction is a buy & a sell. You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
+A transaction is a buy & a sell. You may not engage in multiple transactions at the same time 
+(ie, you must sell the stock before you buy again).
 
 Analysis
 
-Comparing to I and II, III limits the number of transactions to 2. This can be solve by "devide and conquer". We use left[i] to track the maximum profit for transactions before i, and use right[i] to track the maximum profit for transactions after i. You can use the following example to understand the Java solution:
+Comparing to I and II, III limits the number of transactions to 2. This can be solve by "devide and conquer". 
+We use left[i] to track the maximum profit for transactions before i, and 
+use right[i] to track the maximum profit for transactions after i. 
+You can use the following example to understand the Java solution:
 
 Prices: 1 4 5 7 6 3 2 9
 left = [0, 3, 4, 6, 6, 6, 6, 8]
