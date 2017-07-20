@@ -11,6 +11,7 @@
 public static Node bfs(Node root, int target)
 {
 	Queue<Node> queue = new LinkedList<Node>();
+	visited.add(c);
 	queue.offer(root);
 	Set<Node> visited = new HashSet<Node>();
 	while (!queue.isEmpty())
