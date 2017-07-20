@@ -19,9 +19,9 @@ public static Node bfs(Node root, int target)
 		if (cur.value == target) {
 			return cur;
 		}
-		visited.add(cur);
 		for (Node c : cur.children) {
 			if (!visited.contains(c)) {
+				visited.add(c);
 				queue.offer(c);	
 			}
 		}
