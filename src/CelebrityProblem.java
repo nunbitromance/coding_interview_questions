@@ -25,12 +25,14 @@ Person findLonelyCelebrity(List<Person> people) {
         return null;
     }
     
-    int i = 0; int j = 1;
-    while (j < people.size()) {
+    int i = 0; int j = people.size() - 1;
+    // eliminate non-celebrity
+    while (i < j) {
     	if (knows(people.get(i), people.get(j)) {
-    		candidate = people.get(j);
-    	}
-    	j++;
+    		i++;
+    	} else {
+    	  j--;
+      }
     }
     
     for (int k = 0; k < people.size(); k++) {
