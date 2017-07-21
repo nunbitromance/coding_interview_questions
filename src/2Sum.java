@@ -18,4 +18,21 @@ public class Solution {
         }
         return sol;
     }
+    
+    public int[] twoSum(int[] numbers, int target) {
+        int i = 0;
+        int j = numbers.length - 1;
+        Arrays.sort(numbers);
+        while (i < j) {   
+            int sum = numbers[i] + numbers[j];
+            if (sum == target) {
+              return new int[] { numbers[i], numbers[j] };  
+            } else if (sum > target) {
+                j--;
+            } else {
+                i++;
+            }
+        }
+        return sol;
+    }
 }
