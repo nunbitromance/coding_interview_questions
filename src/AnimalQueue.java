@@ -1,6 +1,6 @@
 /* An animal shelter, implement enqueue, dequeueAny, dequeueDog, dequeueCat.
 */
-public class AnimalQueue<T> where T : Animal
+public class AnimalQueue<T extends Animal>
 {
 	private LinkedList<T> list;
 	private Queue<T> dogQueue;
