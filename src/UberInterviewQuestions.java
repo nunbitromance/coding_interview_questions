@@ -157,3 +157,111 @@ class Solution {
   }
 }
 
+Uber Questions
+
+1. LRU cache
+2. Find Island in matrix 
+3. Create an elevator system
+4. Why do you want to work at Uber?
+5. stock price - best time to buy in and sell.  
+6. Linked List Sum
+7. Longest Palindrome
+8. Rotate Matrix  
+9. Give a list of number, return all subsets of the list.
+10. Implement a HashTable
+11. Word Break
+ Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+For example, given
+s = "leetcode",
+dict = ["leet", "code"].
+
+Return true because "leetcode" can be segmented as "leet code".
+
+12. Given input which is a vector of (user name, log-in time, log-out time), output time series which will have number of users logged in at each given time slot in the input,
+ output should only contain time slots which are given in input for example if the input is
+ "September", 1.2, 4.5),
+("June", 3.1, 6.7),
+("August", 8.9, 10.3)
+
+output should contain only 1.2, 3.1, 4.5, 3.1, 6.7, 8.9, 10.3
+
+Example:
+/*
+[
+("September", 1.2, 4.5),
+("June", 3.1, 6.7),
+("August", 8.9, 10.3)
+]
+
+=>
+
+[(1.2, 1), (3.1, 2), (4.5, 1), (6.7, 0), (8.9, 1), (10.3, 0)]
+
+*/  
+
+13. Constant time random access hash implementation
+
+14. Efficient elevator API
+
+15. Ransom note
+
+16. Median of k unsorted arrays
+
+17. Design of a task scheduler
+
+18. Custom comparator  
+
+19. Design an alarm system for a driverless car
+
+20. Given an input string of numbers like 121, find all permutations of that number in the same order for the corresponding letters for each number so 121 => 1 2 1, 12 1, and 1 21 which is ABA, LA, and AT  
+
+21. Quite simple leetcode questions like printing out a "pretty" version of a tree  
+
+22. Given an array of Ints find a maximum sum of non adjacent elements.
+for ex. arr = [1,0,3,9,2] then ans would be 10 = 1 + 9 (non adjacent element)  
+
+23. // evalexpr(-4 - 3 * 2 / 2 + 4) -> result (float or double)
+//
+// [Token(NUM, -4.), Token(SUB), Token(NUM, 3), Token(MUL)…]
+//
+// input: an array/list of Tokens representing a VALID arithmetic expression
+// output: the result as a float or double
+//
+// Token:
+// type: one of NUM, ADD, SUB, MUL, DIV
+// value: float or double it's only defined/relevant when the token as type NUM
+//
+// Todo:
+// 1. implement the Token class/struct
+// 2. implement evalexpr  
+
+24. Implement data structure "Map" storing pairs of integers (key, value) and define following member functions in O(1) runtime: void insert(key, value), void delete(key), int get(key), int getRandomKey(). 
+
+25. Given a string A and B, find the smallest substring of A that contains all the characters from B. (implement solution in O(n), keep in mind chars in B can repeat)  
+
+26. Given a picture of square with a bunch of horizontal and vertical lines in it (lines are not necessarily spanning the full square length, in other words think of a fine grid with many holes in it), design data structure(s) representing the data and a function that returns a number of squares pictured. (actual implementation expected)  
+
+27. How would you design Youtube (need for low latency, robustness against data loss, ...) (no implementation necessary)  
+
+28. how to implement Uber pool. given two trips find and algorithm to see if they should be pooled  
+
+29. Write a function that returns values randomly, according to their weight
+
+30. write code for this function matchstr() given
+"ab" in a(1)b(1) ---> true
+"z" in a(4)b(4) --> false
+"aaaa" in a(3)b(3) ---> false
+"aab" in a(3)b(3) ---> true
+"aaba" in a(3)b(3) ---> true
+
+asked and he told that a(3)b(3) means {"ab","aab","aaab","aabbb"... etc.. all combinations of a dn b string lengths... b should always be after an a.
+asked and he told that a(3)b(3)a(3) is also possible
+asked and told that a(0)b(3)a(3)c(3) is also possible .. which means every string… 
+
+. which means every string starts with b - This information changed my interview experience. 
+
+31. Permutations of an Array of Arrays
+Given a list of array, return a list of arrays, each array is a combination of one element in each given array.
+Let me give you an example to help you understand the question Suppose the input is [[1, 2, 3], [4], [5, 6]], the output should be [[1, 4, 5], [1, 4, 6], [2, 4, 5], [2, 4, 6], [3, 4, 5], [3, 4, 6]].
+
