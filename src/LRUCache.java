@@ -164,3 +164,39 @@ public class Cache extends
     return size() > capacity;
   }
 }
+
+// Solution 2: use LinkedHashMap class
+public class LRUCache<K,V> {
+    
+    private class LRUCacheMap<K,V> extends LinkedHashMap<K,V> {
+        private int capacity;
+        
+        private LRUCacheMap(int size) {
+            super(size, 0.75f, true);
+            this.capacity = size;
+        }
+        
+        @Override
+        protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+            return size() > capacity;
+        }
+    }
+    
+    private Map<K, V> map = null; //new LinkedHashMap<>();//new HashMap<Integer, Node>();
+    
+    public LRUCache(int capacity) {
+        this.map = new LRUCacheMap(capacity);
+    }
+    
+    public V get(K key) {
+        if (this.map.containsKey(key)) {
+            return this.map.get(key);
+        }
+        return -1;
+    }
+    
+    public void put(K key, V value) {
+        this.map.put(key, value);
+    }
+            
+}
