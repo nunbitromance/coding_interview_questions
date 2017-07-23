@@ -1,6 +1,6 @@
 /*	Implement HashTable.
 */
-public class HashTable<K, T>
+public class HashTable<K, T> implements Map<K, T>
 {
 	private LinkedList<Node<K,T>>[] table
 	private int size = 0;
@@ -10,9 +10,9 @@ public class HashTable<K, T>
 		table = new LinkedList<Node<K,T>>[initSize];
 	}
 	
-	public void insert(K key, T value)
+	public void put(K key, T value)
 	{
-		int hash = key.getHashCode() % size;
+		int hash = key.hashCode() % size;
 		LinkedList<Node<K,T>> list = null;
 		if (table[hash] == null)
 		{
@@ -23,21 +23,21 @@ public class HashTable<K, T>
 		{
 			list = table[hash];
 		    bool isExists = false;
-			foreach (Node<K,T> n in list)
+			for (Node<K,T> n : list)
 			{
-				if (n.Key.equals(key))
+				if (n.key.equals(key))
 				{
-					n.Value = value;
+					n.value = value;
 					return;
 				}
 			}
 		}
-		list.addToLast(new Node<K,T>(key, value));	
+		list.add(new Node<K,T>(key, value));	
 	}
 	
 	public T get(K key)
 	{
-		int hash = key.getHashCode() % size;
+		int hash = key.hashCode() % size;
 		LinkedList<Node<K,T>> list = null;
 		if (table[hash] == null)
 		{
@@ -48,11 +48,11 @@ public class HashTable<K, T>
 		{
 			list = table[hash];
 		}
-		foreach (Node<K,T> n in list)
+		for (Node<K,T> n : list)
 		{
-			if (n.Key.equals(key))
+			if (n.key.equals(key))
 			{
-				return n.Value;
+				return n.value;
 			}
 		}
 		return null;
