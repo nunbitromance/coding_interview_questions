@@ -18,6 +18,8 @@ public class MaxSumForNonAdjacentElements {
         }
         return incl;
     }
+    
+    // opt[i] = Math.max(opt[i-2] + arr[i], opt[i])
 
     public static void main(String args[]) {
         MaxSumForNonAdjacentElements msn = new MaxSumForNonAdjacentElements();
