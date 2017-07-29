@@ -19,6 +19,7 @@ public int maxProduct(int[] A) {
  
     for(int i=1; i<A.length; i++){  
         int temp = maxLocal;  
+        // compare A[i]*maxLocal, A[i]*minLocal, A[i]. max becomes maxLocal, min becomes minLocal
         maxLocal = Math.max(Math.max(A[i]*maxLocal, A[i]), A[i]*minLocal);  
         minLocal = Math.min(Math.min(A[i]*temp, A[i]), A[i]*minLocal);  
         global = Math.max(global, maxLocal);  
