@@ -13,17 +13,17 @@ public KadaneResult kadane(int arr[]){
         int maxStart = -1;
         int maxEnd = -1;
         int currentStart = 0;
-        int maxSoFar = 0;
+        int sumSoFar = 0;
         for(int i=0; i < arr.length; i++){
-            maxSoFar += arr[i];
-            if(maxSoFar < 0){
-                maxSoFar = 0;
+            sumSoFar += arr[i];
+            if(sumSoFar < 0){
+                sumSoFar = 0;
                 currentStart = i+1;
             }
-            if(max < maxSoFar){
+            if(max < sumSoFar){
                 maxStart = currentStart;
                 maxEnd = i;
-                max = maxSoFar;
+                max = sumSoFar;
             }
         }
         return new KadaneResult(max, maxStart, maxEnd);
