@@ -21,7 +21,7 @@ public class Solution {
             
             if (sumSoFar < 0) {
                 sumSoFar = i+1 < arr.length ? arr[i+1] : arr[i];
-                left = i+1 : i;
+                left = i+1 < arr.length ? i+1 : i;
             }
             if (sumSoFar > maxSumSoFar) {
                 maxSumSoFar = sumSoFar;
