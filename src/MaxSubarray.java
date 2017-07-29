@@ -8,28 +8,23 @@ click to show more practice.
 More practice:
 If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.*/
 
-public class Solution {
-    public int maxSubArray(int[] arr) {
-        int maxSumSoFar = arr[0];
-        int sumSoFar = arr[0];
-        int left = 0;
-        int maxRight = 0;
-        int maxLeft = 0;
-        
-        for (int i = 1; i < arr.length; i++) {
-            sumSoFar += arr[i];
-            
-            if (sumSoFar < 0) {
-                sumSoFar = i+1 < arr.length ? arr[i+1] : arr[i];
-                left = i+1 < arr.length ? i+1 : i;
+public KadaneResult kadane(int arr[]){
+        int max = 0;
+        int maxStart = -1;
+        int maxEnd = -1;
+        int currentStart = 0;
+        int maxSoFar = 0;
+        for(int i=0; i < arr.length; i++){
+            maxSoFar += arr[i];
+            if(maxSoFar < 0){
+                maxSoFar = 0;
+                currentStart = i+1;
             }
-            if (sumSoFar > maxSumSoFar) {
-                maxSumSoFar = sumSoFar;
-                maxLeft = left;
-                maxRight = i;
+            if(max < maxSoFar){
+                maxStart = currentStart;
+                maxEnd = i;
+                max = maxSoFar;
             }
         }
-        
-        return maxSumSoFar;
+        return new KadaneResult(max, maxStart, maxEnd);
     }
-}
