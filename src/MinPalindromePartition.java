@@ -26,47 +26,6 @@ minPalPartion(str, i, j) = Min { minPalPartion(str, i, k) + 1 +
                                  minPalPartion(str, k+1, j) } 
                            where k varies from i to j-1
 */
-public static int MinPalindromePartition(string s)
-{
-	bool[][] isPalindrome = new bool[s.length][s.length];
-	int[][] minPartition = new int[s.length][s.length];
-	
-	for (int i = 0; i < s.length; i++) {
-		// for all single chars, min partition is 0.
-		minPartition[i][i] = 0;
-		// for all single chars, it is palindrome.
-		isPalindrome[i][i] = true;
-	}
-	
-	for (int i = 0; i < s.length; i++) {
-		for (int j = i + 1; j < s.length; j++) {
-			if ((j - i) == 2) {
-				// 2 letters
-				isPalindrome[i][j] = (s[i] == s[j]) ? true : false;
-			}
-			else {
-				// more than 2 letters
-				isPalindrome[i][j] = (s[i] == s[j]) ? s[i+1][j-1] : false;
-			}
-			
-			if (isPalindrome[i][j]) {
-				// already palindrome.
-				minPartition[i][j] = 0;
-			}
-			else {
-				// C[i][j] = min (C[i][j], C[i][k] + C[k+1][j]+1);
-				int cut = int.MaxValue;
-				for (int k = i; k < j; k++) {
-					cut = Math.Min(minPartition[i][k] + minPartition[k+1][j] + 1, cut);
-				}
-				minPartition[i][j] = cut;
-			}
-		}
-	}
-	
-	return minPartition[0][n-1];
-}
-
    /*
      * Given a string s, partition s such that every substring of the partition is a palindrome.
      * Return the minimum cuts needed for a palindrome partitioning of s.
