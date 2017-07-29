@@ -27,3 +27,19 @@ public int climbStairs(int n) {
    }  
    return p2;  
  }  
+
+public int climbStairs(int n) {
+   if (n <= 0) {
+     return 0;
+   }
+   int i_1 = 1;
+   int i_2 = 1;
+   int i_0 = 2;
+   for (int i = 3; i <= n; i++) {
+    int temp = i_0;
+    i_0 = i_1 + i_2;
+    i_2 = i_1;
+    i_1 = temp;
+   }
+   return i_0;
+}
