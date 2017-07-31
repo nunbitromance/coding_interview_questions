@@ -34,12 +34,14 @@ Leaders have relentlessly high standards - many people may think these standards
 
 Think Big
 Thinking small is a self-fulfilling prophecy. Leaders create and communicate a bold direction that inspires results. They think differently and look around corners for ways to serve customers.
+- AWS Migration of store infrastructure
 
 Bias for Action
 Speed matters in business. Many decisions and actions are reversible and do not need extensive study. We value calculated risk taking. 
 
 Frugality
 Accomplish more with less. Constraints breed resourcefulness, self-sufficiency and invention.  There are no extra points for growing headcount, budget size or fixed expense.
+- Decommission of New Relic. Switch to Data Dog. Saved 90% of cost.
 
 Earn Trust
  Leaders listen attentively, speak candidly, and treat others respectfully. They are vocally self-critical, even when doing so is awkward or embarrassing.  Leaders do not believe their or their team’s body odour smells of perfume.  They benchmark themselves and their teams against the best.
