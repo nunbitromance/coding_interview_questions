@@ -12,22 +12,25 @@ Leaders are owners. They think long term and don’t sacrifice long-term value f
 
 Invent and Simplify
 Leaders expect and require innovation and invention from their teams and always find ways to simplify. They are externally aware, look for new ideas from everywhere, and are not limited by “not invented here". Because we do new things, we accept that we may be misunderstood for long periods of time.
-- 
+- Example 1: A/B Testing framework vs purchasing third party software which added complexity
 
 Are Right, A Lot
 Leaders are right a lot. They have strong judgement and good instincts.  They seek diverse perspectives and work to disconfirm their beliefs.
-- 
+- Example 1: 
 
 Learn and Be Curious
 Leaders are never done learning and always seek to improve themselves. They are curious about new possibilities and act to explore them.
-- 
+- Example 1: 
 
 Hire and Develop the Best
 Leaders raise the performance bar with every hire and promotion. They recognise people with exceptional talent and willingly move them throughout the organisation. Leaders develop leaders and are serious about their role in coaching others.  We work on behalf of our people to invent mechanisms for development like Career Choice.
-
+- Hire: 4 new engineers
+- Fire: 1 existing engineer
 
 Insist on the Highest Standards
 Leaders have relentlessly high standards - many people may think these standards are unreasonably high. Leaders are continually raising the bar and driving their teams to deliver high quality products, services and processes. Leaders ensure that defects do not get sent down the line and that problems are fixed so they stay fixed.
+- SLA on P0: 100% response within 5 minutes
+- Testing, Metrics, Alerts, and Monitoring on all new features
 
 Think Big
 Thinking small is a self-fulfilling prophecy. Leaders create and communicate a bold direction that inspires results. They think differently and look around corners for ways to serve customers.
