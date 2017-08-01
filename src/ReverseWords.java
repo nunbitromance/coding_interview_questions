@@ -17,6 +17,29 @@ class Solution {
 }
 
 /*Function to reverse words*/
+public void reverse(char[] s) {
+	// validate
+	reverse(s, 0, s.length - 1);
+	
+	int b = 0;
+	int e = 0;
+	while (e <= s.length) {
+		if (s[e] == ' ' || e == s.length) {
+			reverse(s, b, e - 1);
+			b = e + 1;
+		}
+		e++;
+	}
+}
+
+private void reverse(char[] s, int b, int e) {
+	while (b < e) {
+		char c = s[b];
+		s[b] = s[e];
+		s[e] = c;
+	}
+}
+
 void reverseWords(char *s)
 {
   char *word_begin = s;
