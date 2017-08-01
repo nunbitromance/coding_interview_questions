@@ -1,64 +1,3 @@
-/*	Implement HashTable.
-*/
-public class HashTable<K, T> implements Map<K, T>
-{
-	private LinkedList<Node<K,T>>[] table
-	private int size = 0;
-	
-	public HashTable<K,T>(int initSize)
-	{
-		table = new LinkedList<Node<K,T>>[initSize];
-	}
-	
-	public void put(K key, T value)
-	{
-		int hash = key.hashCode() % size;
-		LinkedList<Node<K,T>> list = null;
-		if (table[hash] == null)
-		{
-		    list = new LinkedList<Node<K,T>();
-			table[hash] = list;
-		}
-		else
-		{
-			list = table[hash];
-		    bool isExists = false;
-			for (Node<K,T> n : list)
-			{
-				if (n.key.equals(key))
-				{
-					n.value = value;
-					return;
-				}
-			}
-		}
-		list.add(new Node<K,T>(key, value));	
-	}
-	
-	public T get(K key)
-	{
-		int hash = key.hashCode() % size;
-		LinkedList<Node<K,T>> list = null;
-		if (table[hash] == null)
-		{
-		    list = new LinkedList<Node<K,T>();
-			table[hash] = list;
-		}
-		else
-		{
-			list = table[hash];
-		}
-		for (Node<K,T> n : list)
-		{
-			if (n.key.equals(key))
-			{
-				return n.value;
-			}
-		}
-		return null;
-	}
-}
-
 // Java program to demonstrate implementation of our
 // own hash table with chaining for collision detection
 import java.util.ArrayList;
@@ -84,7 +23,7 @@ public class HashNode<K, V>
 public class HashMap<K, V> implements Map<K,V>
 {
     // bucketArray is used to store array of chains
-    private ArrayList<HashNode<K, V>> bucketArray;
+    private HashNode<K, V>[] bucketArray;
  
     // Current capacity of array list
     private int numBuckets;
@@ -96,13 +35,9 @@ public class HashMap<K, V> implements Map<K,V>
     // empty chains.
     public HashMap(int capacity)
     {
-        bucketArray = new ArrayList<>();
+        bucketArray = new int[capacity];
         numBuckets = capacity;
         size = 0;
- 
-        // Create empty chains
-        for (int i = 0; i < numBuckets; i++)
-            bucketArray.add(null);
     }
  
     public int size() { return size; }
@@ -124,7 +59,7 @@ public class HashMap<K, V> implements Map<K,V>
         int bucketIndex = getBucketIndex(key);
  
         // Get head of chain
-        HashNode<K, V> head = bucketArray.get(bucketIndex);
+        HashNode<K, V> head = bucketArray[bucketIndex];
  
         // Search for key in its chain
         HashNode<K, V> prev = null;
@@ -150,7 +85,7 @@ public class HashMap<K, V> implements Map<K,V>
         if (prev != null)
             prev.next = head.next;
         else
-            bucketArray.set(bucketIndex, head.next);
+            bucketArray[bucketIndex] = head.next;
  
         return head.value;
     }
@@ -160,7 +95,7 @@ public class HashMap<K, V> implements Map<K,V>
     {
         // Find head of chain for given key
         int bucketIndex = getBucketIndex(key);
-        HashNode<K, V> head = bucketArray.get(bucketIndex);
+        HashNode<K, V> head = bucketArray[bucketIndex];
  
         // Search key in chain
         while (head != null)
@@ -179,7 +114,7 @@ public class HashMap<K, V> implements Map<K,V>
     {
         // Find head of chain for given key
         int bucketIndex = getBucketIndex(key);
-        HashNode<K, V> head = bucketArray.get(bucketIndex);
+        HashNode<K, V> head = bucketArray[bucketIndex];
  
         // Check if key is already present
         while (head != null)
@@ -197,18 +132,16 @@ public class HashMap<K, V> implements Map<K,V>
         head = bucketArray.get(bucketIndex);
         HashNode<K, V> newNode = new HashNode<K, V>(key, value);
         newNode.next = head;
-        bucketArray.set(bucketIndex, newNode);
+        bucketArray[bucketIndex] = newNode;
  
         // If load factor goes beyond threshold, then
         // double hash table size
-        if ((1.0*size)/numBuckets >= 0.7)
+        if ((1.0*size)/numBuckets >= 0.75)
         {
             ArrayList<HashNode<K, V>> temp = bucketArray;
             bucketArray = new ArrayList<>();
             numBuckets = 2 * numBuckets;
             size = 0;
-            for (int i = 0; i < numBuckets; i++)
-                bucketArray.add(null);
  
             for (HashNode<K, V> headNode : temp)
             {
