@@ -64,7 +64,7 @@ public class HashTable<K, T> implements Map<K, T>
 import java.util.ArrayList;
  
 // A node of chains
-class HashNode<K, V>
+public class HashNode<K, V>
 {
     K key;
     V value;
@@ -81,7 +81,7 @@ class HashNode<K, V>
 }
  
 // Class to represent entire hash table
-class Map<K, V>
+public class HashMap<K, V> implements Map<K,V>
 {
     // bucketArray is used to store array of chains
     private ArrayList<HashNode<K, V>> bucketArray;
@@ -94,10 +94,10 @@ class Map<K, V>
  
     // Constructor (Initializes capacity, size and
     // empty chains.
-    public Map()
+    public HashMap(int capacity)
     {
         bucketArray = new ArrayList<>();
-        numBuckets = 10;
+        numBuckets = capacity;
         size = 0;
  
         // Create empty chains
