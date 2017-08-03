@@ -38,6 +38,7 @@ Thinking small is a self-fulfilling prophecy. Leaders create and communicate a b
 
 Bias for Action
 Speed matters in business. Many decisions and actions are reversible and do not need extensive study. We value calculated risk taking. 
+- Mongo upgrade. rollback plan. volatility but took risk and proceeded.
 
 Frugality
 Accomplish more with less. Constraints breed resourcefulness, self-sufficiency and invention.  There are no extra points for growing headcount, budget size or fixed expense.
@@ -54,3 +55,4 @@ Leaders are obligated to respectfully challenge decisions when they disagree, ev
 
 Deliver Results
 Leaders focus on the key inputs for their business and deliver them with the right quality and in a timely fashion. Despite setbacks, they rise to the occasion and never compromise.
+- Smart Pay. 20% increase in revenue.
