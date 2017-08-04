@@ -10,7 +10,7 @@ private KadaneResult kadane(int arr[]){
         int sumSoFar = 0;
         for(int i=0; i < arr.length; i++){
             sumSoFar += arr[i];
-            if(maxSoFar < 0){
+            if(sumSoFar < 0){
                 sumSoFar = 0;
                 currentStart = i+1;
             }
