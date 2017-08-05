@@ -13,31 +13,26 @@ If there is no such window in S that covers all characters in T, return the emtp
 Analysis
 
 We are required to implement a O(n)
-O
-(
-n
-)
- algorithm. We can achieve it by using two pointers. We will use pointer “start” and pointer “end”, which indicates the substring we are processing.
+ algorithm. We can achieve it by using two pointers. We will use pointer “start” and pointer “end”, which indicates the substring we 
+ are processing.
 
-Firstly, we will move the “end” pointer right, until we find all characters. But how can we know that we have found all the characters? There may be duplicate characters in string T. So I use a HashMap to save the number of each characters in string T. Another HashMap is used to save the number of characters we found. When we move pointer “end”, we will check if the number of this character is smaller than we need to found. If it is, we will increase one to a total counter and increase one to the number of this character. Otherwise only the number of this character is increased.
+Firstly, we will move the “end” pointer right, until we find all characters. But how can we know that we have found all the characters? 
+There may be duplicate characters in string T. So I use a HashMap to save the number of each characters in string T. 
+Another HashMap is used to save the number of characters we found. When we move pointer “end”, we will check if the number of this 
+character is smaller than we need to found. If it is, we will increase one to a total counter and increase one to the number of this 
+character. Otherwise only the number of this character is increased.
 
-When the total counter equals to length of T, we know that we have found all characters. Now we can move the “start” pointer as right as possible. We can move it when it pointing to a character that is not in T, or even it is in T, but the number of this character is larger than the number we need to find. In other words, we move “start” pointer when the substring from “start” to “end” does contains all characters in T.
+When the total counter equals to length of T, we know that we have found all characters. Now we can move the “start” pointer as right as 
+possible. We can move it when it pointing to a character that is not in T, or even it is in T, but the number of this character is larger 
+than the number we need to find. In other words, we move “start” pointer when the substring from “start” to “end” does contains all 
+characters in T.
 
 We can compare the value end–start+1
-e
-n
-d
-–
-s
-t
-a
-r
-t
-+
-1
-, which is the length of a substring that contains all characters in T, to the minimum length. If it’s shorter, we can update the minimum length.
+, which is the length of a substring that contains all characters in T, to the minimum length. If it’s shorter, we can update the 
+minimum length.
 
-In fact, we can also use an array to save the number of each characters. It could be faster than using HashMap. You can check the code here: http://leetcode.com/2010/11/finding-minimum-window-in-s-which.html.*/
+In fact, we can also use an array to save the number of each characters. It could be faster than using HashMap. You can check the code 
+here: http://leetcode.com/2010/11/finding-minimum-window-in-s-which.html.*/
  
 public class Solution {
     public String minWindow(String S, String T) {
