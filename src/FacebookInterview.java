@@ -108,6 +108,31 @@
     return result;
   }
 
+  //a*b, aab, b, => true
+  // recursive approach
+  public boolean isMatching(String s, String p) {
+     // validation
+    if (p.length() <= 1) {
+      return (p.empty() && s.empty()) || s.equals(p) || p.charAt(0) == '.'; 
+    }
+    
+    if (p.charAt(1) != '*') {
+      return s.charAt(0) == p.charAt(0) && isMatching(s.subtring(1), p.substring(1)); 
+    } else {
+      if (isMatching(s, p.substring(2)) {
+        return true;
+      } else {
+        int start = 1;
+        while (s.charAt(start) == p.charAt(0)) {
+          if (isMatching(s.substring(start), p.substring(2))) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
 5. Given a string and a list of alphabetic letters, find the minimum length of substring that contains all the characters given in O(n) time.
   
   
