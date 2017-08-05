@@ -13,6 +13,18 @@
       c = cur / 10;
       result.append(d);
     }
+    while (i >= 0) {
+       int cur = a.charAt(i) - '0';
+       int d = cur % 10;
+       c = cur / 10;
+       result.append(d);
+    }
+    while (j >= 0) {
+       int cur = b.charAt(i) - '0';
+       int d = cur % 10;
+       c = cur / 10;
+       result.append(d);
+    }
     if (c > 0) {
       result.append(c);
     }
