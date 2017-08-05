@@ -89,17 +89,18 @@ public class RegularExpression {
         // validation
 
         if (p.charAt(1) != '*') {//without *
-            if(!matchFirst(s,p)) return false;
+            if(!(p.charAt(0) == s.charAt(0) || (p.charAt(0) == '.'))) return false;
             return isMatch(s.substring(1), p.substring(1));
         } else { //next: with a *
             if(isMatch(s, p.substring(2))) {
                 return true;    //try the length of 0
             }
-            int start = 1;
-            while (matchFirst(s, p)) {       //try all possible length
+            int start = 0;
+            while (p.charAt(0) == s.charAt(start) || (p.charAt(0) == '.')) {       //try all possible length
                 if (isMatch(s.substring(start++), p.charAt(2))) {
                     return true;
                 }
+                start++;
             }
         }
     }
