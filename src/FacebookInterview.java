@@ -122,11 +122,12 @@
       if (isMatching(s, p.substring(2)) {
         return true;
       } else {
-        int start = 1;
+        int start = 0;
         while (s.charAt(start) == p.charAt(0)) {
           if (isMatching(s.substring(start), p.substring(2))) {
             return true;
           }
+          start++;
         }
       }
     }
