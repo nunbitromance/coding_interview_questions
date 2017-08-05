@@ -32,9 +32,85 @@
   }
   
 2. Search for an item in a sorted, but rotated, array
-3. Why Facebook and a couple coding questions that I won't disclose
-4. reverse linkedlist, word ladder, wildcard matching 
+  [4, 5, 6, 1, 2, 3]
+  public int findInSortedArray(int[] arr, int t, int s, int e) {
+       if (s > e) {
+        return -1;
+       }
+       int m = s + (e - s) / 2;
+       if (arr[m] == t) {
+        return m;
+       } else if (arr[m] > t) {
+        // left half is sorted
+        if (arr[m] > arr[b]) {
+          return findInSortedArray(arr, t, b, m - 1);
+        } else {
+          return findInSortedArray(arr, t, m + 1, e);
+        }
+       } else { // arr[m] < t
+        if (arr[m] < arr[e]) {
+          return findInSortedArray(arr, t, m + 1, e); 
+        } else {
+          return findInSortedArray(arr, t, b, m - 1);
+        }
+       }
+       return -1;
+  }
+
+3. reverse linked list
+// eazy peazy~
+  public Node reverse(Node head) {
+    Node prev = null;
+    Node cur = head;
+    while (cur != null) {
+      Node next = cur.next;
+      cur.next = prev;
+      prev = cur;
+      cur = next;
+    }
+    return prev;
+  }
+
+4. word ladder, wildcard matching 
+  public List<String> wordLadder(String start, String end, Set<String> dic) {
+    Queue<String> queue = new LinkedList<>();
+    List<String> path = new ArrayList<String>();
+    Set<String> set = new HashSet<String>();
+    path.add(start);
+    queue.offer(start);
+    while (!queue.isEmpty()) {
+      String cur = queue.poll();
+      if (cur.equals(end)) {
+        path.add(cur);
+        return result;
+      }
+      List<String> oneLetterEdits = getOneLetterEditWords(cur, dic);
+      for (String w : oneLetterEdits) {
+        if (!set.contains(w)) {
+           queue.offer(w);
+           set.add(w);
+        }
+      }
+    }
+  }
+  
+  private List<String> getOneLetterEditWords(String w, Set<String> dic) {
+    char[] cStr = w.toCharArray();
+    List<String> result = new ArrayList<>();
+    for (int i = 0; i < w.length(); i++) {
+      for (char c = 'a'; c <= 'z'; c++) {
+        if (w.charAt(i) != c && !dic.contains(cStr)) {
+          cStr[i] = c;
+          result.add(new String(cStr));
+        }
+      }
+    }
+    return result;
+  }
+
 5. Given a string and a list of alphabetic letters, find the minimum length of substring that contains all the characters given in O(n) time.
+  
+  
 6. Convert a BST to a circular linked list  
 7. Print out a graph in column order, starting from left to right
 8. Implement a queue using a circular buffer.  
