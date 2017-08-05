@@ -177,6 +177,36 @@
    }
   
 6. Convert a BST to a circular linked list  
+
+     // 2
+       1 3
+          4
+     // -> 1, 2, 3, 4
+     public Node convertToList(Node root) {
+        if (root == null) {
+          return null; 
+        }
+        
+        Node left = convertToList(root.left);
+        Node right = convertToList(root.right);
+       
+        // link left side of root
+        Node temp = left.left;
+        left.left.right = root;
+        root.left = temp;
+       
+        // link right side of root
+        temp = right.left;
+        root.right = right;
+        right.left = root;
+       
+        // link left's left to right's left
+        left.left = temp;
+        temp.right = left;
+        
+        return left;
+     }
+                 
 7. Print out a graph in column order, starting from left to right
 8. Implement a queue using a circular buffer.  
 9. Write a function that takes an integer and prints out the English text of it. ex. Input: 1432; Output: 'One thousand, four hundred thirty-two'  
