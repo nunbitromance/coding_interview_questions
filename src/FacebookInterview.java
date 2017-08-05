@@ -134,8 +134,47 @@
     return false;
   }
 
-5. Given a string and a list of alphabetic letters, find the minimum length of substring that contains all the characters given in O(n) time.
-  
+5. Given a string and a list of alphabetic letters, find the minimum length of substring that contains all the characters 
+   given in O(n) time
+         
+   // aaabcadabc,  [a,b,c,d] => dabc
+   public String minWindow(String s, String t) {
+      Map<Character, Integer> tMap = new HashMap<>();
+      for (char c : t.toCharArray()) {
+        tMap.compute(c, (k, v) => (v == null) ? 1 : v + 1);
+      }
+      int start = 0;
+      int end = 0;
+      Map<Character, Integer> found = new HashMap<>();
+      int minWindow = Integer.MAX_VALUE;
+      int tFound = 0;
+      while (end < s.length()) {
+        char c = s.charAt(end);
+        if (tMap.containsKey(c)) {
+           if (found.containsKey(c)) {
+              if (found.get(c) < tMap.get(c)) {
+                tFound++; 
+              }
+              found.put(c, found.get(c) + 1);
+           } else {
+              found.put(c, 1); 
+           }
+        }
+        if (tFound == t.length()) {
+          char sc = s.charAt(start);
+          while (start < end && (!tMap.containsKey(sc) || found.get(sc) > tMap.get(sc)) {
+            if (found.containsKey(sc) && found.get(sc) > tMap.get(sc))) {
+              found.put(sc, found.get(sc) - 1); 
+            }
+            start++;
+            sc = s.charAt(start);
+          }
+          int window = end - start + 1;
+          minWindow = Math.min(minWindow, window);
+        }
+        end++;
+      }
+   }
   
 6. Convert a BST to a circular linked list  
 7. Print out a graph in column order, starting from left to right
