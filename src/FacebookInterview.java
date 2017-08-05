@@ -1,4 +1,24 @@
 1. Create an addition function for two string integers.  
+  // Test 1: 123 + 12 = 135
+  // Test 2: 999 + 99 = 1098
+  public String add(String a, String b) {
+    // validate
+    int c = 0;
+    StringBuilder result = new StringBuidler();
+    int i = a.length() - 1;
+    int j = b.length() - 1;
+    while (i >= 0 && j >= 0) {
+      int cur = a.charAt(i) - '0' + b.charAt(j) - '0' + c;
+      int d = cur % 10;
+      c = cur / 10;
+      result.append(d);
+    }
+    if (c > 0) {
+      result.append(c);
+    }
+    return result.reverse();
+  }
+  
 2. Search for an item in a sorted, but rotated, array
 3. Why Facebook and a couple coding questions that I won't disclose
 4. reverse linkedlist, word ladder, wildcard matching 
