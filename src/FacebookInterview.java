@@ -244,6 +244,44 @@
    }
                  
 9. Write a function that takes an integer and prints out the English text of it. ex. Input: 1432; Output: 'One thousand, four hundred thirty-two'  
+
+private static final String[] ones = new String[] {"", "one", "two", ..., "nine"};
+private static final String[] tens = new String[] {"", "ten", "twenty", ..., "ninety"};
+private static final String[] teens = new String[] {"", "eleven", "twelve", ..., "nineteen"};
+
+public String numToWords(int num) {
+  StringBuilder sb = new StringBuilder();
+  if (num >= 1000000) {
+    sb.append(ones[num / 1000000] + " million ");
+    num = num % 1000000;
+  }
+  if (num >= 1000) {
+    sb.append(numToWoresLessThanThousand(num / 1000) + " thousand ");
+    num = num % 1000;
+  }
+  sb.append(numToWordsLessThanThousand(num));
+  return sb.toString();
+}
+                 
+private String numToWordsLessThanThousand(int num) {
+  StringBuilder sb = new StringBuilder();
+  if (num >= 100) {
+    sb.append(ones[num/100] + " hundred ");
+    num = num % 100;
+  }
+  if (num > 10 && num < 20) {
+    sb.append(teens[num - 10]);
+    return sb.toString();
+  } else if (num >= 20) {
+    sb.append(tens[num] + " ");
+    num = num % 10;
+  }
+  if (num > 0) {
+    sb.append(ones[num]); 
+  }
+  return sb.toString();
+}
+                 
 10. How to find all anagrams of a word given a dictionary?  
 11. Write a function for testing "endianness."  
 12. Write push/pop functions for a ring buffer. 
