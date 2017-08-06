@@ -8,24 +8,33 @@ package com.interview.linklist;
  */
 public class ReverseKNodes {
 
-    public Node reverse(Node head,int k){
-        if(head == null){
-            return null;
-        }
-        Node front = null;
-        Node middle = head;
-        Node end = null;
-        int i=0;
-        while(middle != null && i < k){
-            end = middle.next;
-            middle.next = front;
-            front = middle;
-            middle = end;
-            i++;
-        }
-        head.next = reverse(middle,k);
-        return front;
-    }
+    public Node reverse(Node head, int k)
+    {
+       Node current = head;
+       Node next = null;
+       Node prev = null;
+        
+       int count = 0;
+ 
+       /* Reverse first k nodes of linked list */
+       while (count < k && current != null) 
+       {
+           next = current.next;
+           current.next = prev;
+           prev = current;
+           current = next;
+           count++;
+       }
+ 
+       /* next is now a pointer to (k+1)th node 
+          Recursively call for the list starting from current.
+          And make rest of the list as next of first node */
+       if (next != null) 
+          head.next = reverse(next, k);
+ 
+       // prev is now head of input list
+       return prev;
+    }       
     
     
     public static void main(String args[]){
