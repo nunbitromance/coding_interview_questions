@@ -283,13 +283,126 @@ private String numToWordsLessThanThousand(int num) {
 }
                  
 10. How to find all anagrams of a word given a dictionary?  
-11. Write a function for testing "endianness."  
-12. Write push/pop functions for a ring buffer. 
-13. Given two words and a dictionary, print the path from one word to the next changing one letter at a time  
-14. Given two identical DOM tree structures, A and B, and a node from A, find the corresponding node in B.  
+                 
+public Map<String, List<String>> findAnagrams(List<String> list) {
+  Map<String, List<String>> anagrams = new HashMap<>();
+  for (String s : list) {
+    char[] cArr = s.toCharArray() ;
+    Arrays.sort(cArr);
+    String key = new String(cArr);
+    
+    List<String> value = anagrams.get(key);
+    if (value == null) {
+      value = new ArrayList<String>();
+      value.add(s);
+    } else {
+      value.add(s); 
+    }
+    anagrams.put(key, value);
+  }
+  return anagrams;
+}
+                 
+                 
+11. Write a function for testing "endianness."
+                 
+                 
+12. Write push/pop functions for a ring buffer.  
+14. Given two identical DOM tree structures, A and B, and a node from A, find the corresponding node in B.
+  
+  public boolean isSame(Node a, Node b) {
+    if (a == null && b == null) {
+      return true; 
+    } else if (a == null || b == null) {
+      return false; 
+    }
+    
+    if (a.val == b.val) {
+      return true; 
+    }
+    
+    return isSame(a.left, b.left) && isSame(a.right, b.right);
+  }
+                 
+                 
 15. Implement a sorted circular linked list.
-16. Given an n*n matrix filled randomly with different colors (no limit on what the colors are), add up the total number of groups of each color - a group is adjacent cells of the same color touching each other. Clarifying question: are diagonals adjacent (A: no) 
-17. Write a system to parse byte chunks of messages
+16. Given an n*n matrix filled randomly with different colors (no limit on what the colors are), add up the total number of 
+                 groups of each color - a group is adjacent cells of the same color touching each other. 
+                 Clarifying question: are diagonals adjacent (A: no) 
+               
+  public Map<Integer, Integer> findIslands(int[][] islands) {
+      Map<Integer, Integer> map = new HashMap<>();
+      boolean[][] visted = new boolean[islands.length][islands[0].length]; 
+      for (int i = 0; i < islands.length; i++) {
+        for (int j = 0; j < islands[0].length; j++) {
+            int color = islands[i][j];
+            if (map.containsKey(color)) {
+              map.put(color, map.get(color) + 1); 
+            } else {
+              map.put(color, 1); 
+            }
+            explore(islands, i, j, visited, color);
+        }
+      }
+  }
+                 
+  private void explore(int[][] islands, int r, int c, int[][] visited, int color) {
+      if (r < 0 || c < 0 || r > islands.length() - 1 || c > islands[0].length() - 1 || visited[r][c] || islands[r][c] != color) {
+        return; 
+      }
+      visited[r][c] = true;
+      explore(islands, r - 1, c, visited, color);
+      explore(islands, r, c + 1, visited, color);
+      explore(islands, r + 1, c, visited, color);
+      explore(islands, r, c - 1, visited, color);
+  }
+                
 18. Merge a list of (possibly overlapping) time intervals and return a sorted list of non-overlapping time intervals. 
+                 
+    public List<Interval> merge(List<Interval> list) {
+      List<Interval> result = new ArrayList<Interval>();
+      Collections.sort(list, new Comparator<Interval>() {
+          public int compare(Interval a, Interval b) {
+            return a.start - b.start; 
+          }
+      });
+      Interval cur = list.get(0);
+      for (int i = 1; i < list.length(); i++) {
+        Interval t = list.get(i);
+        if (cur.end > t.start) {
+          cur = new Interval(cur.start, t.end);
+        } else {
+          result.add(cur);
+          cur = t;
+          if (i == list.length() - 1) {
+            cur = null; 
+          }
+        }
+      }
+      
+      if (cur != null) {
+        retsult.add(cur);
+      }
+      return result;
+    }
+                 
 19. How would you implement a Naive String matching program? 2) How do you know when if a binary tree is a BST?
-20. Given 2 strings that you are reading from 2 streams (so you don't know the length of any of the strings and the only method you have is getNextChar() for each string), implement a program that tells you when 2 of these strings are 1 edit away from being the same. 1- edit is defined as a single insert char, single remove char or single modify/change char in only 1 of the strings.  
+            
+    public boolean isBst(Node root, int min, int max) {
+            if (root == null) {
+              return true; 
+            }
+            
+            if (root.val < min || root.val > max) {
+              return false; 
+            }
+            
+            return isBst(root.left, min, root.val) && isBst(root.right, root.val, max);
+    }
+            
+20. Given 2 strings that you are reading from 2 streams 
+            (so you don't know the length of any of the strings and the only method you have is getNextChar() for each string), 
+             implement a program that tells you when 2 of these strings are 1 edit away from being the same. 
+             1- edit is defined as a single insert char, single remove char or single modify/change char in only 1 of the strings.  
+
+    
