@@ -207,8 +207,42 @@
         return left;
      }
                  
-7. Print out a graph in column order, starting from left to right
+7. Print out a tree in column order, starting from left to right                 
 8. Implement a queue using a circular buffer.  
+   
+   public class CircularBufferQueue<T> implements Queue<T> {
+     private T[] arr;
+     private int read;
+     private int write;
+     private int count;
+     
+     public CircularBufferQueue(int capacity) {
+       this.arr = new T[capacity + 1];
+       read = 0;
+       write = 0;
+       count = 0;
+     }
+     
+     public void offer(T e) {
+       arr[write] = e;
+       write = (write + 1) % arr.length;
+       count++;
+     }
+     
+     public boolean isEmpty() {
+       return read == write && count == 0; 
+     }
+     
+     public T poll() {
+       T e = arr[read];
+       arr[read] = null;
+       read++;
+       read = (read + 1) % arr.length;
+       count--;
+       return e;
+     }
+   }
+                 
 9. Write a function that takes an integer and prints out the English text of it. ex. Input: 1432; Output: 'One thousand, four hundred thirty-two'  
 10. How to find all anagrams of a word given a dictionary?  
 11. Write a function for testing "endianness."  
