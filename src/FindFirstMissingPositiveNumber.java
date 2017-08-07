@@ -12,28 +12,22 @@ A[i]==A[A[i]]
 
 
 */
-public int firstMissingPositive(int[] A) {
-        int n = A.length;
- 
-    	for (int i = 0; i < n; i++) {
-    		while (A[i] != i + 1) {
-    			if (A[i] <= 0 || A[i] >= n)
-    				break;
- 
-                	if(A[i]==A[A[i]-1])
-                    		break;
- 
-    			int temp = A[i];
-    			A[i] = A[temp - 1];
-    			A[temp - 1] = temp;
-    		}
-    	}
- 
-    	for (int i = 0; i < n; i++){
-    		if (A[i] != i + 1){
-    			return i + 1;
-    		}
-    	}	
- 
-    	return n + 1;
+public class Solution {
+    public int firstMissingPositive(int[] A) {
+        int i = 0;
+        while(i < A.length){
+            if(A[i] == i+1 || A[i] <= 0 || A[i] > A.length) i++;
+            else if(A[A[i]-1] != A[i]) swap(A, i, A[i]-1);
+            else i++;
+        }
+        i = 0;
+        while(i < A.length && A[i] == i+1) i++;
+        return i+1;
+    }
+    
+    private void swap(int[] A, int i, int j){
+        int temp = A[i];
+        A[i] = A[j];
+        A[j] = temp;
+    }
 }
