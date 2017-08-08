@@ -13,8 +13,7 @@ public class LongestPalindromicSubsequence {
         int[][] opt = new int[s.length()][s.length()];
         
         for (int i = 0; i < s.length(); i++) {
-            opt[i][0] = 1;
-            opt[0][i] = 1;
+            opt[i][i] = 1;
         }
         
         for (int i = 0; i < s.length() - 1; i++) {
