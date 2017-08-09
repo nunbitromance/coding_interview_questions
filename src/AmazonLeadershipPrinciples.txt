@@ -56,3 +56,34 @@ Leaders are obligated to respectfully challenge decisions when they disagree, ev
 Deliver Results
 Leaders focus on the key inputs for their business and deliver them with the right quality and in a timely fashion. Despite setbacks, they rise to the occasion and never compromise.
 - Smart Pay. 20% increase in revenue.
+
+Behavioral Questions - Related to 12 Leadership Principles!!!
+==================================================================
+- give me an example of failed project.
+- give me an example of most difficult/complex project.
+- give me an example of most exciting project.
+- give me a time when you hired wrong person.
+- give me a time when you hired someone who was successful.
+- how do you handle low performers?
+- how do you handle decision conflicts in the team?
+- how do you build a team?
+- tell me a time when you had to deal with difficult team member.
+- tell me how you made improvement to company.
+- tell me your worst mistake. how did you recover / learn?
+- how do you make sure the deliverables are of the right quality? what metrics do you use?
+- how do you handle disagreement with your boss?
+Stay calm, explain that you feel differently and clearly explain your reasoning. Make a case for it with sound business logic rather than emotion. Ultimately if after explaining your case, they manager is unswayed, then it's time to "disagree and commit". Since a manager's role is to be strategic and understand the big picture, it's quite possible that they have some exposure to other things going on in the company that you aren't aware of which forms the basis for their opinion. Ultimately they are your manager, but with that said, I've never had a manager that didn't want to hear all sides and make the best decision based on information from his/her team members.
+- give me a time when you had to proceed on a project with little information.
+- give me a time when you had to work with multiple teams within organization.
+- why Amazon?
+
+Technical Questions
+==============================================
+- what is SSL/TLS?
+- TCP vs UDP?
+- Load balancer schemes
+- Design uber system
+- Deisgn Netflix / Amazon Instance Video
+- Design tweeter
+- SQL vs NoSQL?
+
