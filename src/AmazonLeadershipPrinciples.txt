@@ -59,11 +59,10 @@ Leaders focus on the key inputs for their business and deliver them with the rig
 
 Behavioral Questions - Related to 12 Leadership Principles!!!
 ==================================================================
-- give me an example of failed project.
-- give me an example of most difficult/complex project.
-- give me an example of most exciting project.
-- give me a time when you hired wrong person.
-- give me a time when you hired someone who was successful.
+- give me an example of most difficult/complex project: Groupon - Inventory Management Service -> drifting -> (Dive Deep) -> warehouse management
+- give me an example of most exciting project: 
+- give me a time when you hired wrong person: Took someone in who was passionate about maintaining existing service that came with him. Not willing to learn new languages. Had long discussions on areas to improved. He did not show motivation to improve. Had to put him on performance improvement plan. Eventually, had to let him go after discussion with HR.
+- give me a time when you hired someone who was successful: Hired someone from another company who was struggling because he wanted to do something exciting and challenging and his manager would not let him. Joined my team and I gave him in charge of something interesting. He took himself to next level and completed project very successfully.
 - how do you handle low performers?
 - how do you handle decision conflicts in the team?
 - how do you build a team?
