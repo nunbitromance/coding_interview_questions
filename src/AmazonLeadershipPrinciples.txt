@@ -59,7 +59,7 @@ Leaders focus on the key inputs for their business and deliver them with the rig
 
 Behavioral Questions - Related to 12 Leadership Principles!!!
 ==================================================================
-- give me an example of most difficult/complex project: Groupon - Inventory Management Service -> drifting -> (Dive Deep) -> warehouse management
+- give me an example of most difficult/complex project: Groupon - Inventory Management Service -> drifting -> (Dive Deep) -> warehouse management. Shipment tracking service - a lot of maintenance.
 - give me an example of most exciting project: Smart Pay - 20% revenue
 - give me a time when you hired wrong person: Took someone in who was passionate about maintaining existing service that came with him. Not willing to learn new languages. Had long discussions on areas to improved. He did not show motivation to improve. Had to put him on performance improvement plan. Had to document his tasks actual vs expected every day. Eventually, had to let him go after discussion with HR.
 - give me a time when you hired someone who was successful: Hired someone from another company who was struggling because he wanted to do something exciting and challenging and his manager would not let him. Joined my team and I gave him in charge of something interesting. He took himself to next level and completed project very successfully.
@@ -69,7 +69,7 @@ Behavioral Questions - Related to 12 Leadership Principles!!!
 - tell me a time when you had to deal with difficult team member.
 - tell me how you made improvement to company.
 - tell me your worst mistake. how did you recover / learn?
-- how do you make sure the deliverables are of the right quality? what metrics do you use?
+- how do you make sure the deliverables are of the right quality? what metrics do you use? 
 - how do you handle disagreement with your boss?
 Stay calm, explain that you feel differently and clearly explain your reasoning. Make a case for it with sound business logic rather than emotion. Ultimately if after explaining your case, they manager is unswayed, then it's time to "disagree and commit". Since a manager's role is to be strategic and understand the big picture, it's quite possible that they have some exposure to other things going on in the company that you aren't aware of which forms the basis for their opinion. Ultimately they are your manager, but with that said, I've never had a manager that didn't want to hear all sides and make the best decision based on information from his/her team members.
 - give me a time when you had to proceed on a project with little information.
