@@ -265,3 +265,115 @@ asked and told that a(0)b(3)a(3)c(3) is also possible .. which means every strin
 Given a list of array, return a list of arrays, each array is a combination of one element in each given array.
 Let me give you an example to help you understand the question Suppose the input is [[1, 2, 3], [4], [5, 6]], the output should be [[1, 4, 5], [1, 4, 6], [2, 4, 5], [2, 4, 6], [3, 4, 5], [3, 4, 6]].
 
+  // This is the text editor interface. 
+// Anything you type or change here will be seen by the other person in real time.
+
+Count occurrences of a given number in a sorted array which has duplicates 0000001 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 
+Given 4, you return 3
+
+arr, target
+
+N 
+
+public int findCount(int[] arr, int target, int b, int e) {
+    // validate
+    
+    if (b > e) {
+        return -1;
+    }
+    
+    int mid = b + (e - b) / 2;
+    
+    if (arr[mid] == target) {
+        // start expanding
+        int count = 1;
+        int left = mid - 1;
+        int right = mid + 1;
+        
+        while (left >= 0 && arr[left] == arr[mid]) {
+            count++;
+            left--;
+        }
+        while (right < arr.length && arr[right] == arr[mid]) {
+            count++;
+            right++;
+        }
+        return count;
+    } else if (arr[mid] > target) {
+        return findCount(arr, target, b, mid -1);
+    }
+    
+    return findCount(arr, target, mid + 1, e);
+}
+
+//0 0 0 0 0 0 1 *** 1 1 1 1 && 2 2 && *** *** 2 *** 2 2 3 3 3 3 3 4 4 4 5 5 5
+public int findFirstIndex(int[] arr, int target, int b, int e) {
+    // validate
+    
+    if (b > e) {
+        return -1;
+    }
+    
+    int mid = b + (e - b) / 2;
+    
+    /*
+    if (arr[mid] == target && arr[mid-1] < arr[mid]) {
+        return mid;
+    } else if (arr[mid] > target || (arr[mid] == target && arr[mid-1] == arr[mid])) {
+        return findCount(arr, target, b, mid -1);
+    }*/
+    
+    if (arr[mid] == target) {
+        if (arr[mid-1] < arr[mid]) {
+            return mid;
+        } else { // element at mid -1 equals mid. continue finding left side. 
+            return findCount(arr, target, b, mid -1);
+        }
+    } else if (arr[mid] > target) {
+        return findCount(arr, target, b, mid -1);
+    }
+    return findCount(arr, target, mid + 1, e);
+}
+
+//0 0 0 0 0 0 1 *** 1 1 1 1 && 2 2 && *** *** 2 *** 2 2 3 3 3 3 3 4 4 4 5 5 5
+public int findFirstIndex(int[] arr, int target, int b, int e) {
+    // validate
+    
+    while (b <= e) {
+        int mid = b + (e - b) / 2;
+        if (arr[mid] == target) {
+            if (mid == 0 || (mid -1 > 0 && arr[mid-1] < arr[mid])) {
+                return mid;
+            } else { // element at mid -1 equals mid. continue finding left side. 
+                e = mid - 1;
+            }
+        } else if (arr[mid] > target) {
+            e = mid - 1;
+        }
+        b = mid + 1;
+    }
+    
+    return -1;
+}
+
+//0 0 0 0 0 0 1 *** 1 1 1 1 && 2 2 && *** *** 2 *** 2 2 3 3 3 3 3 4 4 4 5 5 5
+public int findLastIndex(int[] arr, int target, int b, int e) {
+    // validate
+    
+    while (b <= e) {
+        int mid = b + (e - b) / 2;
+        if (arr[mid] == target) {
+            if (mid == arr.length - 1 || (mid + 1 < arr.length && arr[mid] < arr[mid + 1])) {
+                return mid;
+            } else { // element at mid -1 equals mid. continue finding right side. 
+                b = mid + 1;
+            }
+        } else if (arr[mid] > target) {
+            b = mid + 1;
+        }
+        e = mid - 1;
+    }
+    
+    return -1;
+}
+
