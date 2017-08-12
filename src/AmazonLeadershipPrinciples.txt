@@ -98,7 +98,26 @@ Stay calm, explain that you feel differently and clearly explain your reasoning.
 Technical Questions
 ==============================================
 - what is SSL/TLS?
+Transport Layer Security (TLS) and its predecessor, Secure Sockets Layer (SSL), both frequently referred to as "SSL", are cryptographic protocols that provide communications security over a computer network.[1] Several versions of the protocols find widespread use in applications such as web browsing, email, Internet faxing, instant messaging, and voice-over-IP (VoIP). Websites are able to use TLS to secure all communications between their servers and web browsers.
+
+The Transport Layer Security protocol aims primarily to provide privacy and data integrity between two communicating computer applications.[1]:3 When secured by TLS, connections between a client (e.g., a web browser) and a server (e.g., wikipedia.org) have one or more of the following properties:
+
+The connection is private (or secure) because symmetric cryptography is used to encrypt the data transmitted. The keys for this symmetric encryption are generated uniquely for each connection and are based on a shared secret negotiated at the start of the session (see TLS handshake protocol). The server and client negotiate the details of which encryption algorithm and cryptographic keys to use before the first byte of data is transmitted (see Algorithm below). The negotiation of a shared secret is both secure (the negotiated secret is unavailable to eavesdroppers and cannot be obtained, even by an attacker who places themselves in the middle of the connection) and reliable (no attacker can modify the communications during the negotiation without being detected).
+The identity of the communicating parties can be authenticated using public-key cryptography. This authentication can be made optional, but is generally required for at least one of the parties (typically the server).
+The connection ensures integrity because each message transmitted includes a message integrity check using a message authentication code to prevent undetected loss or alteration of the data during transmission.[1]:3
+
 - TCP vs UDP?
+TCP - Acronym for	Transmission Control Protocol	
+UDP - User Datagram Protocol or Universal Datagram Protocol
+TCP is a connection-oriented protocol.	
+UDP is a connectionless protocol.
+TCP - Function	As a message makes its way across the internet from one computer to another. This is connection based.	
+UDP - also a protocol used in message transport or transfer. This is not connection based which means that one program can send a load of packets to another and that would be the end of the relationship.
+TCP is suited for applications that require high reliability, and transmission time is relatively less critical.	
+UDP is suitable for applications that need fast, efficient transmission, such as games. UDP's stateless nature is also useful for servers that answer small queries from huge numbers of clients.
+TCP - HTTP, HTTPs, FTP, SMTP, Telnet	
+UDP - DNS, DHCP, TFTP, SNMP, RIP, VOIP.
+
 - Load balancer schemes
 - Design uber system
 - Deisgn Netflix / Amazon Instance Video
