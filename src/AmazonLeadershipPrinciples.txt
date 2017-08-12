@@ -1,5 +1,12 @@
 Careercup: https://www.careercup.com/page?pid=amazon-interview-questions&job=software-development-manager-interview-questions&n=1
 
+STAR stands for:
+
+* Situation - What was the situation you / your previous employer faced?
+* Task - What tasks were involved in that situation?
+* Action - What actions did you take?
+* Results - What were the results of those actions?
+
 Customer Obsession
 Leaders start with the customer and work backwards. They work vigorously to earn and keep customer trust. Although leaders pay attention to competitors, they obsess over customers.
 - Example 1: Customers were reporting issues on Facebook that they were seeing wrong price charged on credit card for installment. I investigated and suggested that we add descriptors to payment transactions.
