@@ -1,5 +1,5 @@
 Design a chess game using OO principles | Runhe Tian Coding Practice
-
+http://massivetechinterview.blogspot.com/2015/07/design-chess-game-using-oo-principles.html
 http://k2code.blogspot.com/2014/03/design-chess-game-using-oo-principles.html
 http://swcodes.blogspot.in/2012/09/chess-game-design.html
 
