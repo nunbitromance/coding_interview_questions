@@ -9,15 +9,25 @@ STAR stands for:
 
 Customer Obsession
 Leaders start with the customer and work backwards. They work vigorously to earn and keep customer trust. Although leaders pay attention to competitors, they obsess over customers.
-- Example 1: Customers were reporting issues on Facebook that they were seeing wrong price charged on credit card for installment. I investigated and suggested that we add descriptors to payment transactions.
-- Example 2:
-- Example 3:
+- Example 1: "Customer complaint about payment"
+  S: Customers were reporting issues on Facebook that they were seeing wrong price charged on credit card for installment. 
+  T: My objective was to constantly monitor our system but also detect any external feedbacks that we might be missing.
+  A: I investigated and suggested that we add descriptors to payment transactions. Also, followed up with customers.
+  R: Customers reported that their issues were fixed. Thank you feedback on SNS is good way to earn new customers.
+- Example 2: "Fuzzy Search"
+  S: Customers satisfaction with zulily search functionality was very low. Customers were not finding products that they liked.
+  T: My objective was to find different ways to improve search results by brainstorming with PM's. There were many ideas like revamping the search UX.
+  A: One of the missing pieces I saw with relatively cheap cost were that search was mainly substring based on contents but not fuzzy matching which was available in ES.
+  R: We improved search results by increasing the fuzzy matching score on ES. Experiemented via A/B testing. Saw lift in demand.
 
 Ownership
 Leaders are owners. They think long term and don’t sacrifice long-term value for short-term results. They act on behalf of the entire company, beyond just their own team. They never say “that’s not my job." 
-- Example 1: Site dev manager was let go. Site engineers were having difficulty with performance issues. I helped.
+- Example 1: "Site Dev Manager gone"
+  S: Site dev manager was let go. Site engineers were having difficulty with performance issues. 
+  T: My objective was to help the company and engineer deal and resolve the issue asap.
+  A: I started coordinating different engineers in the site team. Came up with the plan to investigate the suspicious areas with the site engineers.
+  R: Issue was fixed and I was recognized for jumping into areas beyohnd my responsibilities.
 - Example 2: CS application team was struggling with issues. I helped them.
-- Example 3: 
 
 Invent and Simplify
 Leaders expect and require innovation and invention from their teams and always find ways to simplify. They are externally aware, look for new ideas from everywhere, and are not limited by “not invented here". Because we do new things, we accept that we may be misunderstood for long periods of time.
