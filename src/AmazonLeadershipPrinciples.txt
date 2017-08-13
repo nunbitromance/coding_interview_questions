@@ -9,7 +9,7 @@ STAR stands for:
 
 Customer Obsession
 Leaders start with the customer and work backwards. They work vigorously to earn and keep customer trust. Although leaders pay attention to competitors, they obsess over customers.
-- Example 1: "Customer complaint about payment"
+- Example 1: "Constantly monitor FB feedback. Customer complaint about payment"
   S: Customers were reporting issues on Facebook that they were seeing wrong price charged on credit card for installment. 
   T: My objective was to constantly monitor our system but also detect any external feedbacks that we might be missing.
   A: I investigated and suggested that we add descriptors to payment transactions. Also, followed up with customers.
@@ -18,7 +18,7 @@ Leaders start with the customer and work backwards. They work vigorously to earn
   S: Customers satisfaction with zulily search functionality was very low. Customers were not finding products that they liked.
   T: My objective was to find different ways to improve search results by brainstorming with PM's. There were many ideas like revamping the search UX.
   A: One of the missing pieces I saw with relatively cheap cost were that search was mainly substring based on contents but not fuzzy matching which was available in ES.
-  R: We improved search results by increasing the fuzzy matching score on ES. Experiemented via A/B testing. Saw lift in demand.
+  R: We improved search results by increasing the fuzzy matching score on ES. Experiemented via A/B testing. Saw lift in demand about 1.5%.
 
 Ownership
 Leaders are owners. They think long term and don’t sacrifice long-term value for short-term results. They act on behalf of the entire company, beyond just their own team. They never say “that’s not my job." 
@@ -27,19 +27,43 @@ Leaders are owners. They think long term and don’t sacrifice long-term value f
   T: My objective was to help the company and engineer deal and resolve the issue asap.
   A: I started coordinating different engineers in the site team. Came up with the plan to investigate the suspicious areas with the site engineers.
   R: Issue was fixed and I was recognized for jumping into areas beyohnd my responsibilities.
-- Example 2: CS application team was struggling with issues. I helped them.
+- Example 2: "Customer Support application is having issues"
+  S: CS application team is short on engineers. The app talks to platform team via api.
+  T: My objective was to help the company and engineer deal with the issue and resolve asap.
+  A: I verified that there was no issue on the api and started helping CS application team with the issue to unblock them.
+  R: Issue was fixed and I was recognized for continuously helping beyond my responsibilities.
 
 Invent and Simplify
 Leaders expect and require innovation and invention from their teams and always find ways to simplify. They are externally aware, look for new ideas from everywhere, and are not limited by “not invented here". Because we do new things, we accept that we may be misunderstood for long periods of time.
-- Example 1: A/B Testing framework vs purchasing third party software which added complexity
+- Example 1: "A/B Testing framework invented over SplitLab"
+  S: Existing legacy A/B testing framework was too slow due to multiple redundant api calls and chattiness.
+  T: My objective was to improve the latency of the system since A/B testing was so widely used everywhere. from website to api layer.
+  A: Engineers and I brainstormed and invented MVTest framework which is client library that encapsulated hashing algorithm to reduce unnecessary chattiness. Only report when there is an override of buckets.
+  R: Overall latency was improved by 10% across all the api's.
+- Example 2: "Session Service. Redis too expensive"
+  S: We had too many redis servers trying to store all customers session data. Redis is in memory store and it is too expensive.
+  T: My objective was to come up with more sustainable solution to storing customer sessions.
+  A: Engineers and I brainstormed and designed "cold storage" using persistent db like Cassandra.
+  R: Overall reduced server capacity by 20% of cost (~20k per month). More cost saving in long run because disk is cheaper.
 
 Are Right, A Lot
 Leaders are right a lot. They have strong judgement and good instincts.  They seek diverse perspectives and work to disconfirm their beliefs.
-- Example 1: 
+- Example 1: "Rollback. Customer Checkout blocked."
+  S: Customers were not able to checkout. We were seeing orders count dropping.
+  T: My objective was to fix the issue ASAP. 
+  A: I had oncall engineer to go through list of check-in's and come up with the potential list of checkin's that might be the culprit.
+     Once we had potential candidates, rather than fixing the problem immediately, I had instructed oncall to rollback the code.
+  R: Orders started flowing again. Customers were unblocked.
+- Example 2: 
 
 Learn and Be Curious
 Leaders are never done learning and always seek to improve themselves. They are curious about new possibilities and act to explore them.
-- Example 1: 
+- Example 1: "Kill Spinning wheel"
+  S: I was curious about the effect of increasing latency but killing the spinning wheel on event page.
+  T: My goal was to see the impact on demand of the trade off
+  A: I coordinated with engineer to kill the ajax call and increase the latency and put it on A/B testing at 10%
+  R: Demand decreased based on result. Rolled back.
+- Example 2: "Cassandra training" => "Redis is expensive"  
 
 Hire and Develop the Best
 Leaders raise the performance bar with every hire and promotion. They recognise people with exceptional talent and willingly move them throughout the organisation. Leaders develop leaders and are serious about their role in coaching others.  We work on behalf of our people to invent mechanisms for development like Career Choice.
