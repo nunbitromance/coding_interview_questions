@@ -54,7 +54,7 @@ Leaders are right a lot. They have strong judgement and good instincts.  They se
   A: I had oncall engineer to go through list of check-in's and come up with the potential list of checkin's that might be the culprit.
      Once we had potential candidates, rather than fixing the problem immediately, I had instructed oncall to rollback the code.
   R: Orders started flowing again. Customers were unblocked.
-- Example 2: 
+- Example 2: "Mongo upgrade"
 
 Learn and Be Curious
 Leaders are never done learning and always seek to improve themselves. They are curious about new possibilities and act to explore them.
@@ -80,33 +80,63 @@ Leaders raise the performance bar with every hire and promotion. They recognise 
 
 Insist on the Highest Standards
 Leaders have relentlessly high standards - many people may think these standards are unreasonably high. Leaders are continually raising the bar and driving their teams to deliver high quality products, services and processes. Leaders ensure that defects do not get sent down the line and that problems are fixed so they stay fixed.
-- SLA on P0: 100% response within 5 minutes
-- Testing, Metrics, Alerts, and Monitoring on all new features
+- Example 1: "Mandate metrics / monitoring / alerting on every feature"
+  S: When I joined platform team, the team was suffering from lack of monitoring on latency and alerting
+  T: My objective was to help engineers realize there is an issue when issue happens.
+  A: I mandated each engineer to make sure to include a task for adding alert / metrics on every feature.
+  R: Much better oncall work life balance. Can find issues sooner than later.
+- Example 2: "SLA on important API's"
+  S: When I joined platform team, there was no SLA standard set on important api's such as cart / checkout"
+  T: My objective was to provide a guarantee that our customers would have smooth and robust experience shopping on zulily.
+  A: I organized tasks for engineer to establish SLA on P50 and P99 across important API's and add alerts
+  R: Much better control of Customer Experience and Quality.
 
 Think Big
 Thinking small is a self-fulfilling prophecy. Leaders create and communicate a bold direction that inspires results. They think differently and look around corners for ways to serve customers.
-- AWS Migration of store infrastructure
+- Example 1: "AWS Migration of store infrastructure"
+  S: Store is moving to AWS. Exciting switch in infrastructure
+  T: My objective is to help the company switch to new cloud vendor.
+  A: Sat down with engineers and came up with next 6 months plan tasks for migrating 5 major services to AWS without downtime.
+  R: In progress but much better feeling to have plans.
 
 Bias for Action
 Speed matters in business. Many decisions and actions are reversible and do not need extensive study. We value calculated risk taking. 
-- Mongo upgrade. rollback plan. volatility but took risk and proceeded.
+- Example 1: "Rollback. Customer Checkout blocked."
+- Example 2: "Mongo upgrade."
+  S: Mongo version was too outdated. Needed upgrade from 2.0 -> 3.0 -> 3.4
+  T: My objective was to upgrade mongo to wiredtiger.
+  A: Started upgrade and saw one of the server was acting very volatile at 3.0. Latency increased every 10 minutes or so. Investigated and could not figure out why. Took the risk and continued upgrade.
+  R: Successful. Overall latency down by 10%.
 
 Frugality
 Accomplish more with less. Constraints breed resourcefulness, self-sufficiency and invention.  There are no extra points for growing headcount, budget size or fixed expense.
-- Decommission of New Relic. Switch to Data Dog. Saved 90% of cost.
+- Example 1: "Redis too expensive. Cassandra"
+- Example 2: "Decommission of New Relic". 
+  S: Company was spending a lot of money on NR.
+  T: Find aleternatives to NR.
+  A: Started investigating and talking to other teams about alternatives.
+  R: Switch to Data Dog. Saved 90% of cost.
 
 Earn Trust
  Leaders listen attentively, speak candidly, and treat others respectfully. They are vocally self-critical, even when doing so is awkward or embarrassing.  Leaders do not believe their or their team’s body odour smells of perfume.  They benchmark themselves and their teams against the best.
+ - Example 1: "Mandate monitoring / alerting across important API's"
+ - Example 2: "Oncall SLA"
 
 Dive Deep
 Leaders operate at all levels, stay connected to the details, audit frequently, and are sceptical when metrics and anecdote differ. No task is beneath them.
+- Example 1: "Mandate monitoring / alerting on core scenarios" 
+- Example 2: "MV Test"
+- Example 3: "Redis is too expensive. Cassandra"
 
 Have Backbone; Disagree and Commit
 Leaders are obligated to respectfully challenge decisions when they disagree, even when doing so is uncomfortable or exhausting. Leaders have conviction and are tenacious. They do not compromise for the sake of social cohesion. Once a decision is determined, they commit wholly.
+- Example 1: "AWS move is not making the right pace. 30% not enough. a lot of resistance from PM's. discussed with VP" => increased to 70% effort
+- Example 2: "
 
 Deliver Results
 Leaders focus on the key inputs for their business and deliver them with the right quality and in a timely fashion. Despite setbacks, they rise to the occasion and never compromise.
-- Smart Pay. 20% increase in revenue.
+- Example 1: "Smart Pay. Payment related. Have to extra detail and metrics important. 20% increase in revenue."
+- Example 2: "
 
 Behavioral Questions - Related to 12 Leadership Principles!!!
 ==================================================================
