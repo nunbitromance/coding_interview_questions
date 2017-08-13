@@ -67,8 +67,16 @@ Leaders are never done learning and always seek to improve themselves. They are 
 
 Hire and Develop the Best
 Leaders raise the performance bar with every hire and promotion. They recognise people with exceptional talent and willingly move them throughout the organisation. Leaders develop leaders and are serious about their role in coaching others.  We work on behalf of our people to invent mechanisms for development like Career Choice.
-- Hire: 4 new engineers
-- Fire: 1 existing engineer
+- Example 1: "I want to work on features"
+  S: I approached an engineer who wanted to work on features.Hired someone from another company who was struggling because he wanted to do something exciting and challenging and his manager would not let him.
+  T: My objective is to take in passionate engineers and help them grow and unleash their potential.
+  A: Hired him despite junior experience
+  R: Thriving. Worked on very visible project and completed it very successfully.
+- Example 2: "I am struggling to find passion in existing project"
+  S: Engineer approached me telling me that he is getting bored of working on existing tech stack.
+  T: My objective is to help engineers stay passionate and motivated.
+  A: I recommended him AWS courses and got him to lead AWS project.
+  R: Thriving. Working very passionately using latest serverless technology like AWS Lambda.
 
 Insist on the Highest Standards
 Leaders have relentlessly high standards - many people may think these standards are unreasonably high. Leaders are continually raising the bar and driving their teams to deliver high quality products, services and processes. Leaders ensure that defects do not get sent down the line and that problems are fixed so they stay fixed.
