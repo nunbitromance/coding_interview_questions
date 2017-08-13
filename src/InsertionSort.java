@@ -17,3 +17,35 @@ public static void insertionSort(int[] array)
         }
     }
 }
+
+
+/*
+Insertion sort linked list
+*/
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode insertionSortList(ListNode head) {
+        ListNode result = new ListNode(0);
+        ListNode rPtr = result;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode x = result;
+            while (x.next != null && x.next.val < cur.val) {
+                x = x.next;
+            }
+            ListNode temp = x.next;
+            x.next = new ListNode(cur.val);
+            x = x.next;
+            x.next = temp;
+            cur = cur.next;
+        }
+        return result.next;
+    }
+}
