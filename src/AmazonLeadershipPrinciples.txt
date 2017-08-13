@@ -140,37 +140,61 @@ Leaders focus on the key inputs for their business and deliver them with the rig
 
 Behavioral Questions - Related to 12 Leadership Principles!!!
 ==================================================================
-- give me an example of most difficult/complex project: Groupon - Inventory Management Service -> drifting -> (Dive Deep) -> warehouse management. Shipment tracking service - a lot of maintenance.
+- give me an example of most difficult/complex project: 
+- Example 1: "Groupon - Inventory Management Service"
+  S: inventory management. found drifting inventory count.
+  T: objective was to make sure inventory count was accurate.
+  A: started tracking inventory by inventory and compared what we had vs what warehouse had. found that inventory counting occured at different times. rollback transactions at time X and re-apply.
+  R: 99% match in inventory.
+- Example 2: "Shipment tracking service"
+  S: a lot of maintenance.
+  T: objective was to simplify maintanenace
+  A: started integration with 3rd party service for tracking in EMEA
+  R: 99% accuracy
 
-- give me an example of most exciting project: Smart Pay - 20% revenue
+- give me an example of most exciting project: 
+  Smart Pay - 20% revenue
 
-- give me a time when you hired wrong person: Took someone in who was passionate about maintaining existing service that came with him. Not willing to learn new languages. Had long discussions on areas to improved. He did not show motivation to improve. Had to put him on performance improvement plan. Had to document his tasks actual vs expected every day. Eventually, had to let him go after discussion with HR.
+- give me a time when you hired wrong person: Took someone in who was passionate about maintaining existing service that came with him. Not willing to learn new languages. Had one on one meeting. documented plan and evaluations on plan for improvement. He did not show motivation to improve. Had to put him on performance improvement plan. Had to document his tasks actual vs expected every day. Eventually, had to let him go after discussion with HR.
 
 - give me a time when you hired someone who was successful: Hired someone from another company who was struggling because he wanted to do something exciting and challenging and his manager would not let him. Joined my team and I gave him in charge of something interesting. He took himself to next level and completed project very successfully.
 
-- how do you handle low performers? document. plan. evaluate and discuss: Have a one to one meeting with him. Check with him if he is facing any roadblocks in completing his tasks. Document plan and evaluations. If required arrange a training course for him or assign a mentor to work with him. Once training is over, give him ownership of some tasks and see if there is any improvement. If he expresses interest in some other area of work, help him in getting in touch with managers in that area and ensure a smooth transition for him and for the team.
+- how do you handle low performers? 
+Have a one to one meeting with the engineer. Check with him or her if he is facing any roadblocks in completing his tasks. Document plan and evaluations. If required arrange a training course for him or assign a mentor to work with him. Once training is over, give him ownership of some tasks and see if there is any improvement. If he expresses interest in some other area of work, help him in getting in touch with managers in that area and ensure a smooth transition for him and for the team.
 
-- how do you handle decision conflicts in the team? open discussion with all the members and try to draw natural concensus through discussion on alternatives about pros and cons. come to agreement.
+- how do you handle decision conflicts in the team? 
+open discussion with all the members and try to draw natural concensus through discussion on alternatives about pros and cons. come to agreement. If agreement cannot be reached, disagree and commit. As manager, you need to make a decision and make sure the team is moving in the right direction.
 
-- how do you build a team? focus on common goals. set expectations for both short term and long term. celebrate success and failures.
+- how do you build a team? 
+focus on common goals. set expectations for both short term and long term. celebrate success and failures.
 
 - Tell me a project where you had to deliver a product in 6 months and how did you approach planning for it?
+"AWS Move"
 In any project, the first thing is do understand the requirements in detail and try to come up with a high level estimation based on team's velocity. Once the requirements are clear, come up with a detailed level plan which consists of all integrations including system testing, regression testing, acceptance testing and project plan. Estimate the stories and try to retrofit it to determine the number of sprints required. Also clearly call out all the dependencies, assumptions, key decisions and riks. Come up with an implementation plan with sprints dedicated for requirements, coding, testing and soft and actual launch.
 
 - tell me a time when you had to deal with difficult team member.
+"Team member unwilling to work in area outside his familiar domain"
 
 - tell me how you made improvement to company.
+"MV Test", "Session Service"
 
 - tell me your worst mistake. how did you recover / learn?
+S: "My engineer caused P0 issue causing customers unable to register credit cards for 1 hour"
+T: my objective was to fix the issue with the engineer, report to stakeholders 
+A: make sure monitoring and alerting is working. automation testing in place. followed up with customers for appology.
+R: fixed the issue.
 
 - how do you make sure the deliverables are of the right quality? what metrics do you use? 
+system metrics. business metrics.
 
 - how do you handle disagreement with your boss?
 Stay calm, explain that you feel differently and clearly explain your reasoning. Make a case for it with sound business logic rather than emotion. Ultimately if after explaining your case, they manager is unswayed, then it's time to "disagree and commit". Since a manager's role is to be strategic and understand the big picture, it's quite possible that they have some exposure to other things going on in the company that you aren't aware of which forms the basis for their opinion. Ultimately they are your manager, but with that said, I've never had a manager that didn't want to hear all sides and make the best decision based on information from his/her team members.
 
 - give me a time when you had to proceed on a project with little information.
+AWS Migration
 
 - give me a time when you had to work with multiple teams within organization.
+AWS Migration
 
 - why Amazon?
 
