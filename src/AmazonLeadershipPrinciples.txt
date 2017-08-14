@@ -8,7 +8,8 @@ STAR stands for:
 * Results - What were the results of those actions?
 
 Customer Obsession
-Leaders start with the customer and work backwards. They work vigorously to earn and keep customer trust. Although leaders pay attention to competitors, they obsess over customers.
+Leaders start with the customer and work backwards. They work vigorously to earn and keep customer trust. Although leaders pay 
+attention to competitors, they obsess over customers.
 - Example 1: "Constantly monitor FB feedback. Customer complaint about payment"
   S: Customers were reporting issues on Facebook that they were seeing wrong price charged on credit card for installment. 
   T: My objective was to constantly monitor our system but also detect any external feedbacks that we might be missing.
@@ -16,16 +17,19 @@ Leaders start with the customer and work backwards. They work vigorously to earn
   R: Customers reported that their issues were fixed. Thank you feedback on SNS is good way to earn new customers.
 - Example 2: "Fuzzy Search"
   S: Customers satisfaction with zulily search functionality was very low. Customers were not finding products that they liked.
-  T: My objective was to find different ways to improve search results by brainstorming with PM's. There were many ideas like revamping the search UX.
+  T: My objective was to find different ways to improve search results by brainstorming with PM's. There were many ideas like 
+  revamping the search UX.
   A: One of the missing pieces I saw with relatively cheap cost were that search was mainly substring based on contents but not fuzzy matching which was available in ES.
   R: We improved search results by increasing the fuzzy matching score on ES. Experiemented via A/B testing. Saw lift in demand about 1.5%.
 
 Ownership
-Leaders are owners. They think long term and don’t sacrifice long-term value for short-term results. They act on behalf of the entire company, beyond just their own team. They never say “that’s not my job." 
+Leaders are owners. They think long term and don’t sacrifice long-term value for short-term results. They act on behalf of the 
+entire company, beyond just their own team. They never say “that’s not my job." 
 - Example 1: "Site Dev Manager gone"
   S: Site dev manager was let go. Site engineers were having difficulty with performance issues. 
   T: My objective was to help the company and engineer deal and resolve the issue asap.
-  A: I started coordinating different engineers in the site team. Came up with the plan to investigate the suspicious areas with the site engineers.
+  A: I started coordinating different engineers in the site team. Came up with the plan to investigate the suspicious areas with 
+  the site engineers.
   R: Issue was fixed and I was recognized for jumping into areas beyohnd my responsibilities.
 - Example 2: "Customer Support application is having issues"
   S: CS application team is short on engineers. The app talks to platform team via api.
@@ -34,11 +38,14 @@ Leaders are owners. They think long term and don’t sacrifice long-term value f
   R: Issue was fixed and I was recognized for continuously helping beyond my responsibilities.
 
 Invent and Simplify
-Leaders expect and require innovation and invention from their teams and always find ways to simplify. They are externally aware, look for new ideas from everywhere, and are not limited by “not invented here". Because we do new things, we accept that we may be misunderstood for long periods of time.
+Leaders expect and require innovation and invention from their teams and always find ways to simplify. They are externally aware, 
+look for new ideas from everywhere, and are not limited by “not invented here". Because we do new things, we accept that we may be 
+misunderstood for long periods of time.
 - Example 1: "A/B Testing framework invented over SplitLab"
   S: Existing legacy A/B testing framework was too slow due to multiple redundant api calls and chattiness.
   T: My objective was to improve the latency of the system since A/B testing was so widely used everywhere. from website to api layer.
-  A: Engineers and I brainstormed and invented MVTest framework which is client library that encapsulated hashing algorithm to reduce unnecessary chattiness. Only report when there is an override of buckets.
+  A: Engineers and I brainstormed and invented MVTest framework which is client library that encapsulated hashing algorithm to reduce 
+  unnecessary chattiness. Only report when there is an override of buckets.
   R: Overall latency was improved by 10% across all the api's.
 - Example 2: "Session Service. Redis too expensive"
   S: We had too many redis servers trying to store all customers session data. Redis is in memory store and it is too expensive.
@@ -47,7 +54,8 @@ Leaders expect and require innovation and invention from their teams and always 
   R: Overall reduced server capacity by 20% of cost (~20k per month). More cost saving in long run because disk is cheaper.
 
 Are Right, A Lot
-Leaders are right a lot. They have strong judgement and good instincts.  They seek diverse perspectives and work to disconfirm their beliefs.
+Leaders are right a lot. They have strong judgement and good instincts.  They seek diverse perspectives and work to disconfirm their 
+beliefs.
 - Example 1: "Rollback. Customer Checkout blocked."
   S: Customers were not able to checkout. We were seeing orders count dropping.
   T: My objective was to fix the issue ASAP. 
@@ -66,9 +74,12 @@ Leaders are never done learning and always seek to improve themselves. They are 
 - Example 2: "Cassandra training" => "Redis is expensive"  
 
 Hire and Develop the Best
-Leaders raise the performance bar with every hire and promotion. They recognise people with exceptional talent and willingly move them throughout the organisation. Leaders develop leaders and are serious about their role in coaching others.  We work on behalf of our people to invent mechanisms for development like Career Choice.
+Leaders raise the performance bar with every hire and promotion. They recognise people with exceptional talent and willingly move 
+them throughout the organisation. Leaders develop leaders and are serious about their role in coaching others.  We work on behalf 
+of our people to invent mechanisms for development like Career Choice.
 - Example 1: "I want to work on features"
-  S: I approached an engineer who wanted to work on features.Hired someone from another company who was struggling because he wanted to do something exciting and challenging and his manager would not let him.
+  S: I approached an engineer who wanted to work on features.Hired someone from another company who was struggling because he wanted 
+  to do something exciting and challenging and his manager would not let him.
   T: My objective is to take in passionate engineers and help them grow and unleash their potential.
   A: Hired him despite junior experience
   R: Thriving. Worked on very visible project and completed it very successfully.
@@ -79,7 +90,9 @@ Leaders raise the performance bar with every hire and promotion. They recognise 
   R: Thriving. Working very passionately using latest serverless technology like AWS Lambda.
 
 Insist on the Highest Standards
-Leaders have relentlessly high standards - many people may think these standards are unreasonably high. Leaders are continually raising the bar and driving their teams to deliver high quality products, services and processes. Leaders ensure that defects do not get sent down the line and that problems are fixed so they stay fixed.
+Leaders have relentlessly high standards - many people may think these standards are unreasonably high. Leaders are continually 
+raising the bar and driving their teams to deliver high quality products, services and processes. Leaders ensure that defects do 
+not get sent down the line and that problems are fixed so they stay fixed.
 - Example 1: "Mandate metrics / monitoring / alerting on every feature"
   S: When I joined platform team, the team was suffering from lack of monitoring on latency and alerting
   T: My objective was to help engineers realize there is an issue when issue happens.
@@ -92,7 +105,8 @@ Leaders have relentlessly high standards - many people may think these standards
   R: Much better control of Customer Experience and Quality.
 
 Think Big
-Thinking small is a self-fulfilling prophecy. Leaders create and communicate a bold direction that inspires results. They think differently and look around corners for ways to serve customers.
+Thinking small is a self-fulfilling prophecy. Leaders create and communicate a bold direction that inspires results. They think 
+differently and look around corners for ways to serve customers.
 - Example 1: "AWS Migration of store infrastructure"
   S: Store is moving to AWS. Exciting switch in infrastructure
   T: My objective is to help the company switch to new cloud vendor.
@@ -105,11 +119,13 @@ Speed matters in business. Many decisions and actions are reversible and do not 
 - Example 2: "Mongo upgrade."
   S: Mongo version was too outdated. Needed upgrade from 2.0 -> 3.0 -> 3.4
   T: My objective was to upgrade mongo to wiredtiger.
-  A: Started upgrade and saw one of the server was acting very volatile at 3.0. Latency increased every 10 minutes or so. Investigated and could not figure out why. Took the risk and continued upgrade.
+  A: Started upgrade and saw one of the server was acting very volatile at 3.0. Latency increased every 10 minutes or so. Investigated 
+  and could not figure out why. Took the risk and continued upgrade.
   R: Successful. Overall latency down by 10%.
 
 Frugality
-Accomplish more with less. Constraints breed resourcefulness, self-sufficiency and invention.  There are no extra points for growing headcount, budget size or fixed expense.
+Accomplish more with less. Constraints breed resourcefulness, self-sufficiency and invention.  There are no extra points for growing 
+headcount, budget size or fixed expense.
 - Example 1: "Redis too expensive. Cassandra"
 - Example 2: "Decommission of New Relic". 
   S: Company was spending a lot of money on NR.
@@ -118,23 +134,29 @@ Accomplish more with less. Constraints breed resourcefulness, self-sufficiency a
   R: Switch to Data Dog. Saved 90% of cost.
 
 Earn Trust
- Leaders listen attentively, speak candidly, and treat others respectfully. They are vocally self-critical, even when doing so is awkward or embarrassing.  Leaders do not believe their or their team’s body odour smells of perfume.  They benchmark themselves and their teams against the best.
+ Leaders listen attentively, speak candidly, and treat others respectfully. They are vocally self-critical, even when doing so is 
+ awkward or embarrassing.  Leaders do not believe their or their team’s body odour smells of perfume.  They benchmark themselves and 
+ their teams against the best.
  - Example 1: "Mandate monitoring / alerting across important API's"
  - Example 2: "Oncall SLA"
 
 Dive Deep
-Leaders operate at all levels, stay connected to the details, audit frequently, and are sceptical when metrics and anecdote differ. No task is beneath them.
+Leaders operate at all levels, stay connected to the details, audit frequently, and are sceptical when metrics and anecdote differ. 
+No task is beneath them.
 - Example 1: "Mandate monitoring / alerting on core scenarios" 
 - Example 2: "MV Test"
 - Example 3: "Redis is too expensive. Cassandra"
 
 Have Backbone; Disagree and Commit
-Leaders are obligated to respectfully challenge decisions when they disagree, even when doing so is uncomfortable or exhausting. Leaders have conviction and are tenacious. They do not compromise for the sake of social cohesion. Once a decision is determined, they commit wholly.
+Leaders are obligated to respectfully challenge decisions when they disagree, even when doing so is uncomfortable or exhausting.
+Leaders have conviction and are tenacious. They do not compromise for the sake of social cohesion. Once a decision is determined, 
+they commit wholly.
 - Example 1: "AWS move is not making the right pace. 30% not enough. a lot of resistance from PM's. discussed with VP" => increased to 70% effort
 - Example 2: "
 
 Deliver Results
-Leaders focus on the key inputs for their business and deliver them with the right quality and in a timely fashion. Despite setbacks, they rise to the occasion and never compromise.
+Leaders focus on the key inputs for their business and deliver them with the right quality and in a timely fashion. Despite setbacks, 
+hey rise to the occasion and never compromise.
 - Example 1: "Smart Pay. Payment related. Have to extra detail and metrics important. 20% increase in revenue."
 - Example 2: "
 
@@ -144,7 +166,8 @@ Behavioral Questions - Related to 12 Leadership Principles!!!
 - Example 1: "Groupon - Inventory Management Service"
   S: inventory management. found drifting inventory count.
   T: objective was to make sure inventory count was accurate.
-  A: started tracking inventory by inventory and compared what we had vs what warehouse had. found that inventory counting occured at different times. rollback transactions at time X and re-apply.
+  A: started tracking inventory by inventory and compared what we had vs what warehouse had. found that inventory counting occured at 
+  different times. rollback transactions at time X and re-apply.
   R: 99% match in inventory.
 - Example 2: "Shipment tracking service"
   S: a lot of maintenance.
@@ -155,22 +178,36 @@ Behavioral Questions - Related to 12 Leadership Principles!!!
 - give me an example of most exciting project: 
   Smart Pay - 20% revenue
 
-- give me a time when you hired wrong person: Took someone in who was passionate about maintaining existing service that came with him. Not willing to learn new languages. Had one on one meeting. documented plan and evaluations on plan for improvement. He did not show motivation to improve. Had to put him on performance improvement plan. Had to document his tasks actual vs expected every day. Eventually, had to let him go after discussion with HR.
+- give me a time when you hired wrong person: Took someone in who was passionate about maintaining existing service that came with him. 
+Not willing to learn new languages. Had one on one meeting. documented plan and evaluations on plan for improvement. He did not show 
+motivation to improve. Had to put him on performance improvement plan. Had to document his tasks actual vs expected every day. 
+Eventually, had to let him go after discussion with HR.
 
-- give me a time when you hired someone who was successful: Hired someone from another company who was struggling because he wanted to do something exciting and challenging and his manager would not let him. Joined my team and I gave him in charge of something interesting. He took himself to next level and completed project very successfully.
+- give me a time when you hired someone who was successful: Hired someone from another company who was struggling because he wanted to 
+do something exciting and challenging and his manager would not let him. Joined my team and I gave him in charge of something 
+interesting. He took himself to next level and completed project very successfully.
 
 - how do you handle low performers? 
-Have a one to one meeting with the engineer. Check with him or her if he is facing any roadblocks in completing his tasks. Document plan and evaluations. If required arrange a training course for him or assign a mentor to work with him. Once training is over, give him ownership of some tasks and see if there is any improvement. If he expresses interest in some other area of work, help him in getting in touch with managers in that area and ensure a smooth transition for him and for the team.
+Have a one to one meeting with the engineer. Check with him or her if he is facing any roadblocks in completing his tasks. Document 
+plan and evaluations. If required arrange a training course for him or assign a mentor to work with him. Once training is over, 
+give him ownership of some tasks and see if there is any improvement. If he expresses interest in some other area of work, help 
+him in getting in touch with managers in that area and ensure a smooth transition for him and for the team.
 
 - how do you handle decision conflicts in the team? 
-open discussion with all the members and try to draw natural concensus through discussion on alternatives about pros and cons. come to agreement. If agreement cannot be reached, disagree and commit. As manager, you need to make a decision and make sure the team is moving in the right direction.
+open discussion with all the members and try to draw natural concensus through discussion on alternatives about pros and cons. come 
+to agreement. If agreement cannot be reached, disagree and commit. As manager, you need to make a decision and make sure the team 
+is moving in the right direction.
 
 - how do you build a team? 
 focus on common goals. set expectations for both short term and long term. celebrate success and failures.
 
 - Tell me a project where you had to deliver a product in 6 months and how did you approach planning for it?
 "AWS Move"
-In any project, the first thing is do understand the requirements in detail and try to come up with a high level estimation based on team's velocity. Once the requirements are clear, come up with a detailed level plan which consists of all integrations including system testing, regression testing, acceptance testing and project plan. Estimate the stories and try to retrofit it to determine the number of sprints required. Also clearly call out all the dependencies, assumptions, key decisions and riks. Come up with an implementation plan with sprints dedicated for requirements, coding, testing and soft and actual launch.
+In any project, the first thing is do understand the requirements in detail and try to come up with a high level estimation based 
+on team's velocity. Once the requirements are clear, come up with a detailed level plan which consists of all integrations including 
+system testing, regression testing, acceptance testing and project plan. Estimate the stories and try to retrofit it to determine the 
+number of sprints required. Also clearly call out all the dependencies, assumptions, key decisions and riks. Come up with an 
+implementation plan with sprints dedicated for requirements, coding, testing and soft and actual launch.
 
 - tell me a time when you had to deal with difficult team member.
 "Team member unwilling to work in area outside his familiar domain"
@@ -188,7 +225,12 @@ R: fixed the issue.
 system metrics. business metrics.
 
 - how do you handle disagreement with your boss?
-Stay calm, explain that you feel differently and clearly explain your reasoning. Make a case for it with sound business logic rather than emotion. Ultimately if after explaining your case, they manager is unswayed, then it's time to "disagree and commit". Since a manager's role is to be strategic and understand the big picture, it's quite possible that they have some exposure to other things going on in the company that you aren't aware of which forms the basis for their opinion. Ultimately they are your manager, but with that said, I've never had a manager that didn't want to hear all sides and make the best decision based on information from his/her team members.
+Stay calm, explain that you feel differently and clearly explain your reasoning. Make a case for it with sound business logic 
+rather than emotion. Ultimately if after explaining your case, they manager is unswayed, then it's time to "disagree and commit". 
+Since a manager's role is to be strategic and understand the big picture, it's quite possible that they have some exposure to other 
+things going on in the company that you aren't aware of which forms the basis for their opinion. Ultimately they are your manager,
+but with that said, I've never had a manager that didn't want to hear all sides and make the best decision based on information from 
+his/her team members.
 
 - give me a time when you had to proceed on a project with little information.
 AWS Migration
@@ -201,13 +243,24 @@ AWS Migration
 Technical Questions
 ==============================================
 - what is SSL/TLS?
-Transport Layer Security (TLS) and its predecessor, Secure Sockets Layer (SSL), both frequently referred to as "SSL", are cryptographic protocols that provide communications security over a computer network.[1] Several versions of the protocols find widespread use in applications such as web browsing, email, Internet faxing, instant messaging, and voice-over-IP (VoIP). Websites are able to use TLS to secure all communications between their servers and web browsers.
+Transport Layer Security (TLS) and its predecessor, Secure Sockets Layer (SSL), both frequently referred to as "SSL", are cryptographic 
+protocols that provide communications security over a computer network.[1] Several versions of the protocols find widespread use in 
+applications such as web browsing, email, Internet faxing, instant messaging, and voice-over-IP (VoIP). Websites are able to use TLS to 
+secure all communications between their servers and web browsers.
 
-The Transport Layer Security protocol aims primarily to provide privacy and data integrity between two communicating computer applications.[1]:3 When secured by TLS, connections between a client (e.g., a web browser) and a server (e.g., wikipedia.org) have one or more of the following properties:
+The Transport Layer Security protocol aims primarily to provide privacy and data integrity between two communicating computer 
+applications.[1]:3 When secured by TLS, connections between a client (e.g., a web browser) and a server (e.g., wikipedia.org) have 
+one or more of the following properties:
 
-The connection is private (or secure) because symmetric cryptography is used to encrypt the data transmitted. The keys for this symmetric encryption are generated uniquely for each connection and are based on a shared secret negotiated at the start of the session (see TLS handshake protocol). The server and client negotiate the details of which encryption algorithm and cryptographic keys to use before the first byte of data is transmitted (see Algorithm below). The negotiation of a shared secret is both secure (the negotiated secret is unavailable to eavesdroppers and cannot be obtained, even by an attacker who places themselves in the middle of the connection) and reliable (no attacker can modify the communications during the negotiation without being detected).
-The identity of the communicating parties can be authenticated using public-key cryptography. This authentication can be made optional, but is generally required for at least one of the parties (typically the server).
-The connection ensures integrity because each message transmitted includes a message integrity check using a message authentication code to prevent undetected loss or alteration of the data during transmission.[1]:3
+The connection is private (or secure) because symmetric cryptography is used to encrypt the data transmitted. The keys for this 
+symmetric encryption are generated uniquely for each connection and are based on a shared secret negotiated at the start of the session
+(see TLS handshake protocol). The server and client negotiate the details of which encryption algorithm and cryptographic keys to use 
+before the first byte of data is transmitted (see Algorithm below). The negotiation of a shared secret is both secure (the negotiated 
+secret is unavailable to eavesdroppers and cannot be obtained, even by an attacker who places themselves in the middle of the connection) and reliable (no attacker can modify the communications during the negotiation without being detected).
+The identity of the communicating parties can be authenticated using public-key cryptography. This authentication can be made optional, 
+but is generally required for at least one of the parties (typically the server).
+The connection ensures integrity because each message transmitted includes a message integrity check using a message authentication 
+code to prevent undetected loss or alteration of the data during transmission.[1]:3
 
 - TCP vs UDP?
 TCP - Acronym for	Transmission Control Protocol	
@@ -215,9 +268,11 @@ UDP - User Datagram Protocol or Universal Datagram Protocol
 TCP is a connection-oriented protocol.	
 UDP is a connectionless protocol.
 TCP - Function	As a message makes its way across the internet from one computer to another. This is connection based.	
-UDP - also a protocol used in message transport or transfer. This is not connection based which means that one program can send a load of packets to another and that would be the end of the relationship.
+UDP - also a protocol used in message transport or transfer. This is not connection based which means that one program can send a load 
+of packets to another and that would be the end of the relationship.
 TCP is suited for applications that require high reliability, and transmission time is relatively less critical.	
-UDP is suitable for applications that need fast, efficient transmission, such as games. UDP's stateless nature is also useful for servers that answer small queries from huge numbers of clients.
+UDP is suitable for applications that need fast, efficient transmission, such as games. UDP's stateless nature is also useful for 
+servers that answer small queries from huge numbers of clients.
 TCP - HTTP, HTTPs, FTP, SMTP, Telnet	
 UDP - DNS, DHCP, TFTP, SNMP, RIP, VOIP.
 
