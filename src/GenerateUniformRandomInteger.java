@@ -3,6 +3,7 @@ write a random function rand4(), which return uniformly random integer of [1,2,3
 
 This is called rejection sampling. The idea is to call rand3 until it hits the range between 1 ~ 4
 3 * 3 = 9
+http://articles.leetcode.com/rejection-sampling
 */
 
 public int rand4() {
