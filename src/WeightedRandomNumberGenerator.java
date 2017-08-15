@@ -19,7 +19,7 @@ public int generateRandom(int[] values, int[] weights) {
     r = r - weights[i];
   }
   
-  // binary search approach
+  /* binary search approach
   int[] dist = new int[values.length];
   int sum = 0;
   for (int i = 0; i < values.length; i++) {
@@ -43,5 +43,5 @@ public int generateRandom(int[] values, int[] weights) {
     }
   }
   
-  return -1;
+  return -1;*/
 }
