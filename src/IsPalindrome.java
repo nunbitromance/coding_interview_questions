@@ -21,36 +21,58 @@ public static bool isPalindrome(string s)
 /*
 is linked list palindrome? 1->2->3->2->1 => true, 1->2->3->2->2 => false, 1->2->2->1 => true
 */
-public static bool isPalindrome(Node head)
-{
-	bool isPalindrome = true;
-	
-	Node p1 = head;
-	Node p2 = head;
-	Stack<int> s = new Stack<int>();
-	
-	while (p2.Next != null)
-	{
-		p1 = p1.Next;
-		p2 = p2.Next.Next;
-		s.insert(p1.Value);
-	}
-	
-	if (p2 != null)
-	{
-		p1 = p1.Next;
-	}
-	
-	while (p1 != null)
-	{
-		int top = s.pop();
-		if (top != p1.Value)
-		{
-			return false;
-		}
-		p1 = p1.Next;
-	}
-	return true;
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean isPalindrome(ListNode head) {
+        if (head == null) {
+            return true;
+        }
+        
+        ListNode first = head;
+        ListNode second = head;
+        
+        while (second != null) {
+            first = first.next;
+            second = second.next;
+            if (second != null) {
+                second = second.next;
+            }
+        }
+        
+        ListNode revFirst = reverse(first);
+        first = head;
+        
+        while (revFirst != null && first != null) {
+            if (revFirst.val != first.val) {
+                return false;
+            }
+            revFirst = revFirst.next;
+            first = first.next;
+        }
+        
+        return true;
+    }
+    
+    private ListNode reverse(ListNode head) {
+        ListNode cur = head;
+        ListNode prev = null;
+        
+        while (cur != null) {
+            ListNode temp = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = temp;
+        }
+        
+        return prev;
+    }
 }
 
 /*
