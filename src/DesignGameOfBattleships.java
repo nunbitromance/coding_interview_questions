@@ -61,7 +61,7 @@ public class Board {
         private int length;
 }
 
-public class Ship {
+public abstract class Ship {
         private Player player;
         private int x;
         private int y;
@@ -88,6 +88,14 @@ public class Ship {
            }
            return false;
         }
+}
+                            
+public class Cruiser extends Ship {
+        ...
+}
+                            
+public class Submarine extends Ship {
+        ...       
 }
 
 public enum Status {
