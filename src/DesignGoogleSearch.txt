@@ -1,0 +1,28 @@
+When you submit query to Google, it is broken into constituent keyword or N-gram components (the entire query may be a single N-gram). 
+Those components are looked up, in parallel, in a logarithmic tree structure (e.g. a B-tree, a hash is also possible) which resides in RAM.
+This lookup is very fast, in microseconds since the structure is in RAM. 
+
+The number of entries in the structure, which is in billions, is not important since the lookup is logarithmic. E.g. for billion entries, 
+30 lookups at most would be enough (binary), could even be less if algorithms with base other than binary were used. 
+
+The results of lookups are lists of locations containing machines which are responsible for serving parts of answers for corresponding 
+keywords (or N-grams). Google uses document partitioned index, so a keyword is simultaneously sent to multiple machines, each of which is 
+responsible for a fraction of the entire Web.
+
+Upon lookups, requests for pieces of results are sent in parallel to the responsible machines within Google datacenter. Google uses 
+multiple datacenters, but a query is always served within a single datacenter. 
+
+The communication across Google internal data network takes tens of milliseconds, and lookup of pieces of answers for individual machines 
+takes perhaps few tens of milliseconds (for disk accesses).
+
+Finally all of these pieces are streamed back in parallel, and assembled in order to determine the ordering of results. In addition, ads 
+from ad servers are also included in the mix.
+
+You can see that there are typically dozens, or perhaps hundreds of machines participating in answering a query, however most of the work 
+is done in parallel.
+The critical path, determining the response time, is quite short:
+
+Keyword lookup -> send request on internal network - > lookup answers locally ->stream back results -> assemble
+
+and can be comfortably fit in 100ms or less. Caching can reduce these delays but not always, as there are lots of unique queries Google 
+has never seen before every day.
