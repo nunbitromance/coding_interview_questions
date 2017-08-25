@@ -75,7 +75,8 @@ Add to List
 216. Combination Sum III
 DescriptionHintsSubmissionsDiscussSolution
 Discuss Pick One
-Find all possible combinations of k numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.
+Find all possible combinations of k numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each 
+combination should be a unique set of numbers.
 
 
 Example 1:
@@ -171,7 +172,13 @@ public int combinationSum4(int[] nums, int target) {
     }
     return res;
 }
-Now for a DP solution, we just need to figure out a way to store the intermediate results, to avoid the same combination sum being calculated many times. We can use an array to save those results, and check if there is already a result before calculation. We can fill the array with -1 to indicate that the result hasn't been calculated yet. 0 is not a good choice because it means there is no combination sum for the target.
+
+/*
+Now for a DP solution, we just need to figure out a way to store the intermediate results, to avoid the same combination sum being 
+calculated many times. We can use an array to save those results, and check if there is already a result before calculation. We can 
+fill the array with -1 to indicate that the result hasn't been calculated yet. 0 is not a good choice because it means there is no 
+	combination sum for the target.
+*/
 
 private int[] dp;
 
