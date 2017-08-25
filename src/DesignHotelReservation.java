@@ -2,108 +2,23 @@ Design Hotel Reservation
 
 Design a hotel reservation system. To make it simple, we assume that the hotel has only one building and the building has only one floor. Design your objects so that they work better with a non-sql database, say a document-oriented database.
 
-The reservation system needs at least two another class. The first one is the Room class, which is identified by the room number and have several methods such as book() or unbook().
+The reservation system needs at least two another class. The first one is the Room class, which is identified by the room number and 
+have several methods such as book() or unbook().
 
 The second one is the Customer class. This class contains the information of a customer who has made a reservation.
 
-I also use two maps to store all rooms and customers. The reason to use map is that it is easy for retrieval: I can use the name and room number to find the customer and room I want.
+I also use two maps to store all rooms and customers. The reason to use map is that it is easy for retrieval: I can use the name and 
+room number to find the customer and room I want.
 
 Two public methods: makeReservation and cancelReservation.
 
-makeReservation() will create a Customer object, find the next available room, and assign that to the customer, so when the customer checks in, he/she can easily find the room. If there is no available room, then no reservation can be made.
+makeReservation() will create a Customer object, find the next available room, and assign that to the customer, so when the customer 
+checks in, he/she can easily find the room. If there is no available room, then no reservation can be made.
 
 cancelReservation() will remove the Customer object c out of the customers map and make the room available.
 
 There are couple private helper methods that I don't want to go detail.
 
-
-?
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
 public class ReservationSystem{
  final Map<integer room=""> rooms;
  Map<string customer=""> customers;
