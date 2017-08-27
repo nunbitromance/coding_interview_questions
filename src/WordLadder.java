@@ -15,17 +15,16 @@ public class Solution {
     public int ladderLength(String start, String end, Set<String> dict) {
         Queue<String> queue = new LinkedList<String>();
         Set<String> set = new HashSet<String>();
-        Queue<Integer> ladderLength = new LinkedList<Integer>();
         queue.offer(start);
         set.add(start);
         ladderLength.offer(0);
+        int length = 1;
         
         while (!queue.isEmpty()) {
             String cur = queue.poll();
-            Integer l = ladderLength.poll();
             set.add(cur);
             if (cur.equals(end)) {
-                return l;
+                return length;
             }
          
             for (String s : getOneEditWords(cur, dict)) {
@@ -33,9 +32,9 @@ public class Solution {
                     continue;
                 } else {
                     queue.add(s);
-                    ladderLength.offer(l + 1);
                 }
             }
+            length++;
         }
         
         return 0;
