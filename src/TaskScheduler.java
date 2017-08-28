@@ -15,10 +15,12 @@ Explanation: A -> B -> idle -> A -> B -> idle -> A -> B.
 
 Java PriorityQueue solution - Similar problem Rearrange string K distance apart
 The idea used here is similar to - https://leetcode.com/problems/rearrange-string-k-distance-apart
-We need to arrange the characters in string such that each same character is K distance apart, where distance in this problems is time b/w two similar task execution.
+We need to arrange the characters in string such that each same character is K distance apart, where distance in this problems is 
+time b/w two similar task execution.
 
 Idea is to add them to a priority Q and sort based on the highest frequency.
-And pick the task in each round of 'n' with highest frequency. As you pick the task, decrease the frequency, and put them back after the round.
+And pick the task in each round of 'n' with highest frequency. As you pick the task, decrease the frequency, and put them back after 
+the round.
 */
 public int leastInterval(char[] tasks, int n) {
      Map<Character, Integer> map = new HashMap<>();
