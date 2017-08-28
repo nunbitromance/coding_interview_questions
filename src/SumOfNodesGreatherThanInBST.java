@@ -1,5 +1,6 @@
 /*
-* Given a BST, replace each node with the sum of the values of all the nodes that are greater than that node. Only constraint being that I was not allowed to use any global or static variable.
+* Given a BST, replace each node with the sum of the values of all the nodes that are greater than that node. 
+Only constraint being that I was not allowed to use any global or static variable.
 */
 
           5               
