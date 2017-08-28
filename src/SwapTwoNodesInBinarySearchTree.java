@@ -8,30 +8,49 @@ Note:
 A solution using O(n) space is pretty straight forward. Could you devise a constant space solution?
 
 */
-public static void SwapTwoNodes(Node root, int max, int min, ref Node first, ref Node second)
+class NodePairWrapper {
+	public Node first;
+	public Node second;
+	public Node prev;
+}
+
+public void swapTwoNodes(Node root, int max, int min) {
+	NodePairWrapper npw = new NodePairWrapper();
+	swapTwoNodes(root, Integer.MAX_VALUE, Integer.MIN_VALUE, npw);
+	
+	if (wrapper.second == null) {
+		// if parent child value are swapped, swap them.
+		int temp = wrapper.first.value;
+		wrapper.first.value = wrapper.prev.value;
+		wrapper.prev.value = temp;
+	}
+}
+
+private static void swapTwoNodes(Node root, int max, int min, NodePairWrapper wrapper, Node prev)
 {
 	if (root == null)
 	{
 		return;
 	}
+	swapTwoNodes(root.left, root.value, min, wrapper, root);
 	
-	if (root.Value > max || root.Value < min)
+	if (root.value > max || root.value < min)
 	{
-		if (first == null)
+		if (wrapper.first == null)
 		{
-			first = root;
+			wrapper.first = root;
+			wrapper.prev = root;
 		}
 		else
 		{
-			second = root;
+			wrapper.second = root;
 			
 			// found second, swap first and second
-			Node temp = first;
-			first = second;
-			second = temp;
+			int temp = wrapper.first.value;
+			wrapper.first.value = wrapper.second.value;
+			wrapper.second.value = temp;
+			return;
 		}
 	}
-	
-	SwapTwoNodes(root.Left, root.Value, min, ref first, ref second);
-	SwapTwoNodex(root.Right, max, root.Value, ref first, ref second);
+	swapTwoNodex(root.right, max, root.value, wrapper, root);
 }
