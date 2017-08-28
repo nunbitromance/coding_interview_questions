@@ -1,9 +1,13 @@
 /*
 https://leetcode.com/problems/replace-words/description/
-The only modification to the standard Trie, is that we need a function getShortestPrefix that returns the shortest prefix of the given word in the trie, if the shortest prefix exists or return the original word. Once we have this, all we have to do is iterate through the sentence and replace each word with the getShortestPrefix(word) in the trie.
-In English, we have a concept called root, which can be followed by some other words to form another longer word - let's call this word successor. For example, the root an, followed by other, which can form another word another.
+The only modification to the standard Trie, is that we need a function getShortestPrefix that returns the shortest prefix of the 
+given word in the trie, if the shortest prefix exists or return the original word. Once we have this, all we have to do is iterate 
+through the sentence and replace each word with the getShortestPrefix(word) in the trie.
+In English, we have a concept called root, which can be followed by some other words to form another longer word - let's call this 
+word successor. For example, the root an, followed by other, which can form another word another.
 
-Now, given a dictionary consisting of many roots and a sentence. You need to replace all the successor in the sentence with the root forming it. If a successor has many roots can form it, replace it with the root with the shortest length.
+Now, given a dictionary consisting of many roots and a sentence. You need to replace all the successor in the sentence with the root 
+forming it. If a successor has many roots can form it, replace it with the root with the shortest length.
 
 You need to output the sentence after the replacement.
 
