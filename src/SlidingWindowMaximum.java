@@ -17,13 +17,20 @@ Requirement: Find a good optimal way to get B[i]
 
 /*
 http://articles.leetcode.com/2011/01/sliding-window-maximum.html
-You might be wondering: Is there a better way of doing this without using a heap? How about using a double-ended queue? (A linked list should be fine too)
+You might be wondering: Is there a better way of doing this without using a heap? How about using a double-ended queue? 
+(A linked list should be fine too)
 
-The double-ended queue is the perfect data structure for this problem. It supports insertion/deletion from the front and back. The trick is to find a way such that the largest element in the window would always appear in the front of the queue. How would you maintain this requirement as you push and pop elements in and out of the queue?
+The double-ended queue is the perfect data structure for this problem. It supports insertion/deletion from the front and back. 
+The trick is to find a way such that the largest element in the window would always appear in the front of the queue. How would 
+you maintain this requirement as you push and pop elements in and out of the queue?
 
-Besides, you might notice that there are some redundant elements in the queue that we shouldn’t even consider about. For example, if the current queue has the elements: [10 5 3], and a new element in the window has the element 11. Now, we could have emptied the queue without considering elements 10, 5, and 3, and insert only element 11 into the queue.
+Besides, you might notice that there are some redundant elements in the queue that we shouldn’t even consider about. For example, 
+if the current queue has the elements: [10 5 3], and a new element in the window has the element 11. Now, we could have emptied 
+the queue without considering elements 10, 5, and 3, and insert only element 11 into the queue.
 
-A natural way most people would think is to try to maintain the queue size the same as the window’s size. Try to break away from this thought and try to think outside of the box. Removing redundant elements and storing only elements that need to be considered in the queue is the key to achieve the efficient O(n) solution below.
+A natural way most people would think is to try to maintain the queue size the same as the window’s size. Try to break away from 
+this thought and try to think outside of the box. Removing redundant elements and storing only elements that need to be considered 
+in the queue is the key to achieve the efficient O(n) solution below.
 
 */
 
