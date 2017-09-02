@@ -11,33 +11,32 @@
 	      / \
 	     2   3
 	Return 6.
+	
+	Here's my ideas:
+
+A path from start to end, goes up on the tree for 0 or more steps, then goes down for 0 or more steps. 
+Once it goes down, it can't go up. Each path has a highest node, which is also the lowest common ancestor of all other nodes on the 
+path.
+A recursive method maxPathDown(TreeNode node) (1) computes the maximum path sum with highest node is the input node, update 
+maximum if necessary (2) returns the maximum sum of the path that can be extended to input node's parent.
 */
- public static int maxPathSum(Node root)
-{
-    // Start typing your C/C++ solution below
-    // DO NOT write int main() function
-    int csum = 0;
-    int maxsum = int.MinValue;
-    maxPathSumHelper(root, ref csum, ref maxsum);
-    return maxsum;
-}
-
-public static void maxPathSumHelper(Node node, ref int csum, ref int maxsum)
-{
-    if (node == null)
-    {
-        csum = 0;
-        return;
+public class Solution {
+    int maxValue;
+    
+    public int maxPathSum(TreeNode root) {
+        maxValue = Integer.MIN_VALUE;
+        maxPathDown(root);
+        return maxValue;
     }
-    int lsum = 0, rsum = 0;
-    maxPathSumHelper(node.Left, ref lsum, ref maxsum);
-    maxPathSumHelper(node.Right, ref rsum, ref maxsum);
-    // current sum is max of (just node, node and left sum, node and right sum)
-    csum = Math.Max(node.Value, Math.Max(node.Value + lsum, node.Value + rsum));
-    // max sum is max of current sum, left + current value + right sum.
-    maxsum = Math.Max(maxsum, Math.Max(csum, node.Value + lsum + rsum));
+    
+    private int maxPathDown(TreeNode node) {
+        if (node == null) return 0;
+        int left = Math.max(0, maxPathDown(node.left));
+        int right = Math.max(0, maxPathDown(node.right));
+        maxValue = Math.max(maxValue, left + right + node.val);
+        return Math.max(left, right) + node.val;
+    }
 }
-
 public static void Main(string[] args)
 {
     /*       -1
