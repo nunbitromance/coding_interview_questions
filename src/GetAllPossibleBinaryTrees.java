@@ -31,14 +31,14 @@ Given n = 3, your program should return all 5 unique BST's shown below.
 			List<Node> rightTrees = buildTrees(i+1, end);
 
 			// all possible trees made with start, i-1
-			for (int j = 0; j < leftTrees.Count; j++)
+			for (int j = 0; j < leftTrees.size(); j++)
 			{
 				// all possible trees made with i + 1, end
-				for (int k = 0; k < rightTrees.Count; k++)
+				for (int k = 0; k < rightTrees.size(); k++)
 				{
 					Node root = new Node(i);
-					root.left = leftTrees[j];
-					root.right = rightTrees[k];
+					root.left = leftTrees.get(j);
+					root.right = rightTrees.get(k);
 					result.add(root);
 				}
 			}
