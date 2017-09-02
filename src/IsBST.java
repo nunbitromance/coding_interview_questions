@@ -1,6 +1,6 @@
 public static bool isBST(Node root)
 {
-	return isBST(root, int.Max, 0);
+	return isBST(root, Integer.MAX_VALUE, Integer.MIN_VALUE);
 }
 
 private static bool isBST(Node root, int max, int min)
