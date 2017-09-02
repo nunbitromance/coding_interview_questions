@@ -58,7 +58,7 @@ public int totalTrees(int n, Map<Integer, Integer> memo) {
 	int sum = 0;
 	for (int k = 2; k <= n; k++) {
 		int left = totalTrees(k - 1, memo);
-		int right = totalTrees(k + 1, memo);
+		int right = totalTrees(n - k, memo);
 		sum = sum + (left * right);
 	}
 
