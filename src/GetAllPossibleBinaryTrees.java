@@ -56,7 +56,7 @@ Given n = 3, your program should return all 5 unique BST's shown below.
 		}
 		
 		int sum = 0;
-		for (int k = 2; k <= n; k++) {
+		for (int k = 1; k <= n; k++) {
 			int left = totalTrees(k - 1, memo);
 			int right = totalTrees(k + 1, memo);
 			sum = sum + (left * right);
