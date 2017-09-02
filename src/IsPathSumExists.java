@@ -58,16 +58,18 @@ public static void printPathSums(Node root, int sum, int level, List<Node> path)
 		{
 			Print(path);
 		}
+		return;
 	}
 	
 	int localSum = sum - root.Value;
 	
 	if (localSum < 0)
 	{
-		return false;
+		return;
 	}
 	
-	path.Add(level, root.Value);
+	path.add(root.Value);
 	printPathSums(root.Left, localSum, level + 1, path);
 	printPathSums(root.Right, localSum, level + 1, path);
+	path.remove(path.size() - 1);
 }
