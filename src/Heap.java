@@ -1,17 +1,17 @@
 public class Heap<E extends Comparable<E>> {
 
-    private Object S[];
+    private E arr[];
     private int last;
     private int capacity;
 
     public Heap() {
-        S = new Object[11];
+        arr = new E[11];
         last = 0;
         capacity = 7;
     }
 
     public Heap(int cap) {
-        S = new Object[cap + 1];
+        arr = new E[cap + 1];
         last = 0;
         capacity = cap;
     }
@@ -35,8 +35,13 @@ public class Heap<E extends Comparable<E>> {
     public E min() throws HeapException {
         if (isEmpty())
             throw new HeapException("The heap is empty.");
-        else
-            return (E) S[1];
+        else {
+            E temp = arr[0];
+            swap(arr, 0, last);
+            last--;
+            downHeapBubble();
+            return temp;
+        }
     }
 
     //
@@ -83,20 +88,17 @@ public class Heap<E extends Comparable<E>> {
      * in order to preserve the Heap properties
      */
     private void downHeapBubble(){
-        int index = 1;
+        int index = 0;
         while (true){
-            int child = index*2;
-            if (child > size())
-                break;
-            if (child + 1 <= size()){
-                //if there are two children -> take the smalles or
-                //if they are equal take the left one
-                child = findMin(child, child + 1);
+            int left = index * 2 + 1;
+            int right = index * 2 + 2;
+            if (arr[left] < arr[right]) {
+                swap(arr, index, left);
+                index = left;
+            } else {
+                swap(arr, index, right);
+                index = right;
             }
-            if (compare(S[index],S[child]) <= 0 )
-                break;
-            swap(index,child);
-            index = child;
         }
     }
 
@@ -106,11 +108,8 @@ public class Heap<E extends Comparable<E>> {
      */
     private void upHeapBubble(){
         int index = size();
-        while (index > 1){
+        while (index > 0){
             int parent = index / 2;
-            if (compare(S[index], S[parent]) >= 0)
-                //break if the parent is greater or equal to the current element
-                break;
             swap(index,parent);
             index = parent;
         }       
