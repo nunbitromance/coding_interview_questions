@@ -11,59 +11,59 @@ Given n = 3, your program should return all 5 unique BST's shown below.
     /     /       \                 \
    2     1         2                 3
 */
-public static List<Node> BuildAllPossibleBinaryTrees(int start, int end)
-{
-	List<Node> result = new List<Node>();
-	
-	if (start > end)
+	public static List<Node> buildTrees(int start, int end)
 	{
-		result.add(null);
-		return result;
-	}
-	else if (start == end)
-	{
-		result.add(new Node(start));
-		return result;
-	}
-	
-	for (int i = start; i <= end; i++)
-	{
-		List<Node> leftTrees = PrintAllTrees(start, i-1);
-		List<Node> rightTrees = PrintAllTrees(i+1, end);
-
-		// all possible trees made with start, i-1
-		for (int j = 0; j < leftTrees.Count; j++)
+		List<Node> result = new List<Node>();
+		if (start > end)
 		{
-			// all possible trees made with i + 1, end
-			for (int k = 0; k < rightTrees.Count; k++)
+			result.add(null);
+			return result;
+		}
+		else if (start == end)
+		{
+			result.add(new Node(start));
+			return result;
+		}
+
+		for (int i = start; i <= end; i++)
+		{
+			List<Node> leftTrees = buildTrees(start, i-1);
+			List<Node> rightTrees = buildTrees(i+1, end);
+
+			// all possible trees made with start, i-1
+			for (int j = 0; j < leftTrees.Count; j++)
 			{
-				Node root = new Node(i);
-				root.Left = leftTrees[j];
-				root.Right = rightTrees[k];
-				result.Add(root);
+				// all possible trees made with i + 1, end
+				for (int k = 0; k < rightTrees.Count; k++)
+				{
+					Node root = new Node(i);
+					root.left = leftTrees[j];
+					root.right = rightTrees[k];
+					result.add(root);
+				}
 			}
-		}
-	} 
-
-
-	
-	return root;
-}
+		} 
+		return root;
 	}
- 
-	public int totalTree(int n) {
-		if (n == 1 || n == 0)
+
+        public int totalTrees(int n, Map<Integer, Integer> memo) {
+		if (n == 1 || n == 0) {
 			return 1;
-		else {
-			int left = 0;
-			int right = 0;
-			int sum = 0;
-			for (int k = 1; k <= n; k++) {
-				left = totalTree(k - 1);
-				right = totalTree(n - k);
-				sum = sum + (left * right);
-			}
-			return sum;
 		}
+		
+		if (memo.containsKey(n)) {
+			return memo.get(n);
+		}
+		
+		int sum = 0;
+		for (int k = 2; k <= n; k++) {
+			int left = totalTrees(k - 1, memo);
+			int right = totalTrees(k + 1, memo);
+			sum = sum + (left * right);
+		}
+		
+		memo.put(n, sum);
+		
+		return sum;
 	}
 }
