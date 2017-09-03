@@ -1,14 +1,18 @@
 need to clarify one question first: what does the distributed hangman game mean or which part should be distributed?
 
 there are 2 types: stateless || stateful server
-stateless server might be the best way to solve the problem, since the game is very simple, nothing about security, and with a good encoding, client side can do all the caching of the game process with very cheap network communication. This makes the server very scalable.(in another sense, the server is just a skeleton to implement the logic. the game is just like running on users' machine and doing the calculation on server)
+stateless server might be the best way to solve the problem, since the game is very simple, nothing about security, and with a good 
+encoding, client side can do all the caching of the game process with very cheap network communication. This makes the server very 
+scalable.(in another sense, the server is just a skeleton to implement the logic. the game is just like running on users' machine and 
+doing the calculation on server)
 
 stateful: this one is a little bit tricky. The server side may need to record users session obtained by users' cookie or the user ID.
 Considering millions of users playing at the same time, we can store the user session in a distributed database or file system like 
 Chord File system or Google file system. using SHA-1 hash to distribute the user session, and do the calculation on that machine. 
 To do the load balancing, we can use open source software like Haproxy as master node to dispatch the calculation.
 
-To implement some features like leader border: we might need to use a master node to implement a B+ tree or other better data structure (fix sized priority queue, if only first K records are needed)
+To implement some features like leader border: we might need to use a master node to implement a B+ tree or other better data structure 
+(fix sized priority queue, if only first K records are needed)
 
 =====================================================
 
@@ -33,7 +37,8 @@ class HMSession
 5) Since the user data is confined in the process'es address space boundaries concurrency issues should not come in picture. 
 6) Session info will be in-memory (if scores are to be kept, those can be written to disk). User info should also be saved as cookies, 
 so if connection is lost the game can be resumed easily. 
-7) These Hangman servers can be behind a load-balancer who can simply serve in requests in a round-robin manner or sophisticated monitoring system can be built for health checking and keeping track of current load on a system. 
+7) These Hangman servers can be behind a load-balancer who can simply serve in requests in a round-robin manner or sophisticated 
+monitoring system can be built for health checking and keeping track of current load on a system. 
 8) New hosts can be added to the load balancer or inactive/dead hosts can be removed without the needing any special configuration. 
 
 
