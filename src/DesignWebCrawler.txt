@@ -1,5 +1,6 @@
 Design the algorithm and the system for a WebCrawler. 
-The webcralwler will be provided millions of URLs. The webpage will be downloaded and then parsed for more URLs. If more URLs are found then they should also be downloaded and parsed. 
+The webcralwler will be provided millions of URLs. The webpage will be downloaded and then parsed for more URLs. 
+If more URLs are found then they should also be downloaded and parsed. 
 
 He was interested in: 
 1. Scale to handle millions of URLs 
@@ -7,7 +8,8 @@ He was interested in:
 
 Consider the web as a graph of related URLs, all you have to do is traverse this graph 
 its can be done using simple BFS, DFS 
-for parsing the web pages it can be done using any parsers but most of them used FSM to generate all the different components of the web page.
+for parsing the web pages it can be done using any parsers but most of them used FSM to generate all the different 
+components of the web page.
 
 - mBk 7 months ago | Flag Reply
 0
