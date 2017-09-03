@@ -1,4 +1,4 @@
-8.1 Design the data structures for a generic deck of cards. Explain how you would
+. Design the data structures for a generic deck of cards. Explain how you would
 subclass the data structures to implement blackjack.
 pgWS
 SOLUTION
@@ -6,130 +6,130 @@ First, we need to recognize that a "generic" deck of cards can mean many things.
 could mean a standard deck of cards that can play a poker-like game, or it could even
 stretch to Uno or Baseball cards. It is important to ask your interviewer what she means
 by generic.
-Let's assume that your interviewer clarifies that the deck is a standard 52-card set, like
+Let's assume that your interviewer clarifies that the deck is a standard -card set, like
 you might see used in a blackjack or poker game. If so, the design might look like this:
-1 public enum Suit {
-2 Club (0), Diamond (1), Heart (2), Spade (3);
-3 private int value;
-4 private Suit(int v) { value = v; }
-5 public int getValue() { return value; }
-6 public static Suit getSuitFromValue(int value) { ... }
-7 }
-8
-9 public class Deck <T extends Card> {
-10 private ArrayList<T> cards; // all cards, dealt or not
-11 private int dealtlndex = 0; // marks first undealt card
-12
-13 public void setDeckOfCards(ArrayList<T> deckOfCards) { ... }
-14
-15 public void snuffle() { ... }
-16 public int remainingCardsQ {
-17 return cards.sizeQ - dealtlndex;
-18 }
-19 public T[] dealHand(int number) { ... }
-20 public T dealCardQ { ••• }
-21 }
-22
-23 public abstract class Card {
-24 private boolean available = true;
-25
-26 /* number or face that's on card - a number 2 through 10, or 11
-27 * for Jack, 12 for Queen, 13 for King, or 1 for Ace */
-28 protected int faceValue;
-29 protected Suit suit;
-30
-31 public Card(int c, Suit s) {
-32 faceValue = c;
-33 suit = s;
-34 }
-35
-280 Cracking the Coding Interview | Solutions to Object-Oriented Design
-Solutions to Chapter 8 | Object-Oriented Design
-36 public abstract int value();
-37
-38 public Suit suit() { return suit; }
-39
-48 /* Checks if the card is available to be given out to someone */
-41 public boolean isAvailableQ { return available; }
-42 public void markUnavailableQ { available = false; }
-43
-44 public void markAvailableQ { available = true; }
-45 }
-46
-47 public class Hand <T extends Card> {
-48 protected ArrayList<T> cards = new ArrayList<T>();
-49
-50 public int score() {
-51 int score = 0;
-52 for (T card : cards) {
+ public enum Suit {
+ Club (), Diamond (), Heart (), Spade ();
+ private int value;
+ private Suit(int v) { value = v; }
+ public int getValue() { return value; }
+ public static Suit getSuitFromValue(int value) { ... }
+ }
+
+ public class Deck <T extends Card> {
+ private ArrayList<T> cards; // all cards, dealt or not
+ private int dealtlndex = ; // marks first undealt card
+
+ public void setDeckOfCards(ArrayList<T> deckOfCards) { ... }
+
+ public void snuffle() { ... }
+ public int remainingCardsQ {
+ return cards.sizeQ - dealtlndex;
+ }
+ public T[] dealHand(int number) { ... }
+ public T dealCardQ { ••• }
+ }
+
+ public abstract class Card {
+ private boolean available = true;
+
+ /* number or face that's on card - a number  through , or 
+ * for Jack,  for Queen,  for King, or  for Ace */
+ protected int faceValue;
+ protected Suit suit;
+
+ public Card(int c, Suit s) {
+ faceValue = c;
+ suit = s;
+ }
+
+ Cracking the Coding Interview | Solutions to Object-Oriented Design
+Solutions to Chapter  | Object-Oriented Design
+ public abstract int value();
+
+ public Suit suit() { return suit; }
+
+ /* Checks if the card is available to be given out to someone */
+ public boolean isAvailableQ { return available; }
+ public void markUnavailableQ { available = false; }
+
+ public void markAvailableQ { available = true; }
+ }
+
+ public class Hand <T extends Card> {
+ protected ArrayList<T> cards = new ArrayList<T>();
+
+ public int score() {
+ int score = ;
+ for (T card : cards) {
 score += card.value();
-54 }
+ }
 return score;
-56 }
-57
-58 public void addCard(T card) {
-59 cards.add(card);
-60 }
-61 }
+ }
+
+ public void addCard(T card) {
+ cards.add(card);
+ }
+ }
 In the above code, we have implemented Deck with generics but restricted the type
 of T to Card. We have also implemented Card as an abstract class, since methods like
 value() don't make much sense without a specific game attached to them. (You could
 make a compelling argument that they should be implemented anyway, by defaulting
 to standard poker rules.)
 Now, let's say we're building a blackjack game, so we need to know the value of the
-cards. Face cards are 10 and an ace is 11 (most of the time, but that's the job of the Hand
+cards. Face cards are  and an ace is  (most of the time, but that's the job of the Hand
 class, not the following class).
-1 public class BlackDackHand extends Hand<BlackJackCard> {
-2 /* There are multiple possible scores for a blackjack hand,
-3 * since aces have multiple values. Return the highest possible
-4 * score that's under 21, or the lowest score that's over. */
+ public class BlackDackHand extends Hand<BlackJackCard> {
+ /* There are multiple possible scores for a blackjack hand,
+ * since aces have multiple values. Return the highest possible
+ * score that's under , or the lowest score that's over. */
 public int scoreQ {
-6 ArrayList<Integer> scores = possibleScoresQ;
+ ArrayList<Integer> scores = possibleScoresQ;
 int maxUnder = Integer.MIN_VALUE;
-8 int minOver = Integer.MAX_VALUE;
-9 for (int score : scores) {
-10 if (score > 21 && score < minOver) {
-11 minOver = score;
-12 } else if (score <= 21 && score > maxUnder) {
-13 maxUnder = score;
-CrackingTheCodinglnterview.com 281
-Solutions to Chapter 8 | Object-Oriented Design
-14 }
-15 }
-16 return maxUnder == Integer.MIN_VALUE ? tninOver : maxUnder;
-17 }
-18
-19 /* return a list of all possible scores this hand could have
-20 * (evaluating each ace as both 1 and 11 */
-21 private ArrayList<Integer> possibleScoresQ { ... }
-22
-23 public boolean bustedQ { return scoreQ > 21; }
-24 public boolean is21() { return scoreQ == 21; }
-25 public boolean IsBlackJackQ { ... }
-26 }
-27
-28 public class BlackJackCard extends Card {
-29 public BlackJackCard(int c, Suit s) { super(c, s); }
-36 public int value() {
-31 if (isAce()) return 1;
-32 else if (faceValue >= 11 && faceValue <= 13) return 10;
-33 else return faceValue;
-34 }
-35
-36 public int minValueQ {
-37 if (isAceQ) return 1;
-38 else return valueQ;
-39 }
-40
-41 public int maxValueQ {
-42 if (isAceQ) return 11;
-43 else return value();
-44 }
-45
-46 public boolean IsAceQ {
-47 return faceValue == 1;
-48 }
-49
-50 public boolean isFaceCardQ {
-51 return faceValue >= 11 && faceValue <= 13;
-52 }
+ int minOver = Integer.MAX_VALUE;
+ for (int score : scores) {
+ if (score >  && score < minOver) {
+ minOver = score;
+ } else if (score <=  && score > maxUnder) {
+ maxUnder = score;
+CrackingTheCodinglnterview.com 
+Solutions to Chapter  | Object-Oriented Design
+ }
+ }
+ return maxUnder == Integer.MIN_VALUE ? tninOver : maxUnder;
+ }
+
+ /* return a list of all possible scores this hand could have
+ * (evaluating each ace as both  and  */
+ private ArrayList<Integer> possibleScoresQ { ... }
+
+ public boolean bustedQ { return scoreQ > ; }
+ public boolean is() { return scoreQ == ; }
+ public boolean IsBlackJackQ { ... }
+ }
+
+ public class BlackJackCard extends Card {
+ public BlackJackCard(int c, Suit s) { super(c, s); }
+ public int value() {
+ if (isAce()) return ;
+ else if (faceValue >=  && faceValue <= ) return ;
+ else return faceValue;
+ }
+
+ public int minValueQ {
+ if (isAceQ) return ;
+ else return valueQ;
+ }
+
+ public int maxValueQ {
+ if (isAceQ) return ;
+ else return value();
+ }
+
+ public boolean IsAceQ {
+ return faceValue == ;
+ }
+
+ public boolean isFaceCardQ {
+ return faceValue >=  && faceValue <= ;
+ }
