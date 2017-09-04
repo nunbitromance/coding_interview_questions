@@ -240,6 +240,12 @@ things going on in the company that you aren't aware of which forms the basis fo
 but with that said, I've never had a manager that didn't want to hear all sides and make the best decision based on information from 
 his/her team members.
 
+- have you ever pushed back on manager? backbone
+S: at groupon, I had a manager who wanted to push forward on a aggressive plan for shipment tracking for European countries. I pushed back saying the task was not feasible. 
+T: task was to create a service that tracked shipment information from all EMEA packages within one week in time for revenue recognition.
+A: came up with a very simple architecture and followed up with more scalable architecture with deficiencies. not a scalable solution. spent night and day to finish the project at bare minimum.
+R: was recognized with hard work and followed up with proper plan to make the architecture much more scalable.
+
 - give me a time when you had to proceed on a project with little information.
 AWS Migration
 
