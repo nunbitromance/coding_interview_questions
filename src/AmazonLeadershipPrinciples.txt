@@ -282,3 +282,32 @@ UDP - DNS, DHCP, TFTP, SNMP, RIP, VOIP.
 - Design tweeter
 - SQL vs NoSQL?
 
+=====================================================================
+- any relevant deals
+- relevant? if it is interest to me, makes sense to me, highly likely to buy. timely
+- who determines whether customer is likely to buy?
+- dont want to get pushed to buy product
+- recommendation based on deals / promotions
+- 100 millions of customers
+- notification? email? customer engagement?
+- what is success measurement? conversion.
+
+use cases
+- how to add wishlist? come to amazon. product id and adds to customer's wishlist
+- interaction with customer? come to site / app product page
+- how do we send notifications with proper cadence? 
+- (v2) vendor / supplier get notified on high demand
+
+
+Users  --------- Website / App ----- Notification -----------Users
+
+DB
+Users (id, name, address)
+Devices (id, name, device_key, ...)
+Product (id, name, description, vendor, )
+Wishlist(id, user_id, product_id, creation_time, update_time, notificaiton_time)
+
+Notification 
+- notified on discount (product id's)
+- user / vendor sends notification messages
+- sends out batch of wishlist based on daily product deals to customers
