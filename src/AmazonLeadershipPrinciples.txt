@@ -63,6 +63,10 @@ beliefs.
      Once we had potential candidates, rather than fixing the problem immediately, I had instructed oncall to rollback the code.
   R: Orders started flowing again. Customers were unblocked.
 - Example 2: "Mongo upgrade"
+  S: Mongo db version was very outdated and performance issues. Time due for upgrade to wired tiger. However, the path was complicated and needed multiple version upgrades and made people nervous.
+  T: My objective was to upgrade mongo db to latest.
+  A: I coordinated with an engineer to come up with a plan to upgrade step by step. Mongo showed unexpected behavior when versions were mixed. I assessed the situation and realized that mongo synchronization between different versions were causing more churn on the cluster. I pushed forward knowing that it will stabilize once the versions were matched.
+  R: Mongo immediately became stable once all the nodes had matching version. Overall, perf. latency was decreased by 15%.
 
 Learn and Be Curious
 Leaders are never done learning and always seek to improve themselves. They are curious about new possibilities and act to explore them.
@@ -72,6 +76,10 @@ Leaders are never done learning and always seek to improve themselves. They are 
   A: I coordinated with engineer to kill the ajax call and increase the latency and put it on A/B testing at 10%
   R: Demand decreased based on result. Rolled back.
 - Example 2: "Cassandra training" => "Redis is expensive"  
+  S: Redis was too expensive and we could not contain all customer session data in memory.
+  T: Task was to come up with a way to make the architecture more scalable.
+  A: I investigated distributed key value storages and picked Cassandra.
+  R: 20k savings in server cost. Much more sustainable cost model.
 
 Hire and Develop the Best
 Leaders raise the performance bar with every hire and promotion. They recognise people with exceptional talent and willingly move 
