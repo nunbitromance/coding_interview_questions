@@ -22,6 +22,10 @@ attention to competitors, they obsess over customers.
   A: One of the missing pieces I saw with relatively cheap cost were that search was mainly substring based on contents but not fuzzy matching which was available in ES.
   R: We improved search results by increasing the fuzzy matching score on ES. Experiemented via A/B testing. Saw lift in demand about 1.5%.
 - Example 3: "Payment Descriptor Missing for Installment"
+  S: customers will get confused if we enable monthly installments
+  T: look into how to to avoid customer calls
+  A: integrated with payment tech descriptor with 1 month left
+  R: no CS calls.
 
 Ownership
 Leaders are owners. They think long term and don’t sacrifice long-term value for short-term results. They act on behalf of the 
