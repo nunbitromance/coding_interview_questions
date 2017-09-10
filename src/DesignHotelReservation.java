@@ -1,6 +1,8 @@
 Design Hotel Reservation
 
-Design a hotel reservation system. To make it simple, we assume that the hotel has only one building and the building has only one floor. Design your objects so that they work better with a non-sql database, say a document-oriented database.
+Design a hotel reservation system. To make it simple, we assume that the hotel has only one building and the building has only one floor.
+
+ Design your objects so that they work better with a non-sql database, say a document-oriented database.
 
 The reservation system needs at least two another class. The first one is the Room class, which is identified by the room number and 
 have several methods such as book() or unbook().
