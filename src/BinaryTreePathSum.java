@@ -99,28 +99,22 @@ Unfortunately, in Java, we can't pass in an int of current max to keep it update
 This algorithm runs in time O(n) by visiting each node constant times, and uses O(n) spaces with recursion.
 */
 
- public int maxPathSum(TreeNode root) {  
-   // pass in an Object that will be filled in the two values
-   Data data = maxSubPath(root);  
-   return data.sum;  
- }  
-
- private class Data {
-   int path = 0;
-   int sum = Integer.MIN_VALUE;
- }
-
- private Data maxSubPath(TreeNode root) {  
-   Data data = new Data();
-   if (root == null) return data;
-
-   Data l = maxSubPath(root.left);
-   Data r = maxSubPath(root.right);
-
-   data.path = Math.max(0, Math.max(l.path, r.path) + root.val);
-   data.sum = Math.max(Math.max(l.sum, r.sum), l.path+root.val+r.path);
-   return data;  
- }
-
+public class Solution {
+    int maxValue;
+    
+    public int maxPathSum(TreeNode root) {
+        maxValue = Integer.MIN_VALUE;
+        maxPathDown(root);
+        return maxValue;
+    }
+    
+    private int maxPathDown(TreeNode node) {
+        if (node == null) return 0;
+        int left = Math.max(0, maxPathDown(node.left));
+        int right = Math.max(0, maxPathDown(node.right));
+        maxValue = Math.max(maxValue, left + right + node.val);
+        return Math.max(left, right) + node.val;
+    }
+}
 
  
