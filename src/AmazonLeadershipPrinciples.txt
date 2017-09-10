@@ -21,6 +21,7 @@ attention to competitors, they obsess over customers.
   revamping the search UX.
   A: One of the missing pieces I saw with relatively cheap cost were that search was mainly substring based on contents but not fuzzy matching which was available in ES.
   R: We improved search results by increasing the fuzzy matching score on ES. Experiemented via A/B testing. Saw lift in demand about 1.5%.
+- Example 3: "Payment Descriptor Missing for Installment"
 
 Ownership
 Leaders are owners. They think long term and don’t sacrifice long-term value for short-term results. They act on behalf of the 
@@ -182,6 +183,11 @@ Behavioral Questions - Related to 12 Leadership Principles!!!
   T: objective was to simplify maintanenace
   A: started integration with 3rd party service for tracking in EMEA
   R: 99% accuracy
+- Example 3: "Scaling traffic for 6am burst traffic"
+  S: all of zulily customers come nearly at the same time
+  T: balancing caching and dynamic contents
+  A: caching. static contents.
+  R: better handling.
 
 - give me an example of most exciting project: 
   Smart Pay - 20% revenue
@@ -205,6 +211,12 @@ him in getting in touch with managers in that area and ensure a smooth transitio
 open discussion with all the members and try to draw natural concensus through discussion on alternatives about pros and cons. come 
 to agreement. If agreement cannot be reached, disagree and commit. As manager, you need to make a decision and make sure the team 
 is moving in the right direction.
+
+- have you had to make an unpopular decision?
+S: A/B test service into library. break SOA architecture
+T: better customer experience. lower latency
+A: had cross team discussion. some developers were not happy with converting service into library.
+R: disagree and commit. gathered data. showed the improvement for customers.
 
 - how do you build a team? 
 focus on common goals. set expectations for both short term and long term. celebrate success and failures.
