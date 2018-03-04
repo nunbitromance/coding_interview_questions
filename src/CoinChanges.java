@@ -51,6 +51,25 @@ public class CoinChanges {
         }
     }
     
+    // min number of coins to get total amount
+    public int coinChange(int[] coins, int amount) {
+        if (amount <= 0) {
+            return 0;
+        }
+        int max = amount + 1;  
+        int[] opt = new int[amount + 1];
+        Arrays.fill(opt, max);
+        opt[0] = 0;
+        for (int i = 0; i < coins.length; i++) {
+            for (int j = 1; j <= amount; j++) {
+                if (j >= coins[i]) {
+                    opt[j] = Math.min(opt[j - coins[i]] + 1, opt[j]);
+                }
+            }
+        }
+        return opt[amount] > amount ? -1 : opt[amount];
+    }
+    
     /**
      * @param args
      */
